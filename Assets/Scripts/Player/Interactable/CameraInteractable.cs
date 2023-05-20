@@ -51,7 +51,7 @@ public class CameraInteractable : MonoBehaviour
 
     private void Interact()
     {
-        if (Input.GetKeyDown(KeyCode.E) != true || currentInteractable == null)
+        if (Input.GetKeyDown(GlobalVariables.InteractKey) != true || currentInteractable == null)
             return;
 
         currentInteractable.Interact();
