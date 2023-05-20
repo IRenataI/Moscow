@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2d1a9abfca21e641bc730b98ca599fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensetivity: 50
+  sensetivity: 75
   horizontalClampAngle: 90
   verticalClampAngle: 360
 --- !u!114 &4574803657163560644
