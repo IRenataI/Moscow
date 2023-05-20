@@ -14,6 +14,7 @@ public class CameraRotation : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
 
         horizontalAngle = transform.eulerAngles.x;
+        verticalAngle = transform.eulerAngles.y;
     }
 
     private void Update()
@@ -30,12 +31,26 @@ public class CameraRotation : MonoBehaviour
         horizontalAngle = Mathf.Clamp(horizontalAngle, -horizontalClampAngle, horizontalClampAngle);
 
         verticalAngle += yMove * sensetivity * Time.deltaTime;
-        
-        if (verticalAngle >= 360f)
-            verticalAngle -= 360f;
-        else if (verticalAngle <= 360f)
-            verticalAngle += 360f;
+        VecticalAngleClamp();
 
         transform.eulerAngles = new Vector3(horizontalAngle, verticalAngle, 0f);
+    }
+
+    private void VecticalAngleClamp()
+    {
+        if (verticalClampAngle == 360f)
+        {
+            if (verticalAngle >= verticalClampAngle)
+                verticalAngle -= verticalClampAngle;
+            else if (verticalAngle <= -verticalClampAngle)
+                verticalAngle += verticalClampAngle;
+        }
+        else
+        {
+            if (verticalAngle > verticalClampAngle)
+                verticalAngle = verticalClampAngle;
+            else if (verticalAngle < -verticalClampAngle)
+                verticalAngle = -verticalClampAngle;
+        }
     }
 }

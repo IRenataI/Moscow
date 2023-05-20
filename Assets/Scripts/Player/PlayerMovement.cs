@@ -8,7 +8,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform cameraTransform;
 
     private Rigidbody rb;
-    
+    private bool canMove = true;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -21,6 +22,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void Move()
     {
+        if (!canMove)
+            return;
+
         float forward = Input.GetAxisRaw("Vertical");
         float right = Input.GetAxisRaw("Horizontal");
         Vector3 direction;
@@ -34,4 +38,8 @@ public class PlayerMovement : MonoBehaviour
 
         rb.velocity = speed * direction;
     }
+
+    public void StopMovement() => canMove = false;
+    public void ContinueMovement() => canMove = true;
+
 }
