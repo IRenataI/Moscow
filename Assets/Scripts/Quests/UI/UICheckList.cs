@@ -13,6 +13,6 @@ public class UICheckList : MonoBehaviour
     }
     public void UpdateTasks(int index)
     {
-        Tasks[index].text = "Task " + index + 1 + " is completed";
+        Tasks[index].text = "Task " + (index + 1) + " is completed";
     }
 }

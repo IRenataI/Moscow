@@ -5,19 +5,21 @@ public class QuestSystem : MonoBehaviour
     private Quest[] __quests = new Quest[0];
     public delegate void Quests();
     Quests __quest;
-    public void StartQuest(QuestInterface questInterface)
+    public void StartQuest(Quest quest)
     {
-        __quest = questInterface.StartQuest;
+        if (!quest.IsQuestCompleted)
+            __quest = quest.StartQuest;
     }
-    public void EndQuest(QuestInterface questInterface)
+    public void EndQuest(Quest quest)
     {
-        __quest -= questInterface.StartQuest;
+        __quest -= quest.StartQuest;
     }
     private void FixedUpdate()
     {
-        if (Input.GetButtonDown("Fire3"))
+        if (__quest != null && GameInputManager.IsSpacePressed())
         {
             __quest.Invoke();
+            Debug.Log("Quest is running");
         }
     }
 }
