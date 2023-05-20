@@ -1,18 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
+using TMPro;
 using UnityEngine;
 
 public class UICheckList : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private TextMeshProUGUI[] Tasks = new TextMeshProUGUI[0];
+    private QuestSystem __questSystem;
+    private void Awake()
     {
-        
+		try{__questSystem = FindObjectOfType<QuestSystem>();
+        }catch (NullReferenceException error){throw error;}
     }
-
-    // Update is called once per frame
-    void Update()
+    public void UpdateTasks(int index)
     {
-        
+        Tasks[index].text = "Task " + index + 1 + " is completed";
     }
 }
