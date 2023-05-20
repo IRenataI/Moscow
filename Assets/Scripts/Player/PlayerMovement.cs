@@ -25,8 +25,8 @@ public class PlayerMovement : MonoBehaviour
         if (!canMove)
             return;
 
-        float forward = Input.GetAxisRaw("Vertical");
-        float right = Input.GetAxisRaw("Horizontal");
+        float forward = Input.GetAxisRaw(GlobalVariables.VerticalMoveAxis);
+        float right = Input.GetAxisRaw(GlobalVariables.HorizontalMoveAxis);
         Vector3 direction;
 
         if (cameraTransform)

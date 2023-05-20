@@ -24,8 +24,8 @@ public class CameraRotation : MonoBehaviour
 
     private void Rotate()
     {
-        float xMove = -Input.GetAxis("Mouse Y");
-        float yMove = Input.GetAxis("Mouse X");
+        float xMove = -Input.GetAxis(GlobalVariables.HorizontalRotateAxis);
+        float yMove = Input.GetAxis(GlobalVariables.VerticalRotateAxis);
 
         horizontalAngle += xMove * sensetivity * Time.deltaTime;
         horizontalAngle = Mathf.Clamp(horizontalAngle, -horizontalClampAngle, horizontalClampAngle);
