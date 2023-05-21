@@ -5,7 +5,6 @@ public class QuestSystem : MonoBehaviour
 {
     public Quest[] CurrentQuests;
     private delegate void DelegateQuests();
-    private DelegateQuests __quest;
     private UICheckList __checkList;
     private int index = -1;
     private void Awake()
@@ -19,29 +18,28 @@ public class QuestSystem : MonoBehaviour
         {
             if (CurrentQuests[i] == quest && !quest.IsQuestCompleted)
             {
-                __quest += quest.StartQuest;
                 index = i;
-                Debug.Log(__quest);
             }
         }
     }
-    public void EndQuest(Quest quest)
+    public void EndQuest()
     {
-        __quest -= quest.StartQuest;
         __checkList.UpdateTasks(index);
         Debug.Log("Completed quest's index: " + index);
     }
-    private void FixedUpdate()
+}
+/*
+private void FixedUpdate()
+{
+    if (__quest != null && GameInputManager.IsSpacePressed())
     {
-        if (__quest != null && GameInputManager.IsSpacePressed())
-        {
-            __quest.Invoke();
-            //Debug.Log("Quest is running");
-        }
-        if (GameInputManager.IsTabPressed())
-        {
-            CurrentQuests[index].EndQuest();
-            //Debug.Log("Quest is done");
-        }
+        __quest.Invoke();
+        //Debug.Log("Quest is running");
+    }
+    if (GameInputManager.IsTabPressed())
+    {
+        CurrentQuests[index].EndQuest();
+        //Debug.Log("Quest is done");
     }
 }
+*/

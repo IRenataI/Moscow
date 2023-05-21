@@ -7,8 +7,7 @@ public class DroneCamera : MonoBehaviour
     [SerializeField, Range(0f, 360f)] private float verticalClampAngle;
 
     private float horizontalAngle, verticalAngle;
-    private RaycastHit __hit;
-    float xMove, yMove;
+    private float xMove, yMove;
     private void FixedUpdate()
     {
         Rotate();
@@ -32,4 +31,8 @@ public class DroneCamera : MonoBehaviour
 
         transform.eulerAngles = new Vector3(horizontalAngle, verticalAngle, 0f);
     } 
+    public void SetCameraDepth(int depth)
+    {
+        GetComponent<Camera>().depth = depth;
+    }
 }
