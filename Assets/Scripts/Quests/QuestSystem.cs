@@ -1,8 +1,9 @@
+using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 
 public class QuestSystem : MonoBehaviour
 {
-    public Quest[] CurrentQuests = new Quest[0];
+    public Quest[] CurrentQuests;
     private delegate void DelegateQuests();
     private DelegateQuests __quest;
     private UICheckList __checkList;
@@ -10,6 +11,7 @@ public class QuestSystem : MonoBehaviour
     private void Awake()
     {
         __checkList = FindObjectOfType<UICheckList>();
+        CurrentQuests = FindObjectsOfType<Quest>();
     }
     public void StartQuest(Quest quest)
     {
@@ -17,13 +19,15 @@ public class QuestSystem : MonoBehaviour
         {
             if (CurrentQuests[i] == quest && !quest.IsQuestCompleted)
             {
+                __quest += quest.StartQuest;
                 index = i;
+                Debug.Log(__quest);
             }
         }
     }
     public void EndQuest(Quest quest)
     {
-        //__quest -= quest.StartQuest;
+        __quest -= quest.StartQuest;
         __checkList.UpdateTasks(index);
         Debug.Log("Completed quest's index: " + index);
     }
@@ -36,7 +40,7 @@ public class QuestSystem : MonoBehaviour
         }
         if (GameInputManager.IsTabPressed())
         {
-            //CurrentQuests[index].EndQuest();
+            CurrentQuests[index].EndQuest();
             //Debug.Log("Quest is done");
         }
     }

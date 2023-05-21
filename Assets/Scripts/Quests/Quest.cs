@@ -7,28 +7,18 @@ public class Quest : MonoBehaviour
     private QuestSystem __questSystem;
     private PlayerMovement __player;
     private bool __isQuestRunning = false;
-    //private UICheckList __checkList;
     void Awake()
     {
         GetComponent<BoxCollider>().isTrigger = true;
         __questSystem = FindAnyObjectByType<QuestSystem>();
         __player = FindAnyObjectByType<PlayerMovement>();
-        //__checkList = FindAnyObjectByType<UICheckList>();
     }
-    private void OnTriggerStay(Collider other)
+    public void StartQuest()
     {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            StartQuest();
-        }
-        //Debug.Log("Started quest: " + other.name);
-    }
-    private void StartQuest()
-    {
-        __questSystem.StartQuest(this);
         __isQuestRunning = true;
+        __questSystem.StartQuest(this);
     }
-    private void EndQuest()
+    public void EndQuest()
     {
         __isQuestRunning = false;
         __questSystem.EndQuest(this);
@@ -50,6 +40,13 @@ public class Quest : MonoBehaviour
             //Debug.Log("Quest is running");
         }
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            StartQuest();
+        }
+    }
 }
 /*
 private void OnTriggerExit(Collider other)
@@ -59,5 +56,15 @@ private void OnTriggerExit(Collider other)
         EndQuest();
     }
     //Debug.Log("Ended quest: " + other.name);
+}
+*/
+/*
+private void OnTriggerStay(Collider other)
+{
+    if (other.gameObject.CompareTag("Player"))
+    {
+        StartQuest();
+    }
+    //Debug.Log("Started quest: " + other.name);
 }
 */

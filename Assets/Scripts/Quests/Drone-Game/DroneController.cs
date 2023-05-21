@@ -5,6 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class DroneController : MonoBehaviour
 {
+    public bool IsDroneEnable = false;
     public int SpeedX = 2;
     public int SpeedY = 2;
     public int SpeedZ = 2;
@@ -17,9 +18,18 @@ public class DroneController : MonoBehaviour
         __rigidBody = GetComponent<Rigidbody>();
         __rigidBody.useGravity = false;
     }
-
-    // Update is called once per frame
     void FixedUpdate()
+    {
+        if (!IsDroneEnable)
+            return;
+
+        DroneMovement();
+
+        Debug.DrawRay(transform.position, DroneCamera.transform.forward, Color.red);
+        Debug.DrawRay(transform.position, DroneCamera.transform.right, Color.green);
+        Debug.DrawRay(transform.position, DroneCamera.transform.up, Color.blue);
+    }
+    private void DroneMovement()
     {
         __x = DroneCamera.transform.right * Input.GetAxis("Horizontal") * SpeedX;
         __y = DroneCamera.transform.forward * Input.GetAxis("Vertical") * SpeedY;
@@ -32,9 +42,5 @@ public class DroneController : MonoBehaviour
         DroneCamera.transform.localPosition = DroneCameraPosition;
         transform.rotation = Quaternion.Lerp(transform.rotation,
             Quaternion.LookRotation(DroneCamera.transform.forward), 0.05f);
-
-        Debug.DrawRay(transform.position, DroneCamera.transform.forward, Color.red);
-        Debug.DrawRay(transform.position, DroneCamera.transform.right, Color.green);
-        Debug.DrawRay(transform.position, DroneCamera.transform.up, Color.blue);
     }
 }
