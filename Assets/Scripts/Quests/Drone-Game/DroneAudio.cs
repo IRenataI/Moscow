@@ -34,6 +34,7 @@ public class DroneAudio : MonoBehaviour
         if (!__audioSource.isPlaying)
         {
             StartDroneAudio();
+            Debug.Log("Drone audio is playing");
         }
 
         if (__rigidBody.velocity.magnitude > 0.1f)

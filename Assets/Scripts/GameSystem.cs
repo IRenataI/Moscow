@@ -7,4 +7,8 @@ public class GameSystem : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Application.targetFrameRate = 60;
     }
+    public static void ChangeCursorMode(CursorLockMode mode)
+    {
+        Cursor.lockState = mode;
+    }
 }
