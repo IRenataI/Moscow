@@ -12,6 +12,7 @@ public class Weapon : MonoBehaviour
     public int BulletSpeed = 5;
 
     private GameObject __tempBullet;
+    RaycastHit __hit;
     void Update()
     {
         if (!IsWeaponEnable)
@@ -32,14 +33,35 @@ public class Weapon : MonoBehaviour
     private void Rotation()
     {
         transform.rotation = Quaternion.Lerp(transform.rotation, 
-            Quaternion.LookRotation(Parent.transform.forward), 0.05f);
+            Quaternion.LookRotation(Camera.main.transform.forward), 0.05f);
     }
     private void Shoot()
     {
         __tempBullet = Instantiate(Bullet);
         Bullet bullet = __tempBullet.GetComponent<Bullet>();
         bullet.SetInitialPosition(transform.position + Parent.transform.forward);
-        bullet.SetInitialRotation(Quaternion.LookRotation(transform.forward));
-        bullet.SetInitialVelocity(transform.forward * BulletSpeed);
+        //bullet.SetInitialRotation(Quaternion.LookRotation(transform.forward));
+        bullet.SetInitialRotation(Quaternion.LookRotation(__hit.point - (transform.position + Parent.transform.forward)));
+
+        Ray __ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
+        Physics.Raycast(__ray, out __hit, 500);
+        if (__hit.point == Vector3.zero)
+        {
+            __hit.point = __ray.GetPoint(500);
+        }
+
+        bullet.SetInitialVelocity( (__hit.point - (transform.position + Parent.transform.forward)).normalized  * BulletSpeed); //Camera.main.transform.forward * BulletSpeed);
+    }
+    public void SetParent()
+    {
+        transform.parent = Parent.transform;
+    }
+    public void EnableWeapon()
+    {
+        IsWeaponEnable = true;
+    }
+    public void DisableWeapon()
+    {
+
     }
 }

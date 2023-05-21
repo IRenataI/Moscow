@@ -1,9 +1,13 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(BoxCollider))]
 public class Quest : MonoBehaviour
 {
+    public WinCondition WinCondition;
     public bool IsQuestCompleted = false;
+    public UnityEvent EventOnStart;
+    public UnityEvent EventOnEnd;
     private QuestSystem __questSystem;
     private PlayerMovement __player;
     private bool __isQuestRunning = false;
@@ -17,34 +21,27 @@ public class Quest : MonoBehaviour
     {
         __isQuestRunning = true;
         __questSystem.StartQuest(this);
+        EventOnStart?.Invoke();
     }
     public void EndQuest()
     {
         __isQuestRunning = false;
-        __questSystem.EndQuest(this);
+        __questSystem.EndQuest();
         IsQuestCompleted = true;
+        EventOnEnd?.Invoke();
 
-        //__checkList.UpdateTasks(0);
         Debug.Log("Quest completed");
     }
     private void FixedUpdate()
     {
         if (IsQuestCompleted)
-        {
             return;
-        }
+
         if (__isQuestRunning)
         {
             __player.transform.position = Vector3.Lerp(__player.transform.position,
             transform.position, 0.05f);
             //Debug.Log("Quest is running");
-        }
-    }
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            StartQuest();
         }
     }
 }
