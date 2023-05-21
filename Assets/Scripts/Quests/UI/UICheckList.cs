@@ -1,4 +1,3 @@
-using System;
 using TMPro;
 using UnityEngine;
 
@@ -8,11 +7,11 @@ public class UICheckList : MonoBehaviour
     private QuestSystem __questSystem;
     private void Awake()
     {
-		try{__questSystem = FindObjectOfType<QuestSystem>();
-        }catch (NullReferenceException error){throw error;}
+		__questSystem = FindObjectOfType<QuestSystem>();       
     }
     public void UpdateTasks(int index)
     {
+        Debug.Log(index);
         Tasks[index].text = "Task " + (index + 1) + " is completed";
     }
 }
