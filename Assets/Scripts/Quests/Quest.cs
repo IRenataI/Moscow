@@ -19,6 +19,8 @@ public class Quest : MonoBehaviour
     }
     public void StartQuest()
     {
+        __player.transform.position = Vector3.Lerp(__player.transform.position, transform.position, 0.05f);
+    
         __isQuestRunning = true;
         __questSystem.StartQuest(this);
         EventOnStart?.Invoke();
@@ -39,8 +41,7 @@ public class Quest : MonoBehaviour
 
         if (__isQuestRunning)
         {
-            __player.transform.position = Vector3.Lerp(__player.transform.position,
-            transform.position, 0.05f);
+            //__player.transform.position = Vector3.Lerp(__player.transform.position,transform.position, 0.05f);
             //Debug.Log("Quest is running");
         }
     }
