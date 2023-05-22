@@ -1,8 +1,11 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class Dialog : MonoBehaviour
 {
+    public TextMeshProUGUI QuestText;
+    public string AdditionInformation;
     public UnityEvent OnStartDialog;
     public UnityEvent OnEndDialog;
     public Canvas DialogCanvas;
@@ -15,5 +18,6 @@ public class Dialog : MonoBehaviour
     {
         DialogCanvas.gameObject.SetActive(false);
         GameSystem.ChangeCursorMode(CursorLockMode.Locked);
+        QuestText.text += " (" + AdditionInformation + ")";
     }
 }

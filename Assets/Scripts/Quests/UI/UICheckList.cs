@@ -3,11 +3,15 @@ using UnityEngine;
 
 public class UICheckList : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI[] Tasks = new TextMeshProUGUI[0];
+    [SerializeField] private TextMeshProUGUI[] Tasks;
     private QuestSystem __questSystem;
     private void Awake()
     {
-		__questSystem = FindObjectOfType<QuestSystem>();       
+        __questSystem = FindAnyObjectByType<QuestSystem>();
+        for (int i = 0; i < Tasks.Length; i++) 
+        {
+            Tasks[i].text = "Task " + (i + 1);
+        }
     }
     public void UpdateTasks(int index)
     {

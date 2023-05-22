@@ -1,4 +1,3 @@
-using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 
 public class QuestSystem : MonoBehaviour
@@ -7,6 +6,7 @@ public class QuestSystem : MonoBehaviour
     private delegate void DelegateQuests();
     private UICheckList __checkList;
     private int index = -1;
+    public int GetCurrentQuestIndex () { return index; }
     private void Awake()
     {
         __checkList = FindObjectOfType<UICheckList>();
