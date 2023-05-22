@@ -19,7 +19,7 @@ public class Quest : MonoBehaviour
     }
     public void StartQuest()
     {
-        __player.transform.position = Vector3.Lerp(__player.transform.position, transform.position, 0.05f);
+        __player.transform.position = Vector3.Lerp(__player.transform.position, transform.position, 1f);
     
         __isQuestRunning = true;
         __questSystem.StartQuest(this);

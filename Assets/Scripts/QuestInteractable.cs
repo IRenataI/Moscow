@@ -14,7 +14,6 @@ public class QuestInteractable : Interactable
     {
         base.Select();
         __renderer.material.color = __changedColor;
-        Debug.Log(__renderer.material.color);
     }
     public override void Interact()
     {
