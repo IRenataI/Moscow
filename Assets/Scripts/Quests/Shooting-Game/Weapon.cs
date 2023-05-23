@@ -12,13 +12,12 @@ public class Weapon : MonoBehaviour
     public int BulletSpeed = 5;
 
     private GameObject __tempBullet;
-    RaycastHit __hit;
+    private RaycastHit __hit;
     void Update()
     {
-        if (!IsWeaponEnable)
-        {           
+        if (!IsWeaponEnable)           
             return;
-        }
+
         Position();
         Rotation();
         if (Input.GetButtonDown("Fire1"))
@@ -40,7 +39,6 @@ public class Weapon : MonoBehaviour
         __tempBullet = Instantiate(Bullet);
         Bullet bullet = __tempBullet.GetComponent<Bullet>();
         bullet.SetInitialPosition(transform.position + Parent.transform.forward);
-        //bullet.SetInitialRotation(Quaternion.LookRotation(transform.forward));
         bullet.SetInitialRotation(Quaternion.LookRotation(__hit.point - (transform.position + Parent.transform.forward)));
 
         Ray __ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
@@ -65,3 +63,4 @@ public class Weapon : MonoBehaviour
 
     }
 }
+//bullet.SetInitialRotation(Quaternion.LookRotation(transform.forward));

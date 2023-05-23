@@ -13,11 +13,15 @@ public class Dialog : MonoBehaviour
     {
         DialogCanvas.gameObject.SetActive(true);
         GameSystem.ChangeCursorMode(CursorLockMode.Confined);
+
+        OnStartDialog?.Invoke();
     }
     public void DisableDialogCanvas()
     {
         DialogCanvas.gameObject.SetActive(false);
         GameSystem.ChangeCursorMode(CursorLockMode.Locked);
         QuestText.text += " (" + AdditionInformation + ")";
+
+        OnEndDialog?.Invoke();
     }
 }

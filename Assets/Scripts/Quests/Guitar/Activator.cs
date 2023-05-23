@@ -1,10 +1,11 @@
+using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Activator : MonoBehaviour
 {
     public KeyCode KeyToPress;
     public WinCondition __winCondition;
+    public TextMeshProUGUI Counter;
     private bool __isColliderGuitarTarget = false;
     private GameObject __collidedGameObject;
     private void Update()
@@ -21,6 +22,8 @@ public class Activator : MonoBehaviour
         {
             __isColliderGuitarTarget = true;
             __collidedGameObject = collision.gameObject;
+
+            Counter.text = " " + __winCondition.GetHittedTargetsNumber;
             //Debug.Log("Destroyed");
         }
     }
