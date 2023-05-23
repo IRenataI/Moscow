@@ -1,21 +1,34 @@
 using UnityEngine;
-using UnityEngine.Events;
 
 public class WinCondition : MonoBehaviour
 {
-    public bool IsWon = false;
+    public int ObjectsToHit;
     public TargetsAbstract[] Targets;
-    public UnityEvent QuestCompletionEvent;
+    public int GetHittedTargetsNumber { get { return __hittedTargets; } }
     private int __hittedTargets = 0;
+    private Quest __quest;
+    private void Awake()
+    {
+        __quest = GetComponent<Quest>();
+        for (int i = 0; i < Targets.Length; i++)
+        {
+            Targets[i].SetWinCodition(this);
+        }
+    }
     public void IncreaseHittedTargets()
     {
         __hittedTargets++;
-        if (__hittedTargets >= Targets.Length)
+        if (__hittedTargets >= ObjectsToHit)
         {
-            IsWon = true;
-            QuestCompletionEvent?.Invoke();
+            __quest.EndQuest();
             Debug.Log("All targets down");
         }
-        Debug.Log(gameObject.name +  " __hittedTargets " + __hittedTargets + " Targets.Length " + Targets.Length);
+        Debug.Log(gameObject.name +  " __hittedTargets " + __hittedTargets + " ObjectToHit " + ObjectsToHit);
+    }
+    public void DeacreaseHittedTargets()
+    {
+        __hittedTargets--;
     }
 }
+//public UnityEvent AfterHittedAllTargets;
+//AfterHittedAllTargets?.Invoke();

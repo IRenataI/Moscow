@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class Money : MonoBehaviour
 {
-    [SerializeField] private int CurrentMoney = 1000;
+    private static int CurrentMoney = 1000;
 
-    public bool WasteMoney(int moneyToWaste)
+    public static bool WasteMoney(int moneyToWaste)
     {
         if (CurrentMoney - moneyToWaste >= 0)
         {
@@ -16,7 +16,7 @@ public class Money : MonoBehaviour
             return false;
         }
     }
-    public void EarnMoney(int moneyToEarn)
+    public static void EarnMoney(int moneyToEarn)
     {
         CurrentMoney += moneyToEarn;
     }
