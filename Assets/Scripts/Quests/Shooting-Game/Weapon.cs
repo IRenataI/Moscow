@@ -13,6 +13,11 @@ public class Weapon : MonoBehaviour
 
     private GameObject __tempBullet;
     private RaycastHit __hit;
+    private WeaponAudio _audio;
+    private void Awake()
+    {
+        _audio = GetComponent<WeaponAudio>();
+    }
     void Update()
     {
         if (!IsWeaponEnable)           
@@ -23,6 +28,7 @@ public class Weapon : MonoBehaviour
         if (Input.GetButtonDown("Fire1"))
         {
             Shoot();
+            _audio.PlayShotSound();
         }
     }
     private void Position()
