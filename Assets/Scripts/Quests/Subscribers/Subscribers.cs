@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class Subscribers : MonoBehaviour
 {
-    [SerializeField] private int CurrentSubscribers = 0;
+    private static int CurrentSubscribers = 0;
     
-    public void EarnSubscribers(int SubscribersToEarn)
+    public static void EarnSubscribers(int SubscribersToEarn)
     {
         CurrentSubscribers += SubscribersToEarn;
     }

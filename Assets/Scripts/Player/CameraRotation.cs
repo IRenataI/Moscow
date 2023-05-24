@@ -8,6 +8,7 @@ public class CameraRotation : MonoBehaviour
     [SerializeField, Range(0f, 360f)] private float verticalClampAngle;
 
     private float horizontalAngle, verticalAngle;
+    private bool canRotate = true;
 
     private void Start()
     {
@@ -24,6 +25,9 @@ public class CameraRotation : MonoBehaviour
 
     private void Rotate()
     {
+        if (!canRotate)
+            return;
+
         float xMove = -Input.GetAxis(GlobalVariables.HorizontalRotateAxis);
         float yMove = Input.GetAxis(GlobalVariables.VerticalRotateAxis);
 
@@ -53,4 +57,7 @@ public class CameraRotation : MonoBehaviour
                 verticalAngle = -verticalClampAngle;
         }
     }
+
+    public void StartRotate() => canRotate = true;
+    public void StopRotate() => canRotate = false;
 }

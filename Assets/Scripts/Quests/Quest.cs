@@ -2,47 +2,44 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(BoxCollider))]
+[RequireComponent(typeof(WinCondition))]
+[RequireComponent(typeof(QuestInteractable))]
 public class Quest : MonoBehaviour
 {
-    public WinCondition WinCondition;
     public bool IsQuestCompleted = false;
     public UnityEvent EventOnStart;
     public UnityEvent EventOnEnd;
     private QuestSystem __questSystem;
     private PlayerMovement __player;
-    private bool __isQuestRunning = false;
+    private CameraRotation __cameraRotation;
     void Awake()
     {
         GetComponent<BoxCollider>().isTrigger = true;
         __questSystem = FindAnyObjectByType<QuestSystem>();
         __player = FindAnyObjectByType<PlayerMovement>();
+        __cameraRotation = FindAnyObjectByType<CameraRotation>();
     }
     public void StartQuest()
     {
-        __isQuestRunning = true;
+        __player.transform.position = Vector3.Lerp(__player.transform.position, 
+            transform.position, 1f);
+    
         __questSystem.StartQuest(this);
         EventOnStart?.Invoke();
+
+        __player.StopMovement();
+        //__cameraRotation.StopRotate();
     }
     public void EndQuest()
     {
-        __isQuestRunning = false;
         __questSystem.EndQuest();
         IsQuestCompleted = true;
         EventOnEnd?.Invoke();
 
-        Debug.Log("Quest completed");
-    }
-    private void FixedUpdate()
-    {
-        if (IsQuestCompleted)
-            return;
+        __player.ContinueMovement();
+        __cameraRotation.StartRotate();
 
-        if (__isQuestRunning)
-        {
-            __player.transform.position = Vector3.Lerp(__player.transform.position,
-            transform.position, 0.05f);
-            //Debug.Log("Quest is running");
-        }
+        Debug.Log("Quest completed");
     }
 }
 /*
@@ -63,5 +60,18 @@ private void OnTriggerStay(Collider other)
         StartQuest();
     }
     //Debug.Log("Started quest: " + other.name);
+}
+*/
+/*
+private void FixedUpdate()
+{
+    if (IsQuestCompleted)
+        return;
+
+    if (__isQuestRunning)
+    {
+        //__player.transform.position = Vector3.Lerp(__player.transform.position,transform.position, 0.05f);
+        //Debug.Log("Quest is running");
+    }
 }
 */
