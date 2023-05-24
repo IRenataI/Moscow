@@ -6,11 +6,13 @@ public class QuestInteractable : Interactable
     private Color __changedColor = Color.white;
     private Renderer __renderer;
     private Color __initialColor;
+    private QuestSystem __questSystem;
     private void Awake()
     {
         __renderer = GetComponent<Renderer>();
         __initialColor = __renderer.material.color;
         ButtonToPress.enabled = false;
+        __questSystem = FindObjectOfType<QuestSystem>();
     }
     public override void Select() 
     {
