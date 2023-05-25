@@ -7,7 +7,7 @@ public class Weapon : MonoBehaviour
     public Camera Parent;
     public GameObject Bullet;
     public Vector3 LocalPosition;
-    public Vector3 BulletPosition;
+    public int BulletPosition;
     [Range(1f, 15f)]
     public int BulletSpeed = 5;
 
@@ -44,16 +44,16 @@ public class Weapon : MonoBehaviour
     {
         __tempBullet = Instantiate(Bullet);
         Bullet bullet = __tempBullet.GetComponent<Bullet>();
-        bullet.SetInitialPosition(transform.position + Parent.transform.forward);
-        bullet.SetInitialRotation(Quaternion.LookRotation(__hit.point - (transform.position + Parent.transform.forward)));
 
-        Ray __ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
+        Ray __ray = new Ray(Parent.transform.position, Parent.transform.forward);
         Physics.Raycast(__ray, out __hit, 500);
         if (__hit.point == Vector3.zero)
         {
             __hit.point = __ray.GetPoint(500);
         }
 
+        bullet.SetInitialPosition(transform.position + Parent.transform.forward * BulletPosition);
+        bullet.SetInitialRotation(Quaternion.LookRotation(__hit.point - (transform.position + Parent.transform.forward)));
         bullet.SetInitialVelocity( (__hit.point - (transform.position + Parent.transform.forward)).normalized  * BulletSpeed); //Camera.main.transform.forward * BulletSpeed);
     }
     public void SetParent()
@@ -67,6 +67,11 @@ public class Weapon : MonoBehaviour
     public void DisableWeapon()
     {
 
+    }
+    private void FixedUpdate()
+    {
+        Debug.DrawRay(transform.position + Parent.transform.forward,
+            (__hit.point - (transform.position + Parent.transform.forward)), Color.red);
     }
 }
 //bullet.SetInitialRotation(Quaternion.LookRotation(transform.forward));
