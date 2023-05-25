@@ -8,19 +8,26 @@ public class Quest : MonoBehaviour
 {
     public bool IsQuestCompleted = false;
     public UnityEvent EventOnStart;
+    public UnityEvent EventOnInterrupt;
     public UnityEvent EventOnEnd;
     private QuestSystem __questSystem;
     private PlayerMovement __player;
     private CameraRotation __cameraRotation;
+    private WinCondition __winConditon;
+    private BoxCollider __boxCollider;
     void Awake()
     {
         GetComponent<BoxCollider>().isTrigger = true;
         __questSystem = FindAnyObjectByType<QuestSystem>();
         __player = FindAnyObjectByType<PlayerMovement>();
         __cameraRotation = FindAnyObjectByType<CameraRotation>();
+        __winConditon = GetComponent<WinCondition>();
+        __boxCollider = GetComponent<BoxCollider>();
     }
     public void StartQuest()
     {
+        if (IsQuestCompleted)
+            return;
         __player.transform.position = Vector3.Lerp(__player.transform.position, 
             transform.position, 1f);
     
@@ -28,7 +35,7 @@ public class Quest : MonoBehaviour
         EventOnStart?.Invoke();
 
         __player.StopMovement();
-        //__cameraRotation.StopRotate();
+        __boxCollider.enabled = false;
     }
     public void EndQuest()
     {
@@ -39,7 +46,22 @@ public class Quest : MonoBehaviour
         __player.ContinueMovement();
         __cameraRotation.StartRotate();
 
+        __boxCollider.enabled = true;
+
         Debug.Log("Quest completed");
+    }
+    public void InterruptQuest()
+    {
+        EventOnInterrupt?.Invoke();
+
+        __player.ContinueMovement();
+        __cameraRotation.StartRotate();
+
+        __winConditon.ResetHittedTargets();
+
+        __boxCollider.enabled = true;
+
+        Debug.Log("Quest interrupted");
     }
 }
 /*

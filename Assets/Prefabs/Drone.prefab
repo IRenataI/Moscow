@@ -176,9 +176,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8488127911378897757}
   - component: {fileID: 8488127911378897753}
-  - component: {fileID: 8488127911378897754}
   - component: {fileID: 8488127911378897755}
-  - component: {fileID: 8488127911378897752}
   m_Layer: 0
   m_Name: Player Camera (1)
   m_TagString: MainCamera
@@ -244,14 +242,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &8488127911378897754
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8488127911378897750}
-  m_Enabled: 1
 --- !u!114 &8488127911378897755
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -267,19 +257,6 @@ MonoBehaviour:
   sensetivity: 300
   horizontalClampAngle: 90
   verticalClampAngle: 360
---- !u!114 &8488127911378897752
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8488127911378897750}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f02079e1d8809f41b1cbf524005410e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactionMaxDistance: 10
 --- !u!1 &8721935964533651797
 GameObject:
   m_ObjectHideFlags: 0
