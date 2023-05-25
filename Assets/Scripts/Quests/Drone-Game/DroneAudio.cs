@@ -19,7 +19,10 @@ public class DroneAudio : MonoBehaviour
     }
     private void ChangeDroneAudio(float value)
     {
-        __audioSource.pitch = value;
+        if (value > __audioSource.pitch)
+            __audioSource.pitch = Mathf.Clamp( __audioSource.pitch + 0.01f, 0, value);
+        else if(value < __audioSource.pitch)
+            __audioSource.pitch = Mathf.Clamp(__audioSource.pitch - 0.01f, value, 10);
     }
     private void StartDroneAudio()
     {

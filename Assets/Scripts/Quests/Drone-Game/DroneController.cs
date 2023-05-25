@@ -3,6 +3,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(BoxCollider))]
 [RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(DroneAudio))]
 public class DroneController : MonoBehaviour
 {
     public Vector3 DroneInitialPosition;
