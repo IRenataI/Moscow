@@ -9,6 +9,7 @@ public class Dialog : MonoBehaviour
     public UnityEvent OnStartDialog;
     public UnityEvent OnEndDialog;
     public Canvas DialogCanvas;
+    private bool __isAddedInformation = false;
     public void EnableDialogCanvas()
     {
         DialogCanvas.gameObject.SetActive(true);
@@ -20,7 +21,11 @@ public class Dialog : MonoBehaviour
     {
         DialogCanvas.gameObject.SetActive(false);
         GameSystem.ChangeCursorMode(CursorLockMode.Locked);
-        QuestText.text += " (" + AdditionInformation + ")";
+        if (!__isAddedInformation)
+        {
+            QuestText.text += " (" + AdditionInformation + ")";
+            __isAddedInformation = true;
+        }
 
         OnEndDialog?.Invoke();
     }
