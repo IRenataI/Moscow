@@ -3,6 +3,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(BoxCollider))]
 [RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(DroneAudio))]
 public class DroneController : MonoBehaviour
 {
     public Vector3 DroneInitialPosition;
@@ -15,8 +16,11 @@ public class DroneController : MonoBehaviour
     private Rigidbody __rigidBody;
     private Vector3 __x, __y, __z;
     private bool __isDroneEnable = false;
+    private QuestSystem __currentQuest;
     void Awake()
     {
+        __currentQuest = FindObjectOfType<QuestSystem>();
+
         __rigidBody = GetComponent<Rigidbody>();
         __rigidBody.useGravity = false;
         __rigidBody.constraints = RigidbodyConstraints.FreezeRotation;
@@ -53,7 +57,9 @@ public class DroneController : MonoBehaviour
     {
         if (!collision.gameObject.GetComponent<DroneTargets>())
         {
+            __rigidBody.velocity = Vector3.zero;
             transform.position = DroneInitialPosition;
+            __currentQuest.GetCurrentQuest().InterruptQuest();
         }
     }
 }

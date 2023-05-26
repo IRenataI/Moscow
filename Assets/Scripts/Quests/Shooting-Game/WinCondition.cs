@@ -29,6 +29,15 @@ public class WinCondition : MonoBehaviour
     {
         __hittedTargets--;
     }
+    public void ResetHittedTargets()
+    {
+        __hittedTargets = 0;
+        for (int i = 0; i < Targets.Length; i++)
+        {
+            Targets[i].ResetDestroyedCondition();
+        }
+        //Debug.Log("resetHittedTargets");
+    }
 }
 //public UnityEvent AfterHittedAllTargets;
 //AfterHittedAllTargets?.Invoke();
