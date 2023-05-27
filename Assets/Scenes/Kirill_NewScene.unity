@@ -123,37 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &93160781
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 93160782}
-  m_Layer: 0
-  m_Name: StartQuestPosition
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &93160782
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 93160781}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 0.1, z: 0.208}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1789312117}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &171789055
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -316,17 +285,12 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8617987126374610842, guid: ed0dde38b2ee87242aceea9c5c85309b, type: 3}
   m_PrefabInstance: {fileID: 175087926}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 175087928}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 27c22b982b161924f8944186c4ecbc1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &175087928 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8887946705575348591, guid: ed0dde38b2ee87242aceea9c5c85309b, type: 3}
-  m_PrefabInstance: {fileID: 175087926}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &222211180
 GameObject:
   m_ObjectHideFlags: 0
@@ -912,18 +876,6 @@ PrefabInstance:
       value: Girl2 Quest 2 Drone
       objectReference: {fileID: 0}
     - target: {fileID: 5284678698251473908, guid: c87c85d8cf579364a9ba6ca3efd04660, type: 3}
-      propertyPath: QuestStartPosition
-      value: 
-      objectReference: {fileID: 93160782}
-    - target: {fileID: 5284678698251473908, guid: c87c85d8cf579364a9ba6ca3efd04660, type: 3}
-      propertyPath: EventOnEnd.m_PersistentCalls.m_Calls.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5284678698251473908, guid: c87c85d8cf579364a9ba6ca3efd04660, type: 3}
-      propertyPath: EventOnEnd.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5284678698251473908, guid: c87c85d8cf579364a9ba6ca3efd04660, type: 3}
       propertyPath: EventOnEnd.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 394542334}
@@ -943,26 +895,6 @@ PrefabInstance:
       propertyPath: EventOnStart.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1611626186}
-    - target: {fileID: 5284678698251473908, guid: c87c85d8cf579364a9ba6ca3efd04660, type: 3}
-      propertyPath: EventOnEnd.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5284678698251473908, guid: c87c85d8cf579364a9ba6ca3efd04660, type: 3}
-      propertyPath: EventOnEnd.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
-      value: StartRotate
-      objectReference: {fileID: 0}
-    - target: {fileID: 5284678698251473908, guid: c87c85d8cf579364a9ba6ca3efd04660, type: 3}
-      propertyPath: EventOnEnd.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
-      value: CameraRotation, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 5284678698251473908, guid: c87c85d8cf579364a9ba6ca3efd04660, type: 3}
-      propertyPath: EventOnEnd.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_BoolArgument
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5284678698251473908, guid: c87c85d8cf579364a9ba6ca3efd04660, type: 3}
-      propertyPath: EventOnEnd.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 6392330049780778293, guid: c87c85d8cf579364a9ba6ca3efd04660, type: 3}
       propertyPath: Targets.Array.data[0]
       value: 
@@ -1455,37 +1387,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a1e4d972c169314cba8ef3b89bd2d9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1359466158
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1359466159}
-  m_Layer: 0
-  m_Name: QuestStartPosition
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1359466159
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1359466158}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.53, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 543450653581107660}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1392873202
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2045,11 +1946,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &1789312117 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1679515127001950554, guid: c87c85d8cf579364a9ba6ca3efd04660, type: 3}
-  m_PrefabInstance: {fileID: 719380521}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1848551047
 GameObject:
   m_ObjectHideFlags: 0
@@ -2147,11 +2043,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &543450653581107660 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 770119846951924982, guid: b39876aca9e45dc4f8bc12c4bbc0991e, type: 3}
-  m_PrefabInstance: {fileID: 953279428302722362}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &953279428302722362
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2208,9 +2099,13 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021759892407, guid: b39876aca9e45dc4f8bc12c4bbc0991e, type: 3}
-      propertyPath: QuestStartPosition
-      value: 
-      objectReference: {fileID: 1359466159}
+      propertyPath: EventOnEnd.m_PersistentCalls.m_Calls.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866666021759892407, guid: b39876aca9e45dc4f8bc12c4bbc0991e, type: 3}
+      propertyPath: EventOnEnd.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5866666021759892407, guid: b39876aca9e45dc4f8bc12c4bbc0991e, type: 3}
       propertyPath: EventOnEnd.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -2218,7 +2113,11 @@ PrefabInstance:
     - target: {fileID: 5866666021759892407, guid: b39876aca9e45dc4f8bc12c4bbc0991e, type: 3}
       propertyPath: EventOnEnd.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 175087928}
+      objectReference: {fileID: 175087927}
+    - target: {fileID: 5866666021759892407, guid: b39876aca9e45dc4f8bc12c4bbc0991e, type: 3}
+      propertyPath: EventOnEnd.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 1323099900}
     - target: {fileID: 5866666021759892407, guid: b39876aca9e45dc4f8bc12c4bbc0991e, type: 3}
       propertyPath: EventOnStart.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -2227,14 +2126,38 @@ PrefabInstance:
       propertyPath: EventOnStart.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1611626188}
+    - target: {fileID: 5866666021759892407, guid: b39876aca9e45dc4f8bc12c4bbc0991e, type: 3}
+      propertyPath: EventOnEnd.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866666021759892407, guid: b39876aca9e45dc4f8bc12c4bbc0991e, type: 3}
+      propertyPath: EventOnEnd.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: DisableWeapon
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866666021759892407, guid: b39876aca9e45dc4f8bc12c4bbc0991e, type: 3}
+      propertyPath: EventOnEnd.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: ContinueMovement
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866666021759892407, guid: b39876aca9e45dc4f8bc12c4bbc0991e, type: 3}
+      propertyPath: EventOnEnd.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Weapon, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866666021759892407, guid: b39876aca9e45dc4f8bc12c4bbc0991e, type: 3}
+      propertyPath: EventOnEnd.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: PlayerMovement, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866666021759892407, guid: b39876aca9e45dc4f8bc12c4bbc0991e, type: 3}
+      propertyPath: EventOnEnd.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866666021759892407, guid: b39876aca9e45dc4f8bc12c4bbc0991e, type: 3}
+      propertyPath: EventOnEnd.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 5866666021759892408, guid: b39876aca9e45dc4f8bc12c4bbc0991e, type: 3}
       propertyPath: ButtonToPress
       value: 
       objectReference: {fileID: 1185362599}
-    - target: {fileID: 5866666021759892409, guid: b39876aca9e45dc4f8bc12c4bbc0991e, type: 3}
-      propertyPath: ObjectsToHit
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5866666021759892409, guid: b39876aca9e45dc4f8bc12c4bbc0991e, type: 3}
       propertyPath: Targets.Array.data[0]
       value: 

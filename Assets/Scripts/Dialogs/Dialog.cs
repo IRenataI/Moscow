@@ -24,10 +24,9 @@ public class Dialog : MonoBehaviour
 
         GameSystem.ChangeCursorMode(CursorLockMode.Confined);
 
+        __playrMovement.StopMovement();
         OnStartDialog?.Invoke();
         Debug.Log("DialogCanvas enaled");
-
-        __playrMovement.StopMovement();
     }
     public void DisableDialogCanvas()
     {

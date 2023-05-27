@@ -31,6 +31,7 @@ public class Quest : MonoBehaviour
         {
             __player.ContinueMovement();
             __cameraRotation.StartRotate();
+            Debug.Log("Quest already done");
             return;
         }
 

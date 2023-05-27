@@ -40,7 +40,7 @@ public class DialogCanvas : MonoBehaviour
             __temp = Instantiate(PrefabButton);
             __temp.gameObject.name = "Button " + i;
             __temp.transform.SetParent(__buttons.transform);
-            __temp.transform.localPosition = new Vector2(0, -300 - i * 50);
+            __temp.transform.localPosition = new Vector2(0, -300);
             __temp.transform.localScale = new Vector3(1, 1, 1);
             __buttonsList.AddLast(__temp.GetComponent<Button>());
         }
