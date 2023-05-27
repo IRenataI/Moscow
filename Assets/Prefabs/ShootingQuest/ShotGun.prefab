@@ -1504,9 +1504,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Ammo: 5
   IsWeaponEnable: 0
-  Bullet: {fileID: 0}
+  Bullet: {fileID: 8860960485868627037, guid: aebc221c6f5a19a44bd6db277cb3a8b6, type: 3}
   LocalPosition: {x: 0.35, y: -0.1, z: 0.35}
-  BulletPosition: 2
+  BulletPosition: 1
   BulletSpeed: 5
 --- !u!114 &8617987126374610843
 MonoBehaviour:

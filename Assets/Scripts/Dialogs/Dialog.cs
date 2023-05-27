@@ -11,9 +11,11 @@ public class Dialog : MonoBehaviour
     public UnityEvent OnEndDialog;
     private bool __isAddedInformation = false;
     private DialogCanvas __dialogCanvas;
+    private PlayerMovement __playrMovement;
     private void Awake()
     {
-        __dialogCanvas = FindObjectOfType<DialogCanvas>();      
+        __dialogCanvas = FindObjectOfType<DialogCanvas>();
+        __playrMovement = FindObjectOfType<PlayerMovement>();       
     }
     public void EnableDialogCanvas()
     {
@@ -24,6 +26,8 @@ public class Dialog : MonoBehaviour
 
         OnStartDialog?.Invoke();
         Debug.Log("DialogCanvas enaled");
+
+        __playrMovement.StopMovement();
     }
     public void DisableDialogCanvas()
     {
