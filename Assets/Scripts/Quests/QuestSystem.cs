@@ -9,6 +9,7 @@ public class QuestSystem : MonoBehaviour
     private bool __isQuestEnable = false;
     public bool IsQuestEnable { get { return __isQuestEnable; } }
     public Quest GetCurrentQuest { get { return CurrentQuests[index]; } }
+    public int GetCurrentQuestIndex { get { return index; } }
     private void Awake()
     {
         __checkList = FindObjectOfType<UICheckList>();
