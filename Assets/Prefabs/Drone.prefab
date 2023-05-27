@@ -179,7 +179,7 @@ GameObject:
   - component: {fileID: 8488127911378897755}
   m_Layer: 0
   m_Name: Player Camera (1)
-  m_TagString: MainCamera
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

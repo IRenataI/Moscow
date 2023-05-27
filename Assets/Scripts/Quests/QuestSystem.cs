@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class QuestSystem : MonoBehaviour
 {
-    public Quest[] CurrentQuests;
+    private Quest[] CurrentQuests;
     private delegate void DelegateQuests();
     private UICheckList __checkList;
     private int index = -1;
@@ -27,8 +27,8 @@ public class QuestSystem : MonoBehaviour
     }
     public void EndQuest()
     {
-        __checkList.UpdateTasks(index);
         Debug.Log("Completed quest's index: " + index);
+        __checkList.UpdateTasks(index);
         index = -1;
         __isQuestEnable = false;
     }
