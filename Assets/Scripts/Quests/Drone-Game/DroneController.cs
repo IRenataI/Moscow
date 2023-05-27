@@ -44,18 +44,11 @@ public class DroneController : MonoBehaviour
         __z = -DroneCamera.transform.up * SpeedZ * Convert.ToInt32(Input.GetKey(KeyCode.LeftControl))
             + DroneCamera.transform.up * SpeedZ * Convert.ToInt32(Input.GetKey(KeyCode.Space));
 
-        //__rigidBody.velocity = new Vector3(
-        //Mathf.Clamp(__rigidBody.velocity.x + Time.fixedDeltaTime, -10, 10),
-        //
-        //)
-        __rigidBody.velocity = __x + __y + __z;
-        //__rigidBody.velocity = new Vector3(Mathf.Clamp(__rigidBody.velocity.x + -__rigidBody.velocity.x / 0.0001f, -25, 25),
-           // Mathf.Clamp(__rigidBody.velocity.y + -__rigidBody.velocity.y / 0.0001f, -25, 25),
-            //Mathf.Clamp(__rigidBody.velocity.z + -__rigidBody.velocity.z / 0.0001f, -25, 25));
+        __rigidBody.velocity = __x + __y + __z;     
 
         DroneCamera.transform.localPosition = DroneCameraPosition;
         transform.rotation = Quaternion.Lerp(transform.rotation,
-            Quaternion.LookRotation(DroneCamera.transform.forward), 0.05f);
+            Quaternion.LookRotation(-DroneCamera.transform.forward), 0.05f);
     }
     private void OnCollisionEnter(Collision collision)
     {
@@ -67,3 +60,12 @@ public class DroneController : MonoBehaviour
         }
     }
 }
+
+//__rigidBody.velocity = new Vector3(Mathf.Clamp(__rigidBody.velocity.x + -__rigidBody.velocity.x / 0.0001f, -25, 25),
+// Mathf.Clamp(__rigidBody.velocity.y + -__rigidBody.velocity.y / 0.0001f, -25, 25),
+//Mathf.Clamp(__rigidBody.velocity.z + -__rigidBody.velocity.z / 0.0001f, -25, 25));
+
+//__rigidBody.velocity = new Vector3(
+//Mathf.Clamp(__rigidBody.velocity.x + Time.fixedDeltaTime, -10, 10),
+//
+//)
