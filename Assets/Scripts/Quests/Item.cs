@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 public class Item : Interactable
 {
@@ -6,5 +7,7 @@ public class Item : Interactable
     {
         base.Interact();
         Inventory.Instance.AddItem(__itemSO);
+        Debug.Log("added: " + __itemSO.name);
+        Destroy(gameObject);
     }
 }

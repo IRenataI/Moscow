@@ -55,7 +55,7 @@ public class Quest : MonoBehaviour
         EventOnEnd?.Invoke();
         __questSystem.EndQuest();
 
-        Debug.Log("Quest completed");
+        Debug.Log("Quest completed: " + gameObject.name);
     }
     public void InterruptQuest()
     {
