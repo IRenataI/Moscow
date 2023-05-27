@@ -437,7 +437,7 @@ MonoBehaviour:
   SpeedX: 5
   SpeedY: 5
   SpeedZ: 5
-  DroneCameraPosition: {x: 0, y: 0.5, z: -2}
+  DroneCameraPosition: {x: 0, y: 0.5, z: 2}
 --- !u!114 &8488127912018864766
 MonoBehaviour:
   m_ObjectHideFlags: 0
