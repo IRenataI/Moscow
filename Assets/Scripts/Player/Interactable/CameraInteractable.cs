@@ -9,7 +9,7 @@ public class CameraInteractable : MonoBehaviour
     private Camera cam;
     private Interactable currentInteractable;
     
-    private Vector2 screenCenter = new Vector2(Screen.width / 2f, Screen.height / 2f);
+    private Vector3 screenCenter = new Vector3(Screen.width / 2f, Screen.height / 2f, 0f);
 
     private void Start()
     {
@@ -29,6 +29,9 @@ public class CameraInteractable : MonoBehaviour
         if (Physics.Raycast(ray, out RaycastHit hitInfo, interactionMaxDistance))
         {
             Interactable interactable = hitInfo.transform.GetComponent<Interactable>();
+
+            if (currentInteractable == interactable)
+                return;
 
             if (interactable == null)
             {

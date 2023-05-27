@@ -4,26 +4,37 @@ using UnityEngine.Events;
 
 public class Dialog : MonoBehaviour
 {
-    public TextMeshProUGUI QuestText;
+    public TextMeshProUGUI QuestCheckListTask;
     public string AdditionInformation;
+    public string[] QuestText;
     public UnityEvent OnStartDialog;
     public UnityEvent OnEndDialog;
-    public Canvas DialogCanvas;
     private bool __isAddedInformation = false;
+    private DialogCanvas __dialogCanvas;
+    private PlayerMovement __playrMovement;
+    private void Awake()
+    {
+        __dialogCanvas = FindObjectOfType<DialogCanvas>();
+        __playrMovement = FindObjectOfType<PlayerMovement>();       
+    }
     public void EnableDialogCanvas()
     {
-        DialogCanvas.gameObject.SetActive(true);
+        __dialogCanvas.GetComponent<Canvas>().enabled = true;
+        __dialogCanvas.CreateDialog(QuestText, this);
+
         GameSystem.ChangeCursorMode(CursorLockMode.Confined);
 
+        __playrMovement.StopMovement();
         OnStartDialog?.Invoke();
+        Debug.Log("DialogCanvas enaled");
     }
     public void DisableDialogCanvas()
     {
-        DialogCanvas.gameObject.SetActive(false);
+        __dialogCanvas.GetComponent<Canvas>().enabled = false;
         GameSystem.ChangeCursorMode(CursorLockMode.Locked);
         if (!__isAddedInformation)
         {
-            QuestText.text += " (" + AdditionInformation + ")";
+            QuestCheckListTask.text += " (" + AdditionInformation + ")";
             __isAddedInformation = true;
         }
 

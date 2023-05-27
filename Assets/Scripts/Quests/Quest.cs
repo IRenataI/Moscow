@@ -6,6 +6,7 @@ using UnityEngine.Events;
 [RequireComponent(typeof(QuestInteractable))]
 public class Quest : MonoBehaviour
 {
+    public Transform QuestStartPosition;
     public bool IsQuestCompleted = false;
     public UnityEvent EventOnStart;
     public UnityEvent EventOnInterrupt;
@@ -27,26 +28,32 @@ public class Quest : MonoBehaviour
     public void StartQuest()
     {
         if (IsQuestCompleted)
+        {
+            __player.ContinueMovement();
+            __cameraRotation.StartRotate();
+            Debug.Log("Quest already done");
             return;
-        __player.transform.position = Vector3.Lerp(__player.transform.position, 
-            transform.position, 1f);
-    
-        __questSystem.StartQuest(this);
-        EventOnStart?.Invoke();
+        }
+
+        __player.transform.position = QuestStartPosition.transform.position;
 
         __player.StopMovement();
         __boxCollider.enabled = false;
+
+        __questSystem.StartQuest(this);
+        EventOnStart?.Invoke();
     }
     public void EndQuest()
     {
-        __questSystem.EndQuest();
         IsQuestCompleted = true;
-        EventOnEnd?.Invoke();
 
         __player.ContinueMovement();
         __cameraRotation.StartRotate();
 
         __boxCollider.enabled = true;
+
+        EventOnEnd?.Invoke();
+        __questSystem.EndQuest();
 
         Debug.Log("Quest completed");
     }

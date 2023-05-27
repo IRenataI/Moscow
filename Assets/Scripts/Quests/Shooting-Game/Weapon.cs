@@ -6,13 +6,13 @@ public class Weapon : MonoBehaviour
     [Range(0,100)]
     public int Ammo = 5;
     public bool IsWeaponEnable = false;
-    public Camera Parent;
     public GameObject Bullet;
     public Vector3 LocalPosition;
     public int BulletPosition;
     [Range(1f, 15f)]
     public int BulletSpeed = 5;
 
+    private Camera Parent;
     private GameObject __tempBullet;
     private RaycastHit __hit;
     private WeaponAudio _audio;
@@ -26,6 +26,8 @@ public class Weapon : MonoBehaviour
         __questSystem = FindObjectOfType<QuestSystem>();
         __initialPosition = transform.position;
         __boxCollider = GetComponent<BoxCollider>();
+
+        Parent = Camera.main;
     }
     void Update()
     {
@@ -64,41 +66,43 @@ public class Weapon : MonoBehaviour
     {
         if (Ammo <= 0)
         {
-            IsWeaponEnable = false;
-            transform.parent = null;
             DisableWeapon();
-            Ammo = 5;
-            __questSystem.GetCurrentQuest().InterruptQuest();
+            __questSystem.GetCurrentQuest.InterruptQuest();
         }
         Ammo--;
 
         __tempBullet = Instantiate(Bullet);
-        Bullet bullet = __tempBullet.GetComponent<Bullet>();
-
-
-        
+        Bullet bullet = __tempBullet.transform.GetComponentInChildren<Bullet>();        
 
         bullet.SetInitialPosition(transform.position + Parent.transform.forward * BulletPosition);
-        bullet.SetInitialRotation(Quaternion.LookRotation(__hit.point - transform.position));
-        bullet.SetInitialVelocity( (__hit.point - bullet.transform.position).normalized * BulletSpeed); //Camera.main.transform.forward * BulletSpeed);
-
-        //bullet.SetInitialPosition(transform.position + Parent.transform.forward * BulletPosition);
-        //bullet.SetInitialRotation(Quaternion.LookRotation(__hit.point - (transform.position + Parent.transform.forward)));
-        //bullet.SetInitialVelocity( (__hit.point - (transform.position + Parent.transform.forward)).normalized * BulletSpeed); //Camera.main.transform.forward * BulletSpeed);
-    }
-    public void SetParent()
-    {
-        transform.parent = Parent.transform;
+        //bullet.SetInitialRotation(Quaternion.LookRotation(__hit.point - transform.position));
+        bullet.SetInitialVelocity( (__hit.point - bullet.transform.position).normalized * BulletSpeed);
     }
     public void EnableWeapon()
     {
         IsWeaponEnable = true;
         __boxCollider.enabled = false;
+
+        transform.parent = Parent.transform;
     }
-    private void DisableWeapon()
+    public void DisableWeapon()
     {
+        Ammo = 5;
+        IsWeaponEnable = false;
+        transform.parent = null;
+
         transform.position = __initialPosition;
         __boxCollider.enabled = true;
     }
 }
+/*
+public void SetParent()
+{
+    transform.parent = Parent.transform;
+}
+*/
 //bullet.SetInitialRotation(Quaternion.LookRotation(transform.forward));
+
+//bullet.SetInitialPosition(transform.position + Parent.transform.forward * BulletPosition);
+//bullet.SetInitialRotation(Quaternion.LookRotation(__hit.point - (transform.position + Parent.transform.forward)));
+//bullet.SetInitialVelocity( (__hit.point - (transform.position + Parent.transform.forward)).normalized * BulletSpeed); //Camera.main.transform.forward * BulletSpeed);

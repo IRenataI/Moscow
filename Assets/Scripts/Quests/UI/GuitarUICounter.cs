@@ -1,18 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GuitarUICounter : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private TextMeshProUGUI __counter;
+    private void Awake()
     {
-        
+        __counter = GetComponent<TextMeshProUGUI>();
     }
-
-    // Update is called once per frame
-    void Update()
+    public void ChangeText(string text)
     {
-        
+        __counter.text = text;
     }
 }
