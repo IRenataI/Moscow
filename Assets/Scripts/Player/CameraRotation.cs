@@ -3,7 +3,7 @@ using UnityEngine;
 [RequireComponent(typeof(Camera))]
 public class CameraRotation : MonoBehaviour
 {
-    [SerializeField] private float sensetivity;
+    [SerializeField, Range(0f, 100f)] private float sensetivity;
     [SerializeField, Range(0f, 90f)] private float horizontalClampAngle;
     [SerializeField, Range(0f, 360f)] private float verticalClampAngle;
 
@@ -19,6 +19,16 @@ public class CameraRotation : MonoBehaviour
 
     private void Update()
     {
+        // DEBUG
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            if (Cursor.lockState == CursorLockMode.Locked)
+                Cursor.lockState = CursorLockMode.None;
+            else
+                Cursor.lockState = CursorLockMode.Locked;
+        }
+        // DEBUG
+
         Rotate();
     }
 
