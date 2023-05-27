@@ -34,7 +34,7 @@ public class PlayerMovement : MonoBehaviour
         else
             direction = forward * transform.forward + right * transform.right;
 
-        direction.y = 0f;
+        direction.y = rb.velocity.y;
 
         rb.velocity = speed * direction;
     }
