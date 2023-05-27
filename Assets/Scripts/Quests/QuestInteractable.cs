@@ -8,14 +8,14 @@ public class QuestInteractable : Interactable
     private Color __initialColor;
     private void Awake()
     {
-        __renderer = GetComponent<Renderer>();
-        __initialColor = __renderer.material.color;
+        //__renderer = GetComponent<Renderer>();
+        //__initialColor = __renderer.material.color;
         ButtonToPress.enabled = false;
     }
     public override void Select() 
     {
         base.Select();
-        __renderer.material.color = __changedColor;
+        //__renderer.material.color = __changedColor;
         ButtonToPress.enabled = true;
     }
     public override void Interact()
@@ -26,7 +26,7 @@ public class QuestInteractable : Interactable
     public override void Deselect()
     {
         base.Deselect();
-        __renderer.material.color = __initialColor;
+        //__renderer.material.color = __initialColor;
         ButtonToPress.enabled = false;
     }
 }
