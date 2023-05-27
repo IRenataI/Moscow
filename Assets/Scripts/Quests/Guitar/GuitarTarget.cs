@@ -3,8 +3,8 @@ using UnityEngine.UI;
 
 public class GuitarTarget : TargetsAbstract
 {
+    public static float Velocity = 1.5f;
     public bool IsDeactivated = false;
-    public static float Velocity = 0.5f;
     public float _delayBetweenIncreaseVelocity = 5f;
     private float __delay;
     private BoxCollider2D __boxCollider2D;
@@ -32,5 +32,9 @@ public class GuitarTarget : TargetsAbstract
         __isDestroyed = true;
         __boxCollider2D.enabled = false;
         _image.enabled = false;
+    }
+    public void ResetVelocity()
+    {
+        Velocity = 1.5f;
     }
 }

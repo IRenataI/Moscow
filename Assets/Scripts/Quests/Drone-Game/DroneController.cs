@@ -10,15 +10,16 @@ public class DroneController : MonoBehaviour
     public bool IsDroneEnable { get { return __isDroneEnable; } set { __isDroneEnable = value; } }
     public int SpeedX = 2;
     public int SpeedY = 2;
-    public int SpeedZ = 2;
-    public Camera DroneCamera;
+    public int SpeedZ = 2;    
     public Vector3 DroneCameraPosition = Vector3.zero;
+    private Camera DroneCamera;
     private Rigidbody __rigidBody;
     private Vector3 __x, __y, __z;
     private bool __isDroneEnable = false;
     private QuestSystem __currentQuest;
     void Awake()
     {
+        DroneCamera = GetComponentInChildren<Camera>();
         __currentQuest = FindObjectOfType<QuestSystem>();
 
         __rigidBody = GetComponent<Rigidbody>();
@@ -48,6 +49,9 @@ public class DroneController : MonoBehaviour
         //
         //)
         __rigidBody.velocity = __x + __y + __z;
+        //__rigidBody.velocity = new Vector3(Mathf.Clamp(__rigidBody.velocity.x + -__rigidBody.velocity.x / 0.0001f, -25, 25),
+           // Mathf.Clamp(__rigidBody.velocity.y + -__rigidBody.velocity.y / 0.0001f, -25, 25),
+            //Mathf.Clamp(__rigidBody.velocity.z + -__rigidBody.velocity.z / 0.0001f, -25, 25));
 
         DroneCamera.transform.localPosition = DroneCameraPosition;
         transform.rotation = Quaternion.Lerp(transform.rotation,

@@ -1,15 +1,15 @@
-using TMPro;
 using UnityEngine;
 
 public class Deactivator : MonoBehaviour
 {
     public int LoseTarget = 5;
     public WinCondition WinCondition;
-    public TextMeshProUGUI Counter;
     private QuestSystem __questSystem;
+    private GuitarUICounter GuitarCounter;
     private void Awake()
     {
-        Counter.text = " " +  WinCondition.GetHittedTargetsNumber;
+        GuitarCounter = FindObjectOfType<GuitarUICounter>();
+        GuitarCounter.ChangeText(" " + WinCondition.GetHittedTargetsNumber);
         __questSystem = FindObjectOfType<QuestSystem>();
     }
     private void OnTriggerStay2D(Collider2D collision)
@@ -23,7 +23,7 @@ public class Deactivator : MonoBehaviour
         {
             __collided.IsDeactivated = true;
             WinCondition.DeacreaseHittedTargets();
-            Counter.text = " " + WinCondition.GetHittedTargetsNumber;
+            GuitarCounter.ChangeText(" " + WinCondition.GetHittedTargetsNumber);
             //Debug.Log("Destroyed");
         }
     }

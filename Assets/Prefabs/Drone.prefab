@@ -227,7 +227,7 @@ Camera:
   field of view: 60
   orthographic: 0
   orthographic size: 5
-  m_Depth: -1
+  m_Depth: -2
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -437,7 +437,6 @@ MonoBehaviour:
   SpeedX: 5
   SpeedY: 5
   SpeedZ: 5
-  DroneCamera: {fileID: 8488127911378897753}
   DroneCameraPosition: {x: 0, y: 0.5, z: -2}
 --- !u!114 &8488127912018864766
 MonoBehaviour:
