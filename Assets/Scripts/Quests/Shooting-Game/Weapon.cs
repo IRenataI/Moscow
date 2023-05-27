@@ -66,10 +66,7 @@ public class Weapon : MonoBehaviour
     {
         if (Ammo <= 0)
         {
-            IsWeaponEnable = false;
-            transform.parent = null;
             DisableWeapon();
-            Ammo = 5;
             __questSystem.GetCurrentQuest().InterruptQuest();
         }
         Ammo--;
@@ -81,21 +78,29 @@ public class Weapon : MonoBehaviour
         //bullet.SetInitialRotation(Quaternion.LookRotation(__hit.point - transform.position));
         bullet.SetInitialVelocity( (__hit.point - bullet.transform.position).normalized * BulletSpeed);
     }
-    public void SetParent()
-    {
-        transform.parent = Parent.transform;
-    }
     public void EnableWeapon()
     {
         IsWeaponEnable = true;
         __boxCollider.enabled = false;
+
+        transform.parent = Parent.transform;
     }
-    private void DisableWeapon()
+    public void DisableWeapon()
     {
+        Ammo = 5;
+        IsWeaponEnable = false;
+        transform.parent = null;
+
         transform.position = __initialPosition;
         __boxCollider.enabled = true;
     }
 }
+/*
+public void SetParent()
+{
+    transform.parent = Parent.transform;
+}
+*/
 //bullet.SetInitialRotation(Quaternion.LookRotation(transform.forward));
 
 //bullet.SetInitialPosition(transform.position + Parent.transform.forward * BulletPosition);

@@ -6,6 +6,7 @@ using UnityEngine.Events;
 [RequireComponent(typeof(QuestInteractable))]
 public class Quest : MonoBehaviour
 {
+    public Transform QuestStartPosition;
     public bool IsQuestCompleted = false;
     public UnityEvent EventOnStart;
     public UnityEvent EventOnInterrupt;
@@ -28,8 +29,7 @@ public class Quest : MonoBehaviour
     {
         if (IsQuestCompleted)
             return;
-        //__player.transform.position = Vector3.Lerp(__player.transform.position, transform.position, 1f);
-    
+
         __questSystem.StartQuest(this);
         EventOnStart?.Invoke();
 
@@ -61,6 +61,14 @@ public class Quest : MonoBehaviour
         __boxCollider.enabled = true;
 
         Debug.Log("Quest interrupted");
+    }
+    private void FixedUpdate()
+    {
+        if (__boxCollider.enabled == false)
+        {
+            __player.transform.position = Vector3.Lerp(__player.transform.position, 
+                QuestStartPosition.transform.position, 0.1f);
+        }
     }
 }
 /*
