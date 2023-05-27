@@ -11,13 +11,13 @@ public class Dialog : MonoBehaviour
     public UnityEvent OnEndDialog;
     private bool __isAddedInformation = false;
     private DialogCanvas __dialogCanvas;
-    private PlayerMovement __playrMovement;
+    private FirstPersonMovement __playrMovement;
     private UICheckList __checkItem;
     private QuestSystem __questSystem;
     private void Awake()
     {
         __dialogCanvas = FindObjectOfType<DialogCanvas>();
-        __playrMovement = FindObjectOfType<PlayerMovement>();
+        __playrMovement = FindObjectOfType<FirstPersonMovement>();
         __checkItem = FindObjectOfType<UICheckList>();
         __questSystem = FindObjectOfType<QuestSystem>();
     }
@@ -28,7 +28,7 @@ public class Dialog : MonoBehaviour
 
         GameSystem.ChangeCursorMode(CursorLockMode.Confined);
 
-        __playrMovement.StopMovement();
+        __playrMovement.SetMovement(false);
         OnStartDialog?.Invoke();
         Debug.Log("DialogCanvas enaled");   
     }
