@@ -28,8 +28,7 @@ public class Quest : MonoBehaviour
     {
         if (IsQuestCompleted)
             return;
-        __player.transform.position = Vector3.Lerp(__player.transform.position, 
-            transform.position, 1f);
+        //__player.transform.position = Vector3.Lerp(__player.transform.position, transform.position, 1f);
     
         __questSystem.StartQuest(this);
         EventOnStart?.Invoke();

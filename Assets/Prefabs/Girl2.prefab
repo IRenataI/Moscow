@@ -221,14 +221,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2019027363369120736}
-  m_LocalRotation: {x: -0, y: 0.99477744, z: -0, w: 0.1020676}
+  m_LocalRotation: {x: 0, y: 0.99477786, z: 0, w: 0.102063484}
   m_LocalPosition: {x: -160.026, y: -18.612, z: 174.63}
   m_LocalScale: {x: 6, y: 6, z: 6}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6565831338595109326}
   - {fileID: 2085375735366207053}
-  - {fileID: 7521256692157600830}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 168.284, z: 0}
@@ -264,15 +263,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73c3a08281ff0b64a83bd2bb74ddddc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  QuestText: {fileID: 0}
-  AdditionInformation: 
+  QuestCheckListTask: {fileID: 0}
+  AdditionInformation: "\u041D\u0430\u0439\u0442\u0438 \u043C\u0430\u043C\u0443"
+  QuestText:
+  - "\u042F \u043F\u043E\u0442\u0435\u0440\u044F\u043B\u0430 \u043C\u0430\u043C\u0443"
+  - "\u041F\u043E\u043C\u043E\u0433\u0438 \u0435\u0451 \u043D\u0430\u0439\u0442\u0438"
+  - "\u0415\u0441\u0442\u044C \u0434\u0440\u043E\u043D"
   OnStartDialog:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: CameraRotation, Assembly-CSharp
+        m_MethodName: StopRotate
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnEndDialog:
     m_PersistentCalls:
-      m_Calls: []
-  DialogCanvas: {fileID: 7521256692157600831}
+      m_Calls:
+      - m_Target: {fileID: 5284678698251473908}
+        m_TargetAssemblyTypeName: Quest, Assembly-CSharp
+        m_MethodName: StartQuest
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!65 &8628412441997871477
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -284,8 +310,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.1, y: 0.1, z: 0.1}
+  m_Center: {x: 0, y: 0.15, z: 0}
 --- !u!114 &6392330049780778293
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -298,8 +324,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ed0a112b828ee74cac1f95a1cfb520e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ObjectsToHit: 0
-  Targets: []
+  ObjectsToHit: 3
+  Targets:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &8448164813120132432
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -317,7 +346,19 @@ MonoBehaviour:
       m_Calls: []
   OnInteract:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6706305637774121042}
+        m_TargetAssemblyTypeName: Dialog, Assembly-CSharp
+        m_MethodName: EnableDialogCanvas
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   OnDeselect:
     m_PersistentCalls:
       m_Calls: []
@@ -337,13 +378,85 @@ MonoBehaviour:
   IsQuestCompleted: 0
   EventOnStart:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: DroneController, Assembly-CSharp
+        m_MethodName: set_IsDroneEnable
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   EventOnInterrupt:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   EventOnEnd:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: DroneController, Assembly-CSharp
+        m_MethodName: set_IsDroneEnable
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!1 &2288233221538255035
 GameObject:
   m_ObjectHideFlags: 0
@@ -1325,110 +1438,3 @@ Transform:
   m_Father: {fileID: 4088655888009058329}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &8696918856508886418
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1679515127001950554}
-    m_Modifications:
-    - target: {fileID: 1211880082202597792, guid: 97d830ee06711784cbd82fbd616610f8, type: 3}
-      propertyPath: m_Name
-      value: DialogCanvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 1211880082202597804, guid: 97d830ee06711784cbd82fbd616610f8, type: 3}
-      propertyPath: m_Pivot.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1211880082202597804, guid: 97d830ee06711784cbd82fbd616610f8, type: 3}
-      propertyPath: m_Pivot.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1211880082202597804, guid: 97d830ee06711784cbd82fbd616610f8, type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1211880082202597804, guid: 97d830ee06711784cbd82fbd616610f8, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1211880082202597804, guid: 97d830ee06711784cbd82fbd616610f8, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1211880082202597804, guid: 97d830ee06711784cbd82fbd616610f8, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1211880082202597804, guid: 97d830ee06711784cbd82fbd616610f8, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1211880082202597804, guid: 97d830ee06711784cbd82fbd616610f8, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1211880082202597804, guid: 97d830ee06711784cbd82fbd616610f8, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1211880082202597804, guid: 97d830ee06711784cbd82fbd616610f8, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1211880082202597804, guid: 97d830ee06711784cbd82fbd616610f8, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1211880082202597804, guid: 97d830ee06711784cbd82fbd616610f8, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1211880082202597804, guid: 97d830ee06711784cbd82fbd616610f8, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1211880082202597804, guid: 97d830ee06711784cbd82fbd616610f8, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1211880082202597804, guid: 97d830ee06711784cbd82fbd616610f8, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1211880082202597804, guid: 97d830ee06711784cbd82fbd616610f8, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1211880082202597804, guid: 97d830ee06711784cbd82fbd616610f8, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1211880082202597804, guid: 97d830ee06711784cbd82fbd616610f8, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1211880082202597804, guid: 97d830ee06711784cbd82fbd616610f8, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1211880082202597804, guid: 97d830ee06711784cbd82fbd616610f8, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1211880082202597804, guid: 97d830ee06711784cbd82fbd616610f8, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 97d830ee06711784cbd82fbd616610f8, type: 3}
---- !u!224 &7521256692157600830 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 1211880082202597804, guid: 97d830ee06711784cbd82fbd616610f8, type: 3}
-  m_PrefabInstance: {fileID: 8696918856508886418}
-  m_PrefabAsset: {fileID: 0}
---- !u!223 &7521256692157600831 stripped
-Canvas:
-  m_CorrespondingSourceObject: {fileID: 1211880082202597805, guid: 97d830ee06711784cbd82fbd616610f8, type: 3}
-  m_PrefabInstance: {fileID: 8696918856508886418}
-  m_PrefabAsset: {fileID: 0}

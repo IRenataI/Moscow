@@ -26,6 +26,8 @@ public class TargetsManager : MonoBehaviour
     }
     public void StopTargetsSpawn()
     {
+        __spawnedObjects.Last().GetComponent<GuitarTarget>().ResetVelocity();
+
         __isSpawning = false;
         while (__spawnedObjects.Count > 0) 
         {
