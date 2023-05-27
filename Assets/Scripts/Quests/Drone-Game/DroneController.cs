@@ -63,7 +63,7 @@ public class DroneController : MonoBehaviour
         {
             __rigidBody.velocity = Vector3.zero;
             transform.position = DroneInitialPosition;
-            __currentQuest.GetCurrentQuest().InterruptQuest();
+            __currentQuest.GetCurrentQuest.InterruptQuest();
         }
     }
 }

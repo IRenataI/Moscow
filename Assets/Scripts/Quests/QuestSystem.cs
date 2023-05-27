@@ -8,7 +8,7 @@ public class QuestSystem : MonoBehaviour
     private int index = -1;
     private bool __isQuestEnable = false;
     public bool IsQuestEnable { get { return __isQuestEnable; } }
-    public Quest GetCurrentQuest () { return CurrentQuests[index]; }
+    public Quest GetCurrentQuest { get { return CurrentQuests[index]; } }
     private void Awake()
     {
         __checkList = FindObjectOfType<UICheckList>();
@@ -24,6 +24,7 @@ public class QuestSystem : MonoBehaviour
             }
         }
         __isQuestEnable = true;
+        Debug.Log("Quest index: " + index);
     }
     public void EndQuest()
     {
