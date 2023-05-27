@@ -14,8 +14,8 @@ public class QuestInteractable : Interactable
     }
     public override void Select() 
     {
-        base.Select();
         //__renderer.material.color = __changedColor;
+        base.Select();
         ButtonToPress.enabled = true;
     }
     public override void Interact()
@@ -25,8 +25,8 @@ public class QuestInteractable : Interactable
     }
     public override void Deselect()
     {
-        base.Deselect();
         //__renderer.material.color = __initialColor;
+        base.Deselect();
         ButtonToPress.enabled = false;
     }
 }

@@ -67,7 +67,7 @@ public class Weapon : MonoBehaviour
         if (Ammo <= 0)
         {
             DisableWeapon();
-            __questSystem.GetCurrentQuest().InterruptQuest();
+            __questSystem.GetCurrentQuest.InterruptQuest();
         }
         Ammo--;
 

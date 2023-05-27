@@ -16,7 +16,7 @@ public class Deactivator : MonoBehaviour
     {
         if (WinCondition.GetHittedTargetsNumber < -LoseTarget)
         {
-            __questSystem.GetCurrentQuest().InterruptQuest();
+            __questSystem.GetCurrentQuest.InterruptQuest();
         }
         GuitarTarget __collided = collision.gameObject.GetComponent<GuitarTarget>();
         if (__collided && !__collided.IsDestroyed && !__collided.IsDeactivated)

@@ -28,7 +28,13 @@ public class Quest : MonoBehaviour
     public void StartQuest()
     {
         if (IsQuestCompleted)
+        {
+            __player.ContinueMovement();
+            __cameraRotation.StartRotate();
             return;
+        }
+
+        __player.transform.position = QuestStartPosition.transform.position;
 
         __questSystem.StartQuest(this);
         EventOnStart?.Invoke();
@@ -61,14 +67,6 @@ public class Quest : MonoBehaviour
         __boxCollider.enabled = true;
 
         Debug.Log("Quest interrupted");
-    }
-    private void FixedUpdate()
-    {
-        if (__boxCollider.enabled == false)
-        {
-            __player.transform.position = Vector3.Lerp(__player.transform.position, 
-                QuestStartPosition.transform.position, 0.1f);
-        }
     }
 }
 /*
