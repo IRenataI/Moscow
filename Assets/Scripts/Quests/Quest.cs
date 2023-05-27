@@ -37,22 +37,23 @@ public class Quest : MonoBehaviour
 
         __player.transform.position = QuestStartPosition.transform.position;
 
-        __questSystem.StartQuest(this);
-        EventOnStart?.Invoke();
-
         __player.StopMovement();
         __boxCollider.enabled = false;
+
+        __questSystem.StartQuest(this);
+        EventOnStart?.Invoke();
     }
     public void EndQuest()
     {
-        __questSystem.EndQuest();
         IsQuestCompleted = true;
-        EventOnEnd?.Invoke();
 
         __player.ContinueMovement();
         __cameraRotation.StartRotate();
 
         __boxCollider.enabled = true;
+
+        EventOnEnd?.Invoke();
+        __questSystem.EndQuest();
 
         Debug.Log("Quest completed");
     }

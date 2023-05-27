@@ -22,7 +22,7 @@ public class Activator : MonoBehaviour
         if (Input.GetKeyDown(KeyToPress))
         {
             __rawImage.color = __initialColor + new Color(0, 55f / 255f, 0);
-            if (__isColliderGuitarTarget)
+            if (__isColliderGuitarTarget && __collidedGameObject)
             {
                 Function(__collidedGameObject);
             }
