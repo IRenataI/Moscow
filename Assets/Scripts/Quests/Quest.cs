@@ -1,65 +1,105 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(BoxCollider))]
-public class Quest : MonoBehaviour, QuestInterface
+[RequireComponent(typeof(WinCondition))]
+[RequireComponent(typeof(QuestInteractable))]
+public class Quest : MonoBehaviour
 {
+    public Transform QuestStartPosition;
     public bool IsQuestCompleted = false;
+    public UnityEvent EventOnStart;
+    public UnityEvent EventOnInterrupt;
+    public UnityEvent EventOnEnd;
     private QuestSystem __questSystem;
     private PlayerMovement __player;
-    private bool __isQuestRunning = false;
-    private UICheckList __checkList;
+    private CameraRotation __cameraRotation;
+    private WinCondition __winConditon;
+    private BoxCollider __boxCollider;
     void Awake()
     {
         GetComponent<BoxCollider>().isTrigger = true;
         __questSystem = FindAnyObjectByType<QuestSystem>();
         __player = FindAnyObjectByType<PlayerMovement>();
-        __checkList = FindAnyObjectByType<UICheckList>();
-    }
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            __questSystem.StartQuest(this);
-        }
-        //Debug.Log("Started quest: " + other.name);
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            __questSystem.EndQuest(this);
-        }
-        //Debug.Log("Ended quest: " + other.name);
+        __cameraRotation = FindAnyObjectByType<CameraRotation>();
+        __winConditon = GetComponent<WinCondition>();
+        __boxCollider = GetComponent<BoxCollider>();
     }
     public void StartQuest()
     {
+        if (IsQuestCompleted)
+        {
+            __player.ContinueMovement();
+            __cameraRotation.StartRotate();
+            Debug.Log("Quest already done");
+            return;
+        }
+
+        __player.transform.position = QuestStartPosition.transform.position;
+
         __questSystem.StartQuest(this);
-        __isQuestRunning = true;
+        EventOnStart?.Invoke();
+
+        __player.StopMovement();
+        __boxCollider.enabled = false;
     }
     public void EndQuest()
     {
-        __isQuestRunning = false;
-        __questSystem.EndQuest(this);
+        __questSystem.EndQuest();
         IsQuestCompleted = true;
+        EventOnEnd?.Invoke();
 
-        __checkList.UpdateTasks(0);
+        __player.ContinueMovement();
+        __cameraRotation.StartRotate();
+
+        __boxCollider.enabled = true;
+
+        Debug.Log("Quest completed");
     }
-    private void FixedUpdate()
+    public void InterruptQuest()
     {
-        if (IsQuestCompleted)
-        {
-            return;
-        }
-        if (__isQuestRunning)
-        {
-            __player.transform.position = Vector3.Lerp(__player.transform.position,
-            transform.position, 0.05f);
-            //Debug.Log("Quest is running");
-        }
-        if (GameInputManager.IsTabPressed())
-        {
-            EndQuest();
-            Debug.Log("Quest is done");
-        }
+        EventOnInterrupt?.Invoke();
+
+        __player.ContinueMovement();
+        __cameraRotation.StartRotate();
+
+        __winConditon.ResetHittedTargets();
+
+        __boxCollider.enabled = true;
+
+        Debug.Log("Quest interrupted");
     }
 }
+/*
+private void OnTriggerExit(Collider other)
+{
+    if (other.gameObject.CompareTag("Player"))
+    {
+        EndQuest();
+    }
+    //Debug.Log("Ended quest: " + other.name);
+}
+*/
+/*
+private void OnTriggerStay(Collider other)
+{
+    if (other.gameObject.CompareTag("Player"))
+    {
+        StartQuest();
+    }
+    //Debug.Log("Started quest: " + other.name);
+}
+*/
+/*
+private void FixedUpdate()
+{
+    if (IsQuestCompleted)
+        return;
+
+    if (__isQuestRunning)
+    {
+        //__player.transform.position = Vector3.Lerp(__player.transform.position,transform.position, 0.05f);
+        //Debug.Log("Quest is running");
+    }
+}
+*/

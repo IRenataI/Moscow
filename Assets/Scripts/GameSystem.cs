@@ -1,18 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GameSystem : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        
+        Cursor.lockState = CursorLockMode.Locked;
+        Application.targetFrameRate = 60;
     }
-
-    // Update is called once per frame
-    void Update()
+    public static void ChangeCursorMode(CursorLockMode mode)
     {
-        
+        Cursor.lockState = mode;
     }
 }

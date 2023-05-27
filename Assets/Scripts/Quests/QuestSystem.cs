@@ -2,24 +2,50 @@ using UnityEngine;
 
 public class QuestSystem : MonoBehaviour
 {
-    private Quest[] __quests = new Quest[0];
-    public delegate void Quests();
-    Quests __quest;
+    private Quest[] CurrentQuests;
+    private delegate void DelegateQuests();
+    private UICheckList __checkList;
+    private int index = -1;
+    private bool __isQuestEnable = false;
+    public bool IsQuestEnable { get { return __isQuestEnable; } }
+    public Quest GetCurrentQuest { get { return CurrentQuests[index]; } }
+    private void Awake()
+    {
+        __checkList = FindObjectOfType<UICheckList>();
+        CurrentQuests = FindObjectsOfType<Quest>();
+    }
     public void StartQuest(Quest quest)
     {
-        if (!quest.IsQuestCompleted)
-            __quest = quest.StartQuest;
-    }
-    public void EndQuest(Quest quest)
-    {
-        __quest -= quest.StartQuest;
-    }
-    private void FixedUpdate()
-    {
-        if (__quest != null && GameInputManager.IsSpacePressed())
+        for (int i = 0; i < CurrentQuests.Length; i++)
         {
-            __quest.Invoke();
-            Debug.Log("Quest is running");
+            if (CurrentQuests[i] == quest && !quest.IsQuestCompleted)
+            {
+                index = i;
+            }
         }
+        __isQuestEnable = true;
+        Debug.Log("Quest index: " + index);
+    }
+    public void EndQuest()
+    {
+        Debug.Log("Completed quest's index: " + index);
+        __checkList.UpdateTasks(index);
+        index = -1;
+        __isQuestEnable = false;
     }
 }
+/*
+private void FixedUpdate()
+{
+    if (__quest != null && GameInputManager.IsSpacePressed())
+    {
+        __quest.Invoke();
+        //Debug.Log("Quest is running");
+    }
+    if (GameInputManager.IsTabPressed())
+    {
+        CurrentQuests[index].EndQuest();
+        //Debug.Log("Quest is done");
+    }
+}
+*/
