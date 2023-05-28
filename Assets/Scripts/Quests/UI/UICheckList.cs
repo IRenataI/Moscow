@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 
@@ -16,5 +17,7 @@ public class UICheckList : MonoBehaviour
         Debug.Log(index);
         if (index > -1)
             Tasks[index].text += "(завершено)";//(index + 1) + "(завершено)";
+        else
+            throw new NullReferenceException("index < 0");
     }
 }
