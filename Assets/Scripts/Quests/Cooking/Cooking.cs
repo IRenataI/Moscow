@@ -12,6 +12,7 @@ public class Cooking : MonoBehaviour
     private Plate currentPlate;
 
     private static Cooking instance;
+    private static bool isEnable;
 
     private void Start()
     {
@@ -33,6 +34,16 @@ public class Cooking : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Mouse0))
             Interact();
+    }
+
+    private void OnEnable()
+    {
+        isEnable = true;
+    }
+
+    private void OnDisable()
+    {
+        isEnable = false;
     }
 
     private void Drag(Vector3 position)
@@ -59,6 +70,9 @@ public class Cooking : MonoBehaviour
 
     public static void TakeCookingIngredient(CookingIngredient cookingIngredient)
     {
+        if (!isEnable)
+            return;
+
         if (instance.mouseFollowCookingIngredient)
             Destroy(instance.mouseFollowCookingIngredient.gameObject);
 
