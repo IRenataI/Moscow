@@ -10,7 +10,9 @@ public class Phone : MonoBehaviour
         Inactive,
         Active,
         Camera,
-        Social
+        Social,
+        Notes,
+        Bank
     }
 
     [HideInInspector] public UnityEvent OnActivated;
@@ -38,6 +40,16 @@ public class Phone : MonoBehaviour
         {
             Deactivate();
         }
+
+        // DEBUG
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            if (Cursor.lockState == CursorLockMode.Locked)
+                Cursor.lockState = CursorLockMode.None;
+            else
+                Cursor.lockState = CursorLockMode.Locked;
+        }
+        // DEBUG
     }
 
     public void Default()
@@ -64,14 +76,35 @@ public class Phone : MonoBehaviour
 
     public void OpenSocial()
     {
-        // DEBUG
-        return;
-
         if (currentAnimationState == AnimationState.Social)
             return;
 
-        Debug.Log("Open Social (fake)");
-        //currentAnimationState = AnimationState.Social;
+        Debug.Log("Open Social");
+
+        animator.SetTrigger(AnimationState.Social.ToString());
+        currentAnimationState = AnimationState.Social;
+    }
+
+    public void OpenNotes()
+    {
+        if (currentAnimationState == AnimationState.Notes)
+            return;
+
+        Debug.Log("Open Notes");
+
+        animator.SetTrigger(AnimationState.Notes.ToString());
+        currentAnimationState = AnimationState.Notes;
+    }
+
+    public void OpenBank()
+    {
+        if (currentAnimationState == AnimationState.Bank)
+            return;
+
+        Debug.Log("Open Bank");
+
+        animator.SetTrigger(AnimationState.Bank.ToString());
+        currentAnimationState = AnimationState.Bank;
     }
 
     public void Deactivate()
