@@ -36,7 +36,7 @@ public class PlayerMovement : MonoBehaviour
 
         direction.y = rb.velocity.y;
 
-        rb.velocity = speed * direction;
+        rb.velocity = speed * direction.normalized;
     }
 
     public void StopMovement() => canMove = false;

@@ -23,7 +23,7 @@ public class PhotoCamera : MonoBehaviour
         if (Input.GetKeyDown(GlobalVariables.TakePhotoKey))
         {
             IsTargetObjectCaptured(targetObject);
-            SaveAsImageAsync();
+            SaveAsImage();
         }
     }
 
@@ -61,7 +61,7 @@ public class PhotoCamera : MonoBehaviour
         return false;
     }
 
-    private void SaveAsImageAsync()
+    private void SaveAsImage()
     {
         Texture2D texture = ToTexture2D(renderTexture);
         byte[] textureInBytes = texture.EncodeToPNG();
