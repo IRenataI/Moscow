@@ -2,6 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(AudioSource))]
 public class Activator : MonoBehaviour
 {
     public KeyCode KeyToPress;
@@ -11,11 +12,14 @@ public class Activator : MonoBehaviour
     private GameObject __collidedGameObject;
     private Color __initialColor;
     private RawImage __rawImage;
+    private AudioSource __audioSource;
     private void Awake()
     {
         __rawImage = GetComponent<RawImage>();
         __initialColor = new Color(0, 200f / 255f, 0);// __renderer.material.color;
         __rawImage.color = __initialColor;
+        __audioSource = GetComponent<AudioSource>();
+        __audioSource.playOnAwake = false;
     }
     private void Update()
     {
@@ -26,6 +30,7 @@ public class Activator : MonoBehaviour
             {
                 Function(__collidedGameObject);
             }
+            __audioSource.Play();
         }
         else if (Input.GetKeyUp(KeyToPress))
         {
