@@ -13,7 +13,7 @@ public class UICheckList : MonoBehaviour
         UITasks.text = string.Empty;
         for (int i = 0; i < Tasks.Length; i++) 
         {
-            Tasks[i].text = "Задача " + (i + 1);
+            Tasks[i].text = "Г‡Г Г¤Г Г·Г  " + (i + 1);
             UITasks.text += Tasks[i].text + "\n";
         }
     }
@@ -22,11 +22,11 @@ public class UICheckList : MonoBehaviour
         Debug.Log(index);
         if (index > -1 && !__questSystem.GetCurrentQuest.IsQuestCompleted)
         {
-            Tasks[index].text += "(завершено)";//(index + 1) + "(завершено)";
+            Tasks[index].text += "(Г§Г ГўГҐГ°ГёГҐГ­Г®)";//(index + 1) + "(Г§Г ГўГҐГ°ГёГҐГ­Г®)";
             UpdateUITasks();
         }
         else
-            throw new NullReferenceException("index < 0");
+            Debug.Log("index < 0");
     }
 
     private void UpdateUITasks()

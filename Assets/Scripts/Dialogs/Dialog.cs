@@ -9,20 +9,25 @@ public class Dialog : MonoBehaviour
     public string[] QuestText;
     public UnityEvent OnStartDialog;
     public UnityEvent OnEndDialog;
+    public bool __isDialogAvailable = true;
     private bool __isAddedInformation = false;
     private DialogCanvas __dialogCanvas;
     private FirstPersonMovement __playrMovement;
     private UICheckList __checkItem;
     private QuestSystem __questSystem;
+    private Quest __quest;
     private void Awake()
     {
         __dialogCanvas = FindObjectOfType<DialogCanvas>();
         __playrMovement = FindObjectOfType<FirstPersonMovement>();
         __checkItem = FindObjectOfType<UICheckList>();
         __questSystem = FindObjectOfType<QuestSystem>();
+        __quest = GetComponent<Quest>();
     }
     public void EnableDialogCanvas()
     {
+        //if (__quest && __quest.IsQuestCompleted)
+            //return;
         __dialogCanvas.GetComponent<Canvas>().enabled = true;
         __dialogCanvas.CreateDialog(QuestText, this);
 
