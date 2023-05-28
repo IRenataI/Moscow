@@ -16,6 +16,14 @@ public class EnterToPlaces : MonoBehaviour
         yield return new WaitForSeconds(2f);
         BlackScreen.SetActive(false);
     }
+    IEnumerator EGoToFastFoodReturn()
+    {
+        yield return new WaitForSeconds(0.5f);
+        Vector3 NewPosition = new Vector3(-116.06f, -19.542f, 215.81f);
+        Player.transform.position = NewPosition;
+        yield return new WaitForSeconds(2f);
+        BlackScreen.SetActive(false);
+    }
 
     IEnumerator EGoToLenin()
     {
@@ -25,11 +33,28 @@ public class EnterToPlaces : MonoBehaviour
         yield return new WaitForSeconds(2f);
         BlackScreen.SetActive(false);
     }
+    IEnumerator EGoToLeninReturn()
+    {
+        yield return new WaitForSeconds(0.5f);
+        Vector3 NewPosition = new Vector3(-29.394f, -15.987f, 25.915f);
+        Player.transform.position = NewPosition;
+        yield return new WaitForSeconds(2f);
+        BlackScreen.SetActive(false);
+    }
 
     IEnumerator EGoToRestaurant()
     {
         yield return new WaitForSeconds(0.5f);
         Vector3 NewPosition = new Vector3(-230.541f, -23.697f, 75.272f);
+        Player.transform.position = NewPosition;
+        yield return new WaitForSeconds(2f);
+        BlackScreen.SetActive(false);
+    }
+
+    IEnumerator EGoToRestaurantReturn()
+    {
+        yield return new WaitForSeconds(0.5f);
+        Vector3 NewPosition = new Vector3(42.08f, -16.159f, 11.24f);
         Player.transform.position = NewPosition;
         yield return new WaitForSeconds(2f);
         BlackScreen.SetActive(false);
@@ -46,6 +71,20 @@ public class EnterToPlaces : MonoBehaviour
     public void GoToLenin()
     {
         StartCoroutine(EGoToLenin());
+    }
+
+    public void GoToLeninReturn()
+    {
+        StartCoroutine(EGoToLeninReturn());
+    }
+    public void GoToFastFoodreturn()
+    {
+        StartCoroutine(EGoToFastFoodReturn());
+    }
+
+    public void GoToRestaurantReturn()
+    {
+        StartCoroutine(EGoToRestaurantReturn());
     }
 
     public void UnlockCoursore()
