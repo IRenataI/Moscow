@@ -23,6 +23,10 @@ public class QuestSystem : MonoBehaviour
             {
                 index = i;
             }
+            else
+            {
+                index = -1;
+            }
         }
         __isQuestEnable = true;
         Debug.Log("Quest index: " + index);
