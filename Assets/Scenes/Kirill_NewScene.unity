@@ -2128,7 +2128,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 986b00712ef6abb47aee675098b6ad28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Pages: []
+  Pages:
+  - {fileID: 1752582672}
+  - {fileID: 2140457760}
+  - {fileID: 530090579}
+  - {fileID: 1430703889}
+  AppearTime: 0.01
+  DelayBetweenPages: 1
 --- !u!114 &1516876699
 MonoBehaviour:
   m_ObjectHideFlags: 0
