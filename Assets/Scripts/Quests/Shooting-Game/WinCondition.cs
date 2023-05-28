@@ -20,6 +20,8 @@ public class WinCondition : MonoBehaviour
         __hittedTargets++;
         if (__hittedTargets >= ObjectsToHit)
         {
+            __quest = GetComponent<Quest>();
+
             __quest.EndQuest();
             Debug.Log("All targets down");
         }
