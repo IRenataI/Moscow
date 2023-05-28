@@ -3,16 +3,13 @@ using UnityEngine;
 
 public class Cooking : MonoBehaviour
 {
-    [SerializeField] private WinCondition winCondition;
     [SerializeField] private Camera cam;
     [SerializeField] private LayerMask cookingLayerMask;
     [SerializeField] private float flyingHeight;
 
-    [SerializeField] private List<CookingIngredient> recipe;
-    private List<CookingIngredient> progress;
-
     private CookingIngredient mouseFollowCookingIngredient;
     private CookingTool currentCookingTool;
+    private Plate currentPlate;
 
     private static Cooking instance;
 
@@ -31,6 +28,7 @@ public class Cooking : MonoBehaviour
                 Drag(hitInfo.point);
 
             currentCookingTool = hitInfo.transform.GetComponent<CookingTool>();
+            currentPlate = hitInfo.transform.GetComponent<Plate>();
         }
 
         if (Input.GetKeyDown(KeyCode.Mouse0))
@@ -53,22 +51,10 @@ public class Cooking : MonoBehaviour
             else
                 currentCookingTool.TakeCookedIngredient();
         }
-    }
-
-    private bool AddIngredient(CookingIngredient cookingIngredient)
-    {
-        if (!ContainsCookingIngredient(recipe, cookingIngredient) || ContainsCookingIngredient(progress, cookingIngredient))
-            return false;
-
-        progress.Add(cookingIngredient);
-        IncreaseProgress();
-
-        return true;
-    }
-
-    private void IncreaseProgress()
-    {
-        winCondition.IncreaseHittedTargets();
+        else if (currentPlate)
+        {
+            currentPlate.AddIngredient(mouseFollowCookingIngredient);
+        }
     }
 
     public static void TakeCookingIngredient(CookingIngredient cookingIngredient)
@@ -86,6 +72,9 @@ public class Cooking : MonoBehaviour
 
     public static bool ContainsCookingIngredient(List<CookingIngredient> cookingIngredientList, CookingIngredient cookingIngredient)
     {
+        if (cookingIngredientList == null)
+            return false;
+
         foreach (CookingIngredient ci in cookingIngredientList)
         {
             if (ci.Id == cookingIngredient.Id)
