@@ -6,6 +6,6 @@ public class AddQuestPhotoObject : MonoBehaviour
 
     public void Add()
     {
-        QuestPhotoObjects.AddQuestPhotoObject(questPhotoObject);
+        //QuestPhotoObjects.AddQuestPhotoObject(questPhotoObject);
     }
 }

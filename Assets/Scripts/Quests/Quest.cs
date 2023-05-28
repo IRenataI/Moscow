@@ -25,7 +25,7 @@ public class Quest : MonoBehaviour
         __cameraRotation = FindAnyObjectByType<FirstPersonLook>();
         __winConditon = GetComponent<WinCondition>();
     }
-    public void StartQuest()
+    public void StartQuest(int price)
     {
         if (IsQuestCompleted)
         {
@@ -34,6 +34,9 @@ public class Quest : MonoBehaviour
             Debug.Log("Quest already done");
             return;
         }
+
+        if (!Money.WasteMoney(price))
+            return;
 
         __player.SetMovement(false);
 

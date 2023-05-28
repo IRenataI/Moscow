@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Money : MonoBehaviour
 {
-    private static int CurrentMoney = 1000;
+    public static int CurrentMoney = 1000;
 
     public static bool WasteMoney(int moneyToWaste)
     {

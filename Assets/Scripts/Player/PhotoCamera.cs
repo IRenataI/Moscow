@@ -61,10 +61,10 @@ public class PhotoCamera : MonoBehaviour
         return false;
     }
 
-    public QuestPhotoObject IsTargetObjectsCaptured(List<QuestPhotoObject> targetObjects)
+    public QuestPhotoObject IsTargetObjectsCaptured(/*List<QuestPhotoObject> targetObjects*/)
     {
-        if (targetObjects == null || targetObjects.Count <= 0 || cam.enabled == false)
-            return null;
+        //if (targetObjects == null || targetObjects.Count <= 0 || cam.enabled == false)
+        //    return null;
 
         float stepCount = 30f;
 
@@ -81,13 +81,16 @@ public class PhotoCamera : MonoBehaviour
 
                 if (Physics.Raycast(ray, out RaycastHit hitInfo))
                 {
-                    foreach (QuestPhotoObject questObject in targetObjects)
-                    {
-                        if (hitInfo.transform.gameObject == questObject.gameObject)
-                        {
-                            return questObject;
-                        }
-                    }
+                    QuestPhotoObject questPhotoObject = hitInfo.transform.GetComponent<QuestPhotoObject>();
+                    if (questPhotoObject)
+                        return questPhotoObject;
+                    //foreach (QuestPhotoObject questObject in targetObjects)
+                    //{
+                    //    if (hitInfo.transform.gameObject == questObject.gameObject)
+                    //    {
+                    //        return questObject;
+                    //    }
+                    //}
                 }
             }
         }
