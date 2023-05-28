@@ -49,6 +49,10 @@ public class QuestSystem : MonoBehaviour
         }
         return -1;
     }
+    public Quest GetQuestByIndex(int index)
+    {
+        return __currentQuests[index];
+    }
 }
 /*
 private void FixedUpdate()
