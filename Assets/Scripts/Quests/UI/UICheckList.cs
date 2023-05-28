@@ -11,9 +11,9 @@ public class UICheckList : MonoBehaviour
     {
         __questSystem = FindObjectOfType<QuestSystem>();
         UITasks.text = string.Empty;
-        for (int i = 0; i < Tasks.Length; i++) 
+        for (int i = 0; i < Tasks.Length; i++)
         {
-            Tasks[i].text = "Çàäà÷à " + (i + 1);
+            Tasks[i].text = "Задача " + (i + 1);
             UITasks.text += Tasks[i].text + "\n";
         }
     }
@@ -22,7 +22,7 @@ public class UICheckList : MonoBehaviour
         Debug.Log(index);
         if (index > -1 && !__questSystem.GetCurrentQuest.IsQuestCompleted)
         {
-            Tasks[index].text += "(çàâåðøåíî)";//(index + 1) + "(çàâåðøåíî)";
+            Tasks[index].text += "(выполнено)";//(index + 1) + "(çàâåðøåíî)";
             UpdateUITasks();
         }
         else

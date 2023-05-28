@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using UnityEngine;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(Camera))]
 public class PhotoCamera : MonoBehaviour
@@ -20,14 +21,13 @@ public class PhotoCamera : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(GlobalVariables.TakePhotoKey))
-        {
-            IsTargetObjectCaptured(targetObject);
-            SaveAsImage();
-        }
+        //if (Input.GetKeyDown(GlobalVariables.TakePhotoKey))
+        //{
+        //    IsTargetObjectCaptured(targetObject);
+        //}
     }
 
-    private bool IsTargetObjectCaptured(GameObject targetObject)
+    public bool IsTargetObjectCaptured(GameObject targetObject)
     {
         if (targetObject == null)
             return false;
@@ -61,7 +61,41 @@ public class PhotoCamera : MonoBehaviour
         return false;
     }
 
-    private void SaveAsImage()
+    public QuestPhotoObject IsTargetObjectsCaptured(List<QuestPhotoObject> targetObjects)
+    {
+        if (targetObjects == null || targetObjects.Count <= 0)
+            return null;
+
+        float stepCount = 30f;
+
+        float xStep = Screen.width / stepCount;
+        float yStep = Screen.height / stepCount;
+
+        Ray ray;
+
+        for (float x = 0; x <= Screen.width; x += xStep)
+        {
+            for (float y = 0; y <= Screen.height; y += yStep)
+            {
+                ray = cam.ScreenPointToRay(new Vector3(x, y, 0f));
+
+                if (Physics.Raycast(ray, out RaycastHit hitInfo))
+                {
+                    foreach (QuestPhotoObject questObject in targetObjects)
+                    {
+                        if (hitInfo.transform.gameObject == questObject.gameObject)
+                        {
+                            return questObject;
+                        }
+                    }
+                }
+            }
+        }
+
+        return null;
+    }
+
+    public void SaveAsImage()
     {
         Texture2D texture = ToTexture2D(renderTexture);
         byte[] textureInBytes = texture.EncodeToPNG();
