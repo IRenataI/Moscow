@@ -69,6 +69,12 @@ public class Paint : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            GetComponentInParent<WinCondition>().IncreaseHittedTargets();
+            this.enabled = false;
+        }
+
         Draw();
 
         if(Input.GetKeyDown(KeyCode.Tab))
