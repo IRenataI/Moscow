@@ -16,6 +16,7 @@ public class Quest : MonoBehaviour
     private FirstPersonMovement __player;
     private FirstPersonLook __cameraRotation;
     private WinCondition __winConditon;
+    private bool __isQuestStarted = false;
     void Awake()
     {
         GetComponent<BoxCollider>().isTrigger = true;
@@ -34,9 +35,9 @@ public class Quest : MonoBehaviour
             return;
         }
 
-        __player.transform.position = QuestStartPosition.transform.position;
-
         __player.SetMovement(false);
+
+        __isQuestStarted = true;
 
         __questSystem.StartQuest(this);
         EventOnStart?.Invoke();
@@ -64,6 +65,17 @@ public class Quest : MonoBehaviour
         __winConditon.ResetHittedTargets();
 
         Debug.Log("Quest interrupted");
+    }
+    private void FixedUpdate()
+    {
+        if (__isQuestStarted && (QuestStartPosition.transform.position - __player.transform.position).magnitude > 1f)
+        {
+            __player.transform.position = Vector3.Lerp(__player.transform.position, QuestStartPosition.transform.position, 0.1f);
+
+        }else if ((QuestStartPosition.transform.position - __player.transform.position).magnitude < 1f)
+        {
+            __isQuestStarted = false;
+        }
     }
 }
 /*

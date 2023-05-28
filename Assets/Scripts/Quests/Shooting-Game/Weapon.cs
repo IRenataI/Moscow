@@ -3,8 +3,8 @@ using UnityEngine;
 [RequireComponent(typeof(WeaponAudio))]
 public class Weapon : MonoBehaviour
 {
-    [Range(0,100)]
-    public int Ammo = 5;
+    [Range(0,25)]
+    public int Ammo = 10;
     public bool IsWeaponEnable = false;
     public GameObject Bullet;
     public Vector3 LocalPosition;
@@ -20,6 +20,7 @@ public class Weapon : MonoBehaviour
     private QuestSystem __questSystem;
     private Ray __ray;
     private BoxCollider __boxCollider;
+    private int __initialAmmo;
     private void Awake()
     {
         _audio = GetComponent<WeaponAudio>();
@@ -28,6 +29,7 @@ public class Weapon : MonoBehaviour
         __boxCollider = GetComponent<BoxCollider>();
 
         Parent = Camera.main;
+        __initialAmmo = Ammo;
     }
     void Update()
     {
@@ -87,7 +89,7 @@ public class Weapon : MonoBehaviour
     }
     public void DisableWeapon()
     {
-        Ammo = 5;
+        Ammo = __initialAmmo;
         IsWeaponEnable = false;
         transform.parent = null;
 
