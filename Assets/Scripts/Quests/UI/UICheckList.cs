@@ -18,8 +18,8 @@ public class UICheckList : MonoBehaviour
     {
         Debug.Log(index);
         if (index > -1 && !__questSystem.GetCurrentQuest.IsQuestCompleted)
-            Tasks[index].text += "(завершено)";//(index + 1) + "(завершено)";
+            Tasks[index].text += "(завершено)";
         else
-            throw new NullReferenceException("index < 0");
+            Debug.Log("index < 0");
     }
 }

@@ -32,7 +32,10 @@ public class DroneAudio : MonoBehaviour
     void Update()
     {
         if (!__controller.IsDroneEnable)
+        {
+            __audioSource.Stop();
             return;
+        }
 
         if (!__audioSource.isPlaying)
         {
