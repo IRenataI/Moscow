@@ -2091,6 +2091,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CenterFocusCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 2711392254753241060, guid: 1142f657994345340851c437965721f0, type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 2711392254753241061, guid: 1142f657994345340851c437965721f0, type: 3}
       propertyPath: m_Pivot.x
       value: 0
