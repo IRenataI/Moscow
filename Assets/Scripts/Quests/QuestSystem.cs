@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class QuestSystem : MonoBehaviour
 {
-    private Quest[] __currentQuests;
+    [SerializeField]private Quest[] __currentQuests;
     private delegate void DelegateQuests();
     private UICheckList __checkList;
     private int index = -1;
@@ -13,7 +13,7 @@ public class QuestSystem : MonoBehaviour
     private void Awake()
     {
         __checkList = FindObjectOfType<UICheckList>();
-        __currentQuests = FindObjectsOfType<Quest>();
+       //__currentQuests = FindObjectsOfType<Quest>();
     }
     public void StartQuest(Quest quest)
     {
