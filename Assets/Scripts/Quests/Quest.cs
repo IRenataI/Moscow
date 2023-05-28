@@ -12,16 +12,16 @@ public class Quest : MonoBehaviour
     public UnityEvent EventOnInterrupt;
     public UnityEvent EventOnEnd;
     private QuestSystem __questSystem;
-    private PlayerMovement __player;
-    private CameraRotation __cameraRotation;
+    private FirstPersonMovement __player;
+    private FirstPersonLook __cameraRotation;
     private WinCondition __winConditon;
     private BoxCollider __boxCollider;
     void Awake()
     {
         GetComponent<BoxCollider>().isTrigger = true;
         __questSystem = FindAnyObjectByType<QuestSystem>();
-        __player = FindAnyObjectByType<PlayerMovement>();
-        __cameraRotation = FindAnyObjectByType<CameraRotation>();
+        __player = FindAnyObjectByType<FirstPersonMovement>();
+        __cameraRotation = FindAnyObjectByType<FirstPersonLook>();
         __winConditon = GetComponent<WinCondition>();
         __boxCollider = GetComponent<BoxCollider>();
     }
@@ -29,15 +29,15 @@ public class Quest : MonoBehaviour
     {
         if (IsQuestCompleted)
         {
-            __player.ContinueMovement();
-            __cameraRotation.StartRotate();
+            __player.SetMovement(true);
+            __cameraRotation.SetCameraRotation(true);
             Debug.Log("Quest already done");
             return;
         }
 
         __player.transform.position = QuestStartPosition.transform.position;
 
-        __player.StopMovement();
+        __player.SetMovement(false);
         __boxCollider.enabled = false;
 
         __questSystem.StartQuest(this);
@@ -47,8 +47,8 @@ public class Quest : MonoBehaviour
     {
         IsQuestCompleted = true;
 
-        __player.ContinueMovement();
-        __cameraRotation.StartRotate();
+        __player.SetMovement(true);
+        __cameraRotation.SetCameraRotation(true);
 
         __boxCollider.enabled = true;
 
@@ -61,8 +61,8 @@ public class Quest : MonoBehaviour
     {
         EventOnInterrupt?.Invoke();
 
-        __player.ContinueMovement();
-        __cameraRotation.StartRotate();
+        __player.SetMovement(true);
+        __cameraRotation.SetCameraRotation(true);
 
         __winConditon.ResetHittedTargets();
 
