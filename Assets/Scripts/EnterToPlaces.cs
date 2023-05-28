@@ -1,13 +1,11 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.IO;
 using UnityEngine;
 
 public class EnterToPlaces : MonoBehaviour
 {
     public Transform Player;
     public GameObject BlackScreen;
-
+    public Vector3 DesiredPosition;
     IEnumerator EGoToFastFood()
     {
         yield return new WaitForSeconds(0.5f);
@@ -95,5 +93,17 @@ public class EnterToPlaces : MonoBehaviour
     {
         GameSystem.ChangeCursorMode(CursorLockMode.Confined);
     }
-
+    public void Hide()
+    {
+        StartCoroutine(IHide());
+    }
+    IEnumerator IHide()
+    {
+        yield return new WaitForSeconds(0f);
+        BlackScreen.SetActive(true);
+    }
+    public void Teleport()
+    {
+        transform.position = DesiredPosition;
+    }
 }

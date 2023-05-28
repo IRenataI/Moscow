@@ -32,6 +32,7 @@ public class DroneController : MonoBehaviour
             return;
 
         DroneMovement();
+        //Debug.Log("Drone Can Move");
 
         Debug.DrawRay(transform.position, DroneCamera.transform.forward, Color.red);
         Debug.DrawRay(transform.position, DroneCamera.transform.right, Color.green);

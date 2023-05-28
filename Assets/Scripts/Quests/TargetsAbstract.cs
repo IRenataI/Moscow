@@ -10,6 +10,7 @@ public abstract class TargetsAbstract : MonoBehaviour
     private void Awake()
     {
         __initialPosition = transform.position;
+        __initialRotation = transform.rotation;
     }
     public void SetWinCodition(WinCondition condition)
     {

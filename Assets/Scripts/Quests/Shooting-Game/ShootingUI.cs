@@ -1,18 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class ShootingUI : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private TextMeshProUGUI __ammoText;
+    private Weapon __weapon;
+    private void Awake()
     {
-        
+        __ammoText = transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+        __weapon = FindAnyObjectByType<Weapon>();
     }
-
-    // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
-        
+        __ammoText.text = "Ammo: " + __weapon.Ammo;
     }
 }
