@@ -6,6 +6,7 @@ using UnityEngine.Events;
 [RequireComponent(typeof(QuestInteractable))]
 public class Quest : MonoBehaviour
 {
+    public int PlusSubscribers = 50;
     public Transform QuestStartPosition;
     public bool IsQuestCompleted = false;
     public UnityEvent EventOnStart;
@@ -15,7 +16,6 @@ public class Quest : MonoBehaviour
     private FirstPersonMovement __player;
     private FirstPersonLook __cameraRotation;
     private WinCondition __winConditon;
-    private BoxCollider __boxCollider;
     void Awake()
     {
         GetComponent<BoxCollider>().isTrigger = true;
@@ -23,7 +23,6 @@ public class Quest : MonoBehaviour
         __player = FindAnyObjectByType<FirstPersonMovement>();
         __cameraRotation = FindAnyObjectByType<FirstPersonLook>();
         __winConditon = GetComponent<WinCondition>();
-        __boxCollider = GetComponent<BoxCollider>();
     }
     public void StartQuest()
     {
@@ -38,7 +37,6 @@ public class Quest : MonoBehaviour
         __player.transform.position = QuestStartPosition.transform.position;
 
         __player.SetMovement(false);
-        //__boxCollider.enabled = false;
 
         __questSystem.StartQuest(this);
         EventOnStart?.Invoke();
@@ -48,11 +46,11 @@ public class Quest : MonoBehaviour
         __player.SetMovement(true);
         __cameraRotation.SetCameraRotation(true);
 
-        //__boxCollider.enabled = true;
-
         EventOnEnd?.Invoke();
         __questSystem.EndQuest();
         IsQuestCompleted = true;
+
+        Subscribers.EarnSubscribers(PlusSubscribers);
 
         Debug.Log("Quest completed: " + gameObject.name);
     }
@@ -64,8 +62,6 @@ public class Quest : MonoBehaviour
         __cameraRotation.SetCameraRotation(true);
 
         __winConditon.ResetHittedTargets();
-
-        //__boxCollider.enabled = true;
 
         Debug.Log("Quest interrupted");
     }

@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -40,7 +41,10 @@ public class Dialog : MonoBehaviour
         if (!__isAddedInformation)
         {
             int ind = __questSystem.GetIndexByQuest(GetComponent<Quest>());
-            __checkItem.transform.GetChild(ind).GetComponent<TextMeshProUGUI>().text += " (" + AdditionInformation + ")";
+            if (ind > -1)
+                __checkItem.transform.GetChild(ind).GetComponent<TextMeshProUGUI>().text += " (" + AdditionInformation + ")";
+            else
+                Debug.Log("ind < 0");
             __isAddedInformation = true;            
         }
     }

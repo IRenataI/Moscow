@@ -11,4 +11,12 @@ public class GameSystem : MonoBehaviour
     {
         Cursor.lockState = mode;
     }
+    public void EnableCursor()
+    {
+        Cursor.lockState = CursorLockMode.Confined;
+    }
+    public void DisableCursor()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+    }
 }
