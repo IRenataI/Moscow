@@ -4,7 +4,6 @@ using UnityEngine.Events;
 
 public class Dialog : MonoBehaviour
 {
-    //public TextMeshProUGUI QuestCheckListTask;
     public string AdditionInformation;
     public string[] QuestText;
     public UnityEvent OnStartDialog;
@@ -40,11 +39,11 @@ public class Dialog : MonoBehaviour
         OnEndDialog?.Invoke();
         if (!__isAddedInformation)
         {
-            int ind = __questSystem.GetCurrentQuestIndex;
-            Debug.Log(__checkItem.transform.GetChild(ind).GetComponent<TextMeshProUGUI>()); 
+            int ind = __questSystem.GetIndexByQuest(GetComponent<Quest>());
             __checkItem.transform.GetChild(ind).GetComponent<TextMeshProUGUI>().text += " (" + AdditionInformation + ")";
-            __isAddedInformation = true;
+            __isAddedInformation = true;            
         }
     }
 }
 //QuestCheckListTask.text += " (" + AdditionInformation + ")";
+//__checkItem.transform.GetChild(ind).GetComponent<TextMeshProUGUI>().text += " (" + AdditionInformation + ")";

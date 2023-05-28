@@ -2,31 +2,27 @@ using UnityEngine;
 
 public class QuestInteractable : Interactable
 {
-    public Canvas ButtonToPress;
-    private Color __changedColor = Color.white;
-    private Renderer __renderer;
-    private Color __initialColor;
+    private ButtonToPressUI __buttonToPress;
+    private Canvas __buttonToPressCanvas;
     private void Awake()
     {
-        //__renderer = GetComponent<Renderer>();
-        //__initialColor = __renderer.material.color;
-        ButtonToPress.enabled = false;
+        __buttonToPress = FindObjectOfType<ButtonToPressUI>();
+        __buttonToPressCanvas = __buttonToPress.GetComponent<Canvas>();
+        __buttonToPressCanvas.enabled = false;
     }
     public override void Select() 
     {
-        //__renderer.material.color = __changedColor;
         base.Select();
-        ButtonToPress.enabled = true;
+        __buttonToPressCanvas.enabled = true;
     }
     public override void Interact()
     {
         base.Interact();
-        ButtonToPress.enabled = false;
+        __buttonToPressCanvas.enabled = false;
     }
     public override void Deselect()
     {
-        //__renderer.material.color = __initialColor;
         base.Deselect();
-        ButtonToPress.enabled = false;
+        __buttonToPressCanvas.enabled = false;
     }
 }

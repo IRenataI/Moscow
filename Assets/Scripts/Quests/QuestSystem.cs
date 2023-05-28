@@ -2,24 +2,24 @@ using UnityEngine;
 
 public class QuestSystem : MonoBehaviour
 {
-    private Quest[] CurrentQuests;
+    private Quest[] __currentQuests;
     private delegate void DelegateQuests();
     private UICheckList __checkList;
     private int index = -1;
     private bool __isQuestEnable = false;
     public bool IsQuestEnable { get { return __isQuestEnable; } }
-    public Quest GetCurrentQuest { get { return CurrentQuests[index]; } }
+    public Quest GetCurrentQuest { get { return __currentQuests[index]; } }
     public int GetCurrentQuestIndex { get { return index; } }
     private void Awake()
     {
         __checkList = FindObjectOfType<UICheckList>();
-        CurrentQuests = FindObjectsOfType<Quest>();
+        __currentQuests = FindObjectsOfType<Quest>();
     }
     public void StartQuest(Quest quest)
     {
-        for (int i = 0; i < CurrentQuests.Length; i++)
+        for (int i = 0; i < __currentQuests.Length; i++)
         {
-            if (CurrentQuests[i] == quest && !quest.IsQuestCompleted)
+            if (__currentQuests[i] == quest && !quest.IsQuestCompleted)
             {
                 index = i;
             }
@@ -31,8 +31,18 @@ public class QuestSystem : MonoBehaviour
     {
         Debug.Log("Completed quest's index: " + index);
         __checkList.UpdateTasks(index);
-        index = -1;
         __isQuestEnable = false;
+    }
+    public int GetIndexByQuest(Quest quest)
+    {
+        for (int i = 0; i < __currentQuests.Length; i++)
+        {
+            if (__currentQuests[i] == quest)
+            {
+                return i;
+            }
+        }
+        return -1;
     }
 }
 /*
@@ -45,7 +55,7 @@ private void FixedUpdate()
     }
     if (GameInputManager.IsTabPressed())
     {
-        CurrentQuests[index].EndQuest();
+        __currentQuests[index].EndQuest();
         //Debug.Log("Quest is done");
     }
 }

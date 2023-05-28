@@ -38,22 +38,21 @@ public class Quest : MonoBehaviour
         __player.transform.position = QuestStartPosition.transform.position;
 
         __player.SetMovement(false);
-        __boxCollider.enabled = false;
+        //__boxCollider.enabled = false;
 
         __questSystem.StartQuest(this);
         EventOnStart?.Invoke();
     }
     public void EndQuest()
     {
-        IsQuestCompleted = true;
-
         __player.SetMovement(true);
         __cameraRotation.SetCameraRotation(true);
 
-        __boxCollider.enabled = true;
+        //__boxCollider.enabled = true;
 
         EventOnEnd?.Invoke();
         __questSystem.EndQuest();
+        IsQuestCompleted = true;
 
         Debug.Log("Quest completed: " + gameObject.name);
     }
@@ -66,7 +65,7 @@ public class Quest : MonoBehaviour
 
         __winConditon.ResetHittedTargets();
 
-        __boxCollider.enabled = true;
+        //__boxCollider.enabled = true;
 
         Debug.Log("Quest interrupted");
     }
