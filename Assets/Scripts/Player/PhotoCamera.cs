@@ -63,7 +63,7 @@ public class PhotoCamera : MonoBehaviour
 
     public QuestPhotoObject IsTargetObjectsCaptured(List<QuestPhotoObject> targetObjects)
     {
-        if (targetObjects == null || targetObjects.Count <= 0)
+        if (targetObjects == null || targetObjects.Count <= 0 || cam.enabled == false)
             return null;
 
         float stepCount = 30f;
