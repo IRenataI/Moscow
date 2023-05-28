@@ -22,6 +22,11 @@ public class QuestSystem : MonoBehaviour
             if (__currentQuests[i] == quest && !quest.IsQuestCompleted)
             {
                 index = i;
+                break;
+            }
+            else
+            {
+                index = -1;
             }
         }
         __isQuestEnable = true;

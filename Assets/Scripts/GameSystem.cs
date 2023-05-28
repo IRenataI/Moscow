@@ -2,9 +2,8 @@ using UnityEngine;
 
 public class GameSystem : MonoBehaviour
 {
-    void Awake()
+    void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
         Application.targetFrameRate = 60;
     }
     public static void ChangeCursorMode(CursorLockMode mode)

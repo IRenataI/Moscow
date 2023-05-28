@@ -8,6 +8,5 @@ public class SubscribersUI : MonoBehaviour
     {
         __text = GetComponent<TextMeshProUGUI>();
         __text.text = "Спасибо за прохождение демо. У вас " + Subscribers.GetSubscribersAmount + " подписчиков.  Попробуйте другие варианты прохождения.";
-
     }
 }
