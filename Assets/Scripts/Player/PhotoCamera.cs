@@ -13,9 +13,12 @@ public class PhotoCamera : MonoBehaviour
     private Camera cam;
     private RenderTexture renderTexture;
 
+    private AudioSource audioSource;
+
     private void Start()
     {
         cam = GetComponent<Camera>();
+        audioSource = GetComponent<AudioSource>();
         renderTexture = cam.targetTexture;
     }
 
@@ -65,6 +68,7 @@ public class PhotoCamera : MonoBehaviour
     {
         //if (targetObjects == null || targetObjects.Count <= 0 || cam.enabled == false)
         //    return null;
+        audioSource.Play();
 
         float stepCount = 30f;
 
