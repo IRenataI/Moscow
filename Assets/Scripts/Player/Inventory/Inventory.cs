@@ -28,12 +28,14 @@ public class Inventory : MonoBehaviour
         if (!items.ContainsKey(itemSO) || items[itemSO] < count)
             return false;
 
-        items[itemSO] -= count;
+        if (items[itemSO] == count)
+            items.Remove(itemSO);
+        else
+            items[itemSO] -= count;
 
         return true;
     }
 
-    /// <returns> Количество, если вещь содержится в инвентаре. "-1", если нет. </returns>
     public int ContainsItem(ItemSO itemSO)
     {
         if (items.ContainsKey(itemSO))
