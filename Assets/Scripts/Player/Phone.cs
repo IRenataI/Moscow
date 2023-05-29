@@ -34,12 +34,12 @@ public class Phone : MonoBehaviour
     {
         if (Input.GetKeyDown(GlobalVariables.TakePhoneKey))
         {
-            Default();
+            if(currentAnimationState == AnimationState.Inactive)
+                Default();
+            else
+                Deactivate();
         }
-        else if (Input.GetKeyDown(GlobalVariables.PutPhoneKey))
-        {
-            Deactivate();
-        }
+
 
         // DEBUG
         if (Input.GetKeyDown(KeyCode.Tab))

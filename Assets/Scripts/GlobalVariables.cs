@@ -10,6 +10,6 @@ public class GlobalVariables
 
     public readonly static KeyCode InteractKey = KeyCode.E;
     public readonly static KeyCode TakePhotoKey = KeyCode.I;
-    public readonly static KeyCode TakePhoneKey = KeyCode.P;
+    public readonly static KeyCode TakePhoneKey = KeyCode.Tab;
     public readonly static KeyCode PutPhoneKey = KeyCode.Escape;
 }
