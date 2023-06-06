@@ -11,7 +11,7 @@ public class MonumentTrigger : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.GetComponent<FirstPersonMovement>() && !__quest.IsQuestCompleted)
+        if (other.gameObject.GetComponent<FirstPersonMovement>() && __quest.QuestStatus != Quest.QuestStatuses.Completed)
         {
             __dialog.EnableDialogCanvas();
         }

@@ -8,7 +8,6 @@ public class Quest : MonoBehaviour
 {
     public int PlusSubscribers = 50;
     public Transform QuestStartPosition;
-    public bool IsQuestCompleted = false;
     public UnityEvent EventOnStart;
     public UnityEvent EventOnInterrupt;
     public UnityEvent EventOnEnd;
@@ -16,9 +15,15 @@ public class Quest : MonoBehaviour
     private FirstPersonMovement __player;
     private FirstPersonLook __cameraRotation;
     private WinCondition __winConditon;
-    private bool __isQuestStarted = false;
+    private QuestStatuses __questStatus;
+    public QuestStatuses QuestStatus { set { __questStatus = value; } get { return __questStatus; } }
+    public enum QuestStatuses
+    {
+        Started, Completed, None
+    }
     void Awake()
     {
+        QuestStatus = QuestStatuses.None;
         GetComponent<BoxCollider>().isTrigger = true;
         __questSystem = FindAnyObjectByType<QuestSystem>();
         __player = FindAnyObjectByType<FirstPersonMovement>();
@@ -27,6 +32,7 @@ public class Quest : MonoBehaviour
     }
     public void StartQuest(int price)
     {
+        /*
         if (IsQuestCompleted)
         {
             __player.SetMovement(true);
@@ -34,13 +40,12 @@ public class Quest : MonoBehaviour
             Debug.Log("Quest already done");
             return;
         }
+        */
 
         if (!Money.WasteMoney(price))
             return;
 
         __player.SetMovement(false);
-
-        __isQuestStarted = true;
 
         __questSystem.StartQuest(this);
         EventOnStart?.Invoke();
@@ -52,7 +57,6 @@ public class Quest : MonoBehaviour
 
         EventOnEnd?.Invoke();
         __questSystem.EndQuest();
-        IsQuestCompleted = true;
 
         Subscribers.EarnSubscribers(PlusSubscribers);
 
@@ -71,14 +75,15 @@ public class Quest : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (__isQuestStarted && (QuestStartPosition.transform.position - __player.transform.position).magnitude > 1f)
+        if (__questStatus == QuestStatuses.Started && (QuestStartPosition.transform.position - __player.transform.position).magnitude > 1f)
         {
             __player.transform.position = Vector3.Lerp(__player.transform.position, QuestStartPosition.transform.position, 0.1f);
-
-        }else if ((QuestStartPosition.transform.position - __player.transform.position).magnitude < 1f)
+        }
+        /*else if ((QuestStartPosition.transform.position - __player.transform.position).magnitude < 1f)
         {
             __isQuestStarted = false;
         }
+        */
     }
 }
 /*
@@ -114,3 +119,6 @@ private void FixedUpdate()
     }
 }
 */
+
+//public bool IsQuestCompleted = false;
+//private bool __isQuestStarted = false;

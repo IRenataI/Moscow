@@ -12,15 +12,11 @@ public class FinishGame : MonoBehaviour
         __camera = FindObjectOfType<FirstPersonLook>();
         __questSystem = FindObjectOfType<QuestSystem>();
     }
-    private void FixedUpdate()
-    {
-        EndGame();
-    }
-    private void EndGame()
+    public void CheckFinishCondition()
     {
         for (int i = 0; i < 5; i++)
         {
-            if (!__questSystem.GetQuestByIndex(i).IsQuestCompleted)
+            if (__questSystem.GetQuestByIndex(i).QuestStatus != Quest.QuestStatuses.Completed )
             {
                 return;
             }

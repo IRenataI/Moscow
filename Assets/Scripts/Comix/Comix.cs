@@ -38,7 +38,8 @@ public class Comix : MonoBehaviour
         __delay += Time.fixedDeltaTime;
         if (i >= Pages.Length - 1 && Input.GetMouseButtonDown(0))
         {
-            gameObject.SetActive(false);
+            //gameObject.SetActive(false);
+            Destroy(gameObject);
         }
     }
 }
