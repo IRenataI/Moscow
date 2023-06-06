@@ -67,11 +67,22 @@ public class Quest : MonoBehaviour
 
         Debug.Log("Quest interrupted");
     }
+    private bool __isInPosition = false;
     private void FixedUpdate()
     {
-        if (__questStatus == QuestStatuses.Started && (QuestStartPosition.transform.position - __player.transform.position).magnitude > 1f)
+        if (__questStatus != QuestStatuses.Started)
+            return;
+
+        if ((QuestStartPosition.transform.position - __player.transform.position).magnitude > 0.1f)
         {
-            __player.transform.position = Vector3.Lerp(__player.transform.position, QuestStartPosition.transform.position, 0.1f);
+            if (!__isInPosition)
+            {
+                __player.transform.position = Vector3.Lerp(__player.transform.position, QuestStartPosition.transform.position, 0.1f);
+            }
+        }
+        if ((QuestStartPosition.transform.position - __player.transform.position).magnitude < 0.4f)
+        {
+            __isInPosition = true;
         }
     }
 }

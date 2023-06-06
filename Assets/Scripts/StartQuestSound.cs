@@ -7,6 +7,7 @@ public class StartQuestSound : MonoBehaviour
     private void Awake()
     {
         __sound = GetComponent<AudioSource>();
+        __sound.playOnAwake = false;
     }
     public static void Play()
     {
