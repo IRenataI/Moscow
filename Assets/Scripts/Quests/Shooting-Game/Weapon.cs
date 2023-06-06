@@ -3,6 +3,7 @@ using UnityEngine;
 [RequireComponent(typeof(WeaponAudio))]
 public class Weapon : MonoBehaviour
 {
+    public Quest TirQuest;
     [Range(0,25)]
     public int Ammo = 10;
     public bool IsWeaponEnable = false;
@@ -17,19 +18,19 @@ public class Weapon : MonoBehaviour
     private RaycastHit __hit;
     private WeaponAudio _audio;
     private Vector3 __initialPosition;
-    private QuestSystem __questSystem;
     private Ray __ray;
     private BoxCollider __boxCollider;
     private int __initialAmmo;
+    //private QuestSystem __questSystem;
     private void Awake()
     {
         _audio = GetComponent<WeaponAudio>();
-        __questSystem = FindObjectOfType<QuestSystem>();
         __initialPosition = transform.position;
         __boxCollider = GetComponent<BoxCollider>();
 
         Parent = Camera.main;
         __initialAmmo = Ammo;
+        //__questSystem = FindObjectOfType<QuestSystem>();
     }
     void Update()
     {
@@ -69,7 +70,7 @@ public class Weapon : MonoBehaviour
         if (Ammo <= 0)
         {
             DisableWeapon();
-            __questSystem.GetCurrentQuest.InterruptQuest();
+            TirQuest.InterruptQuest();
         }
         Ammo--;
 
@@ -77,7 +78,6 @@ public class Weapon : MonoBehaviour
         Bullet bullet = __tempBullet.transform.GetComponentInChildren<Bullet>();        
 
         bullet.SetInitialPosition(transform.position + Parent.transform.forward * BulletPosition);
-        //bullet.SetInitialRotation(Quaternion.LookRotation(__hit.point - transform.position));
         bullet.SetInitialVelocity( (__hit.point - bullet.transform.position).normalized * BulletSpeed);
     }
     public void EnableWeapon()
@@ -108,3 +108,5 @@ public void SetParent()
 //bullet.SetInitialPosition(transform.position + Parent.transform.forward * BulletPosition);
 //bullet.SetInitialRotation(Quaternion.LookRotation(__hit.point - (transform.position + Parent.transform.forward)));
 //bullet.SetInitialVelocity( (__hit.point - (transform.position + Parent.transform.forward)).normalized * BulletSpeed); //Camera.main.transform.forward * BulletSpeed);
+
+//bullet.SetInitialRotation(Quaternion.LookRotation(__hit.point - transform.position));

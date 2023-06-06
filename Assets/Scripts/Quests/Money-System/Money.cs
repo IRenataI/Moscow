@@ -7,7 +7,7 @@ public class Money : MonoBehaviour
     public TextMeshProUGUI Moneytext;
     private static int CurrentMoney = 1000;
     public static int GetCurrentMoney { get { return CurrentMoney; } }
-    [SerializeField]private static AudioSource __soundPlayer;
+    private static AudioSource __soundPlayer;
     private void Awake()
     {
         __soundPlayer = GetComponent<AudioSource>();

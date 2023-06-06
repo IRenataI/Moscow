@@ -7,9 +7,9 @@ public class Dialog : MonoBehaviour
     public string AdditionInformation;
     public string[] QuestText;
     public string[] TextAfterCompletionQuest;
+    public string[] TextIfAdjacentQuestCompleted;
     public UnityEvent OnStartDialog;
     public UnityEvent OnEndDialog;
-    public bool __isDialogAvailable = true;
     private bool __isAddedInformation = false;
     private DialogCanvas __dialogCanvasScript;
     private Canvas __dialogCanvas;
@@ -30,10 +30,17 @@ public class Dialog : MonoBehaviour
     }
     public void EnableDialogCanvas()
     {
+        if (!__cameraRot.enabled) { return; }
+
         __dialogCanvas.enabled = true;
         __playrMovement.SetMovement(false);
         __cameraRot.enabled = false;
         GameSystem.ChangeCursorMode(CursorLockMode.Confined);
+        if (__quest && __quest.QuestStatus == Quest.QuestStatuses.broken)
+        {
+            __dialogCanvasScript.CreateDialogWithoutChoices(TextIfAdjacentQuestCompleted, this);
+            return;
+        }
         if (__quest && __quest.QuestStatus == Quest.QuestStatuses.Completed)
         {
             __dialogCanvasScript.CreateDialogWithoutChoices(TextAfterCompletionQuest, this);
