@@ -6,6 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(DroneAudio))]
 public class DroneController : MonoBehaviour
 {
+    public Quest DroneQuest;
     public Vector3 DroneInitialPosition;
     public bool IsDroneEnable { get { return __isDroneEnable; } set { __isDroneEnable = value; } }
     public int SpeedX = 2;
@@ -16,11 +17,9 @@ public class DroneController : MonoBehaviour
     private Rigidbody __rigidBody;
     private Vector3 __x, __y, __z;
     private bool __isDroneEnable = false;
-    private QuestSystem __currentQuest;
     void Awake()
     {
         DroneCamera = GetComponentInChildren<Camera>();
-        __currentQuest = FindObjectOfType<QuestSystem>();
 
         __rigidBody = GetComponent<Rigidbody>();
         __rigidBody.useGravity = false;
@@ -57,7 +56,7 @@ public class DroneController : MonoBehaviour
         {
             __rigidBody.velocity = Vector3.zero;
             transform.position = DroneInitialPosition;
-            __currentQuest.GetCurrentQuest.InterruptQuest();
+            DroneQuest.InterruptQuest();
         }
     }
 }

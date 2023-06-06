@@ -1,26 +1,73 @@
+using System.Linq;
 using UnityEngine;
 
 public class QuestSystem : MonoBehaviour
 {
-    [SerializeField]private Quest[] __currentQuests;
-    private delegate void DelegateQuests();
+    [SerializeField]private Quest[] CurrentQuests;
     private UICheckList __checkList;
-    private int index = -1;
-    private bool __isQuestEnable = false;
-    public bool IsQuestEnable { get { return __isQuestEnable; } }
-    public Quest GetCurrentQuest { get { return __currentQuests[index]; } }
-    public int GetCurrentQuestIndex { get { return index; } }
     private FinishGame __finishGame;
     private void Awake()
     {
         __checkList = FindObjectOfType<UICheckList>();
         __finishGame = FindObjectOfType<FinishGame>();
     }
+    public void UpdateTaskUI(Quest quest)
+    {
+        for (int i = 0; i < CurrentQuests.Length; i++)
+        {
+            if (quest == CurrentQuests[i])
+            {
+                __checkList.UpdateTasks(i);
+                __finishGame.CheckFinishCondition();
+                Debug.Log("checklist updated");
+            }else if(quest.QuestIndex == CurrentQuests[i].QuestIndex && CurrentQuests[i].QuestIndex > 0)
+            {
+                CurrentQuests[i].QuestStatus = Quest.QuestStatuses.broken;
+            }
+        }
+    }
+    public int GetIndexByQuest(Quest quest)
+    {
+        for (int i = 0; i < CurrentQuests.Length; i++)
+        {
+            if (CurrentQuests[i] == quest)
+            {
+                return i;
+            }
+        }
+        return -1;
+    }
+    public Quest GetQuestByIndex(int index)
+    {
+        return CurrentQuests[index];
+    }
+    public Quest GetCurrentQuest(Quest quest)
+    {
+        return CurrentQuests.SingleOrDefault(i => i == quest);
+    }
+}
+/*
+private void FixedUpdate()
+{
+    if (__quest != null && GameInputManager.IsSpacePressed())
+    {
+        __quest.Invoke();
+        //Debug.Log("Quest is running");
+    }
+    if (GameInputManager.IsTabPressed())
+    {
+        CurrentQuests[index].EndQuest();
+        //Debug.Log("Quest is done");
+    }
+}
+*/
+
+/*
     public void StartQuest(Quest quest)
     {
-        for (int i = 0; i < __currentQuests.Length; i++)
+        for (int i = 0; i < CurrentQuests.Length; i++)
         {
-            if (__currentQuests[i] == quest && quest.QuestStatus != Quest.QuestStatuses.Completed)// !quest.IsQuestCompleted)
+            if (CurrentQuests[i] == quest && quest.QuestStatus != Quest.QuestStatuses.Completed)// !quest.IsQuestCompleted)
             {
                 index = i;
                 break;
@@ -40,34 +87,4 @@ public class QuestSystem : MonoBehaviour
         __isQuestEnable = false;
         __finishGame.CheckFinishCondition();
     }
-    public int GetIndexByQuest(Quest quest)
-    {
-        for (int i = 0; i < __currentQuests.Length; i++)
-        {
-            if (__currentQuests[i] == quest)
-            {
-                return i;
-            }
-        }
-        return -1;
-    }
-    public Quest GetQuestByIndex(int index)
-    {
-        return __currentQuests[index];
-    }
-}
-/*
-private void FixedUpdate()
-{
-    if (__quest != null && GameInputManager.IsSpacePressed())
-    {
-        __quest.Invoke();
-        //Debug.Log("Quest is running");
-    }
-    if (GameInputManager.IsTabPressed())
-    {
-        __currentQuests[index].EndQuest();
-        //Debug.Log("Quest is done");
-    }
-}
-*/
+    */

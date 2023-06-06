@@ -25,7 +25,7 @@ public class WinCondition : MonoBehaviour
             __quest.EndQuest();
             Debug.Log("All targets down");
         }
-        Debug.Log(gameObject.name +  " __hittedTargets " + __hittedTargets + " ObjectToHit " + ObjectsToHit);
+        //Debug.Log(gameObject.name +  " __hittedTargets " + __hittedTargets + " ObjectToHit " + ObjectsToHit);
     }
     public void DeacreaseHittedTargets()
     {

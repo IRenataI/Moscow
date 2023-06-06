@@ -22,11 +22,10 @@ public class UICheckList : MonoBehaviour
     }
     public void UpdateTasks(int index)
     {
-        Debug.Log(index);
-        if (index > -1 && __questSystem.GetCurrentQuest.QuestStatus != Quest.QuestStatuses.Completed) //!__questSystem.GetCurrentQuest.IsQuestCompleted)
+        Debug.Log("Quest index: " + index );   
+        if (index > -1 && __questSystem.GetQuestByIndex(index).QuestStatus != Quest.QuestStatuses.Completed)
         {
-
-            Tasks[index].text += "(выполнено)";//(index + 1) + "(çàâåðøåíî)";
+            Tasks[index].text += "(выполнено)";
             UpdateUITasks();
         }
         else

@@ -146,6 +146,7 @@ public class DialogCanvas : MonoBehaviour
         }
 
         __buttonsList.ElementAt(__buttonsList.Count - 1).onClick.AddListener(() => __dialog.DisableDialogCanvas());
+        __buttonsList.ElementAt(__buttonsList.Count - 1).onClick.AddListener(() => DeleteDialog());
 
         for (int i = 1; i < __buttonsList.Count; i++)
         {
