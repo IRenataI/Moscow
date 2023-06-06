@@ -10,16 +10,17 @@ public class QuestSystem : MonoBehaviour
     public bool IsQuestEnable { get { return __isQuestEnable; } }
     public Quest GetCurrentQuest { get { return __currentQuests[index]; } }
     public int GetCurrentQuestIndex { get { return index; } }
+    private FinishGame __finishGame;
     private void Awake()
     {
         __checkList = FindObjectOfType<UICheckList>();
-       //__currentQuests = FindObjectsOfType<Quest>();
+        __finishGame = FindObjectOfType<FinishGame>();
     }
     public void StartQuest(Quest quest)
     {
         for (int i = 0; i < __currentQuests.Length; i++)
         {
-            if (__currentQuests[i] == quest && !quest.IsQuestCompleted)
+            if (__currentQuests[i] == quest && quest.QuestStatus != Quest.QuestStatuses.Completed)// !quest.IsQuestCompleted)
             {
                 index = i;
                 break;
@@ -37,6 +38,7 @@ public class QuestSystem : MonoBehaviour
         Debug.Log("Completed quest's index: " + index);
         __checkList.UpdateTasks(index);
         __isQuestEnable = false;
+        __finishGame.CheckFinishCondition();
     }
     public int GetIndexByQuest(Quest quest)
     {

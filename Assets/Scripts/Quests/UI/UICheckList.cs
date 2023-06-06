@@ -23,7 +23,7 @@ public class UICheckList : MonoBehaviour
     public void UpdateTasks(int index)
     {
         Debug.Log(index);
-        if (index > -1 && !__questSystem.GetCurrentQuest.IsQuestCompleted)
+        if (index > -1 && __questSystem.GetCurrentQuest.QuestStatus != Quest.QuestStatuses.Completed) //!__questSystem.GetCurrentQuest.IsQuestCompleted)
         {
 
             Tasks[index].text += "(выполнено)";//(index + 1) + "(çàâåðøåíî)";
