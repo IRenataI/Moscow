@@ -7,6 +7,7 @@ public class Dialog : MonoBehaviour
     public string AdditionInformation;
     public string[] QuestText;
     public string[] TextAfterCompletionQuest;
+    public string[] TextIfQuestStarted;
     public string[] TextIfAdjacentQuestCompleted;
     public UnityEvent OnStartDialog;
     public UnityEvent OnEndDialog;
@@ -35,6 +36,15 @@ public class Dialog : MonoBehaviour
         __dialogCanvas.enabled = true;
         __playrMovement.SetMovement(false);
         __cameraRot.enabled = false;
+        GameSystem.ChangeCursorMode(CursorLockMode.Confined);
+
+        if (__quest.QuestStatus == Quest.QuestStatuses.Started)
+        {
+            __dialogCanvasScript.CreateDialogWithoutChoices(TextIfQuestStarted, this);
+            Debug.Log("dialog if quest started");
+            return;
+        }
+
         GameSystem.ChangeCursorMode(CursorLockMode.Confined);
         if (__quest && __quest.QuestStatus == Quest.QuestStatuses.broken)
         {
