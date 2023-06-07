@@ -11,6 +11,7 @@ public class Money : MonoBehaviour
     private void Awake()
     {
         __soundPlayer = GetComponent<AudioSource>();
+        __soundPlayer.playOnAwake = false;
     }
     private void Update()
     {
