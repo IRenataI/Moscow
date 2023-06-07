@@ -6,6 +6,19 @@ public class QuestSystem : MonoBehaviour
     [SerializeField]private Quest[] CurrentQuests;
     private UICheckList __checkList;
     private FinishGame __finishGame;
+    const int MAINQUESTLENGTH = 5;
+    private bool[] __mainQuests = new bool[MAINQUESTLENGTH];
+    public int UpdateMainQuest { set 
+        { 
+            if (value > -1 && value < MAINQUESTLENGTH)
+            {
+                __mainQuests[value] = true;
+                __finishGame.CheckFinishCondition();
+                Debug.Log("main quest updated: " + value);
+            }
+        } 
+    }
+    public bool[] GetMainQuests { get { return __mainQuests; } }
     private void Awake()
     {
         __checkList = FindObjectOfType<UICheckList>();
