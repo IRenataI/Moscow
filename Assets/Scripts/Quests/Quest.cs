@@ -71,7 +71,7 @@ public class Quest : MonoBehaviour
     private bool __isInPosition = false;
     private void FixedUpdate()
     {
-        if (__questStatus != QuestStatuses.Started)
+        if (__questStatus != QuestStatuses.Started || !QuestStartPosition)
             return;
 
         if ((QuestStartPosition.transform.position - __player.transform.position).magnitude > 0.1f)
