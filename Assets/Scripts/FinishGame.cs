@@ -14,16 +14,44 @@ public class FinishGame : MonoBehaviour
     }
     public void CheckFinishCondition()
     {
-        for (int i = 0; i < 5; i++)
+        bool[] mainQuests = __questSystem.GetMainQuests;
+        for (int i = 0; i < mainQuests.Length; i++)
         {
-            if (__questSystem.GetQuestByIndex(i).QuestStatus != Quest.QuestStatuses.Completed )
+            if (!mainQuests[i])
             {
                 return;
             }
         }
+        Debug.Log("game finished");
         __movement.SetMovement(false);
         __camera.SetCameraRotation(false);
         Cursor.lockState = CursorLockMode.Confined;
         EndCanvas.gameObject.SetActive(true);
     }
 }
+
+/*
+public void CheckFinishCondition()
+{
+    for (int i = 0; i < 5; i++)
+    {
+        if (__questSystem.GetQuestByIndex(i).QuestStatus != Quest.QuestStatuses.Completed )
+        {
+            return;
+        }
+    }
+    __movement.SetMovement(false);
+    __camera.SetCameraRotation(false);
+    Cursor.lockState = CursorLockMode.Confined;
+    EndCanvas.gameObject.SetActive(true);
+}
+*/
+/*
+for (int i = 0; i < __questSystem.quests; i++)
+{
+if (__questSystem.GetQuestByIndex(i).QuestStatus != Quest.QuestStatuses.Completed)
+{
+    return;
+}
+}
+*/
