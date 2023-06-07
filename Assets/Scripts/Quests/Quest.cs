@@ -6,7 +6,7 @@ using UnityEngine.Events;
 [RequireComponent(typeof(QuestInteractable))]
 public class Quest : MonoBehaviour
 {
-    public int QuestIndex = -2;
+    public int QuestIndex = -5;
     public int PlusSubscribers = 50;
     public Transform QuestStartPosition;
     public UnityEvent EventOnStart;
@@ -24,7 +24,6 @@ public class Quest : MonoBehaviour
     }
     void Awake()
     {
-        QuestIndex = -1;
         QuestStatus = QuestStatuses.None;
         GetComponent<BoxCollider>().isTrigger = true;
         __questSystem = FindAnyObjectByType<QuestSystem>();
@@ -51,6 +50,8 @@ public class Quest : MonoBehaviour
         Subscribers.EarnSubscribers(PlusSubscribers);
         __questSystem.UpdateTaskUI(this);
         __questStatus = QuestStatuses.Completed;
+
+        __questSystem.UpdateMainQuest = QuestIndex;
 
         StartQuestSound.Play();
 
