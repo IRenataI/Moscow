@@ -40,7 +40,8 @@ public class Quest : MonoBehaviour
         EventOnStart?.Invoke();
         __player.SetMovement(false);
         __questStatus = QuestStatuses.Started;
-        
+
+        Debug.Log("Quest started: " + gameObject.name);
     }
     public void EndQuest()
     {

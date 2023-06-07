@@ -8,6 +8,7 @@ public class DroneTargets : TargetsAbstract
         {
             __isDestroyed = true;
             __winCondition.IncreaseHittedTargets();
+            Debug.Log("drone target down " + gameObject.name);
         }
     }
 }

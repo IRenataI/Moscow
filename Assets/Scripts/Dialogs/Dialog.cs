@@ -7,6 +7,7 @@ public class Dialog : MonoBehaviour
     public string AdditionInformation;
     public string[] QuestText;
     public string[] TextAfterCompletionQuest;
+    public string[] TextIfQuestStarted;
     public string[] TextIfAdjacentQuestCompleted;
     public UnityEvent OnStartDialog;
     public UnityEvent OnEndDialog;
@@ -30,11 +31,20 @@ public class Dialog : MonoBehaviour
     }
     public void EnableDialogCanvas()
     {
-        if (!__cameraRot.enabled) { return; }
+        //if (!__cameraRot.enabled) { return; }
 
         __dialogCanvas.enabled = true;
         __playrMovement.SetMovement(false);
-        __cameraRot.enabled = false;
+        __cameraRot.SetCameraRotation(false);
+        GameSystem.ChangeCursorMode(CursorLockMode.Confined);
+
+        if (__quest.QuestStatus == Quest.QuestStatuses.Started)
+        {
+            __dialogCanvasScript.CreateDialogWithoutChoices(TextIfQuestStarted, this);
+            Debug.Log("dialog if quest started");
+            return;
+        }
+
         GameSystem.ChangeCursorMode(CursorLockMode.Confined);
         if (__quest && __quest.QuestStatus == Quest.QuestStatuses.broken)
         {
@@ -61,7 +71,7 @@ public class Dialog : MonoBehaviour
         __dialogCanvas.enabled = false;
         GameSystem.ChangeCursorMode(CursorLockMode.Locked);
         __playrMovement.SetMovement(true);
-        __cameraRot.enabled = true;
+        __cameraRot.SetCameraRotation(true);
 
         Debug.Log("DialogCanvas disable");
     }
