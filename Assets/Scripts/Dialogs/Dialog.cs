@@ -31,11 +31,11 @@ public class Dialog : MonoBehaviour
     }
     public void EnableDialogCanvas()
     {
-        if (!__cameraRot.enabled) { return; }
+        //if (!__cameraRot.enabled) { return; }
 
         __dialogCanvas.enabled = true;
         __playrMovement.SetMovement(false);
-        __cameraRot.enabled = false;
+        __cameraRot.SetCameraRotation(false);
         GameSystem.ChangeCursorMode(CursorLockMode.Confined);
 
         if (__quest.QuestStatus == Quest.QuestStatuses.Started)
@@ -71,7 +71,7 @@ public class Dialog : MonoBehaviour
         __dialogCanvas.enabled = false;
         GameSystem.ChangeCursorMode(CursorLockMode.Locked);
         __playrMovement.SetMovement(true);
-        __cameraRot.enabled = true;
+        __cameraRot.SetCameraRotation(true);
 
         Debug.Log("DialogCanvas disable");
     }
