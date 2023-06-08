@@ -12,7 +12,7 @@ public class CameraRotation : MonoBehaviour
 
     private void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.lockState = CursorLockMode.Confined;
 
         horizontalAngle = transform.eulerAngles.x;
         verticalAngle = transform.eulerAngles.y;
