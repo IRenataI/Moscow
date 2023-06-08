@@ -19,7 +19,7 @@ public class Item : Interactable
     {
         base.Interact();
         Inventory.Instance.AddItem(__itemSO);
-        Debug.Log("added: " + __itemSO.name);
+        //Debug.Log("added: " + __itemSO.name);
 
         __renderer.material.color = __initialColor;
 

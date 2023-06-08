@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class WinCondition : MonoBehaviour
 {
-    public int ObjectsToHit;
-    public TargetsAbstract[] Targets;
+    [SerializeField] private int ObjectsToHit;
+    [SerializeField]private TargetsAbstract[] Targets;
     public int GetHittedTargetsNumber { get { return __hittedTargets; } }
     private int __hittedTargets = 0;
     private Quest __quest;
@@ -20,12 +20,10 @@ public class WinCondition : MonoBehaviour
         __hittedTargets++;
         if (__hittedTargets >= ObjectsToHit)
         {
-            __quest = GetComponent<Quest>();
-
             __quest.EndQuest();
-            Debug.Log("All targets down");
+            Debug.Log("All targets down");  
         }
-        //Debug.Log(gameObject.name +  " __hittedTargets " + __hittedTargets + " ObjectToHit " + ObjectsToHit);
+        Debug.Log(gameObject.name +  " __hittedTargets " + __hittedTargets + " ObjectToHit " + ObjectsToHit);
     }
     public void DeacreaseHittedTargets()
     {
