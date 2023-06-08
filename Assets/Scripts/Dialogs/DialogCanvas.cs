@@ -90,7 +90,7 @@ public class DialogCanvas : MonoBehaviour
 
 
         __rejectQuestButton.GetComponent<Button>().onClick.AddListener(() => __dialog.DisableDialogCanvas());
-        __acceptQuestButton.GetComponent<Button>().onClick.AddListener(() => DeleteDialog());
+        __rejectQuestButton.GetComponent<Button>().onClick.AddListener(() => DeleteDialog());
 
         for (int i = 1; i < __buttonsList.Count; i++)
         {

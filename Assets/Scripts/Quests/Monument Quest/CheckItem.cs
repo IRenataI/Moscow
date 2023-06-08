@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class CheckItem : MonoBehaviour
 {
-    public ItemSO Item;
-    public int Amount = -1;
+    [SerializeField]private ItemSO[] Items;
+    [SerializeField] private int[] Amounts;
     private Inventory __inventory;
     private WinCondition __winCondition;
     private void Awake()
@@ -13,9 +13,18 @@ public class CheckItem : MonoBehaviour
     }
     public void Check()
     {
-        if (__inventory.ContainsItem(Item) >= Amount)
+        for (int i = 0; i < Items.Length; i++)
         {
-            __winCondition.IncreaseHittedTargets();
+            if (__inventory.ContainsItem(Items[i]) >= Amounts[i])
+            {
+                __winCondition.IncreaseHittedTargets();
+            }
         }
     }
 }
+/*
+if (__inventory.ContainsItem(Item) >= Amount)
+{
+    __winCondition.IncreaseHittedTargets();
+}
+*/

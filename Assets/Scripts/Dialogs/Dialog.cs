@@ -19,6 +19,7 @@ public class Dialog : MonoBehaviour
     private QuestSystem __questSystem;
     private Quest __quest;
     private FirstPersonLook __cameraRot;
+    private CheckItem __checkItems;
     private void Awake()
     {
         __dialogCanvasScript = FindObjectOfType<DialogCanvas>();
@@ -27,43 +28,46 @@ public class Dialog : MonoBehaviour
         __cameraRot = FindObjectOfType<FirstPersonLook>();
         __checkItem = FindObjectOfType<UICheckList>();
         __questSystem = FindObjectOfType<QuestSystem>();
+        __checkItems = GetComponent<CheckItem>();
         __quest = GetComponent<Quest>();
     }
     public void EnableDialogCanvas()
     {
-        //if (!__cameraRot.enabled) { return; }
+        if (!__quest)
+        {
+            Debug.Log("Quest doesnt found");
+        }
+
+        if (__checkItems)
+            __checkItems.Check();
 
         __dialogCanvas.enabled = true;
         __playrMovement.SetMovement(false);
         __cameraRot.SetCameraRotation(false);
         GameSystem.ChangeCursorMode(CursorLockMode.Confined);
 
-        if (__quest.QuestStatus == Quest.QuestStatuses.Started)
+        if (__quest && __quest.QuestStatus == Quest.QuestStatuses.Started)
         {
             __dialogCanvasScript.CreateDialogWithoutChoices(TextIfQuestStarted, this);
             Debug.Log("dialog if quest started");
             return;
         }
-
-        GameSystem.ChangeCursorMode(CursorLockMode.Confined);
         if (__quest && __quest.QuestStatus == Quest.QuestStatuses.broken)
         {
             __dialogCanvasScript.CreateDialogWithoutChoices(TextIfAdjacentQuestCompleted, this);
+            Debug.Log("dialog if quest broken");
             return;
         }
         if (__quest && __quest.QuestStatus == Quest.QuestStatuses.Completed)
         {
             __dialogCanvasScript.CreateDialogWithoutChoices(TextAfterCompletionQuest, this);
+            Debug.Log("dialog if quest Completed");
             return;
-        }
-        if (!__quest)
-        {
-            Debug.Log("Quest doesnt found");
         }
         __dialogCanvasScript.CreateDialog(QuestText, this);
 
         OnStartDialog?.Invoke();
-        Debug.Log("DialogCanvas enaled. " + __quest.QuestStatus);   
+        Debug.Log("DialogCanvas enaled. __quest.QuestStatus: " + __quest.QuestStatus);   
     }
 
     public void DisableDialogCanvas()
@@ -90,3 +94,15 @@ public class Dialog : MonoBehaviour
 }
 //QuestCheckListTask.text += " (" + AdditionInformation + ")";
 //__checkItem.transform.GetChild(ind).GetComponent<TextMeshProUGUI>().text += " (" + AdditionInformation + ")";
+
+//if (Items.Length <= 0)
+// return;
+/*
+for (int i = 0; i < Items.Length; i++)
+{
+    if (__inventory.ContainsItem(Items[i]) >= Amount[i])
+    {
+
+    }
+}
+*/
