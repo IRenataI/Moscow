@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-[RequireComponent(typeof(BoxCollider))]
 [RequireComponent(typeof(WinCondition))]
 [RequireComponent(typeof(QuestInteractable))]
 public class Quest : MonoBehaviour
@@ -22,6 +21,7 @@ public class Quest : MonoBehaviour
     {
         Started, Completed, None,  broken
     }
+    private GameSystem __gameSystem;
     void Awake()
     {
         QuestStatus = QuestStatuses.None;
@@ -30,6 +30,7 @@ public class Quest : MonoBehaviour
         __player = FindAnyObjectByType<FirstPersonMovement>();
         __cameraRotation = FindAnyObjectByType<FirstPersonLook>();
         __winConditon = GetComponent<WinCondition>();
+        __gameSystem = FindAnyObjectByType<GameSystem>();
     }
     public void StartQuest(int price)
     {
@@ -38,6 +39,7 @@ public class Quest : MonoBehaviour
 
         EventOnStart?.Invoke();
         __player.SetMovement(false);
+
         __questStatus = QuestStatuses.Started;
 
         Debug.Log("Quest started: " + gameObject.name);

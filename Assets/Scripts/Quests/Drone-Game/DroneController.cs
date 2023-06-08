@@ -7,7 +7,7 @@ using UnityEngine;
 public class DroneController : MonoBehaviour
 {
     public Quest DroneQuest;
-    public Vector3 DroneInitialPosition;
+    private Vector3 DroneInitialPosition;
     public bool IsDroneEnable { get { return __isDroneEnable; } set { __isDroneEnable = value; } }
     public int SpeedX = 2;
     public int SpeedY = 2;
@@ -19,6 +19,8 @@ public class DroneController : MonoBehaviour
     private bool __isDroneEnable = false;
     void Awake()
     {
+        DroneInitialPosition = transform.position;
+
         DroneCamera = GetComponentInChildren<Camera>();
 
         __rigidBody = GetComponent<Rigidbody>();

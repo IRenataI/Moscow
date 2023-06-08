@@ -38,7 +38,7 @@ public class Dialog : MonoBehaviour
             Debug.Log("Quest doesnt found");
         }
 
-        if (__checkItems)
+        if (__checkItems && __quest.QuestStatus != Quest.QuestStatuses.Completed)
             __checkItems.Check();
 
         __dialogCanvas.enabled = true;
