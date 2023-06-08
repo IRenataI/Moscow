@@ -72,6 +72,7 @@ public class DialogCanvas : MonoBehaviour
         __acceptQuestButton.gameObject.SetActive(false);
         __acceptQuestButton.gameObject.name = "Button " + "reject";
         __acceptQuestButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Согласиться";
+        __acceptQuestButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().fontSize = 17;
         __acceptQuestButton.transform.SetParent(__buttons.transform);
         __acceptQuestButton.transform.localPosition = new Vector2(300, -100);
         __acceptQuestButton.transform.localScale = new Vector3(2, 2, 2);
@@ -80,6 +81,7 @@ public class DialogCanvas : MonoBehaviour
         __rejectQuestButton.gameObject.SetActive(false);
         __rejectQuestButton.gameObject.name = "Button " + "reject";
         __rejectQuestButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Отказаться";
+        __rejectQuestButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().fontSize = 17;
         __rejectQuestButton.transform.SetParent(__buttons.transform);
         __rejectQuestButton.transform.localPosition = new Vector2(-300, -100);
         __rejectQuestButton.transform.localScale = new Vector3(2, 2, 2);
