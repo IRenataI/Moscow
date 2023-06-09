@@ -21,16 +21,13 @@ public class Quest : MonoBehaviour
     {
         Started, Completed, None,  broken
     }
-    private GameSystem __gameSystem;
     void Awake()
     {
         QuestStatus = QuestStatuses.None;
-        //GetComponent<BoxCollider>().isTrigger = true;
         __questSystem = FindAnyObjectByType<QuestSystem>();
         __player = FindAnyObjectByType<FirstPersonMovement>();
         __cameraRotation = FindAnyObjectByType<FirstPersonLook>();
         __winConditon = GetComponent<WinCondition>();
-        __gameSystem = FindAnyObjectByType<GameSystem>();
     }
     public void StartQuest(int price)
     {
@@ -46,6 +43,8 @@ public class Quest : MonoBehaviour
     }
     public void EndQuest()
     {
+        if (__questStatus == QuestStatuses.broken)
+            return;
         EventOnEnd?.Invoke();
         __player.SetMovement(true);
         __cameraRotation.SetCameraRotation(true);
@@ -54,6 +53,8 @@ public class Quest : MonoBehaviour
         __questStatus = QuestStatuses.Completed;
 
         __questSystem.UpdateMainQuest = QuestIndex;
+
+        QuestCompletionSound.Play();
 
         Debug.Log("Quest completed: " + gameObject.name);
     }
@@ -140,3 +141,5 @@ if (IsQuestCompleted)
     __isQuestStarted = false;
 }
 */
+
+//GetComponent<BoxCollider>().isTrigger = true;

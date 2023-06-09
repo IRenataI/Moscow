@@ -28,15 +28,25 @@ public class QuestSystem : MonoBehaviour
     {
         for (int i = 0; i < CurrentQuests.Length; i++)
         {
-            if (quest == CurrentQuests[i])
+            if (quest == CurrentQuests[i] && quest.QuestStatus != Quest.QuestStatuses.Completed)
             {
-                if(quest.QuestIndex > -1) { __checkList.UpdateTasks(quest.QuestIndex); }
+                if(quest.QuestIndex > -1) 
+                { 
+                    __checkList.UpdateTasks(quest.QuestIndex); 
+                }
                 __checkList.UpdateTasks(i);
                 __finishGame.CheckFinishCondition();
-                Debug.Log("checklist updated");
-            }else if(quest.QuestIndex == CurrentQuests[i].QuestIndex && CurrentQuests[i].QuestIndex > 0)
+                Debug.Log("checklist updated: " + CurrentQuests[i].gameObject.name);
+            }
+            if (CurrentQuests[i].QuestIndex < 0)
+            {
+                //Debug.Log(CurrentQuests[i].QuestIndex);
+                continue;
+            }
+            if (quest != CurrentQuests[i] && quest.QuestIndex == CurrentQuests[i].QuestIndex)
             {
                 CurrentQuests[i].QuestStatus = Quest.QuestStatuses.broken;
+                //Debug.Log("quest broken: " + CurrentQuests[i].gameObject.name);
             }
         }
     }
