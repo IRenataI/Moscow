@@ -7,6 +7,7 @@ public class Target : TargetsAbstract
     {
         if (collision.gameObject.GetComponent<Bullet>() && !__isDestroyed)
         {
+            TargetHitSoundPlayer.Play();
             __isDestroyed = true;
             __winCondition.IncreaseHittedTargets();
         }
