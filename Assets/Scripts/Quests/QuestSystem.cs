@@ -32,9 +32,13 @@ public class QuestSystem : MonoBehaviour
             {
                 if(quest.QuestIndex > -1) 
                 { 
-                    __checkList.UpdateTasks(quest.QuestIndex); 
+                    __checkList.UpdateTasks(quest.QuestIndex);
+                    quest.IsCheckListUpdated = true;
+                }              
+                if (!quest.IsCheckListUpdated)
+                {
+                    __checkList.UpdateTasks(i);
                 }
-                __checkList.UpdateTasks(i);
                 __finishGame.CheckFinishCondition();
                 Debug.Log("checklist updated: " + CurrentQuests[i].gameObject.name);
             }
