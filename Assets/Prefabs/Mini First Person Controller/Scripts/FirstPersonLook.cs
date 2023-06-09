@@ -10,8 +10,8 @@ public class FirstPersonLook : MonoBehaviour
 
     public float xScale = 1f;
 
-    Vector2 velocity;
-    Vector2 frameVelocity;
+    private Vector2 velocity;
+    private Vector2 frameVelocity;
 
     void Reset()
     {
@@ -20,11 +20,8 @@ public class FirstPersonLook : MonoBehaviour
     }
     void Update()
     {
-
         if (!canRotate) return;
 
-
-        //print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
         // Get smooth velocity.
         Vector2 mouseDelta = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
         Vector2 rawFrameVelocity = Vector2.Scale(mouseDelta, Vector2.one * sensitivity);

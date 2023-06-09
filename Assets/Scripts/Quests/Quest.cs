@@ -55,8 +55,6 @@ public class Quest : MonoBehaviour
 
         __questSystem.UpdateMainQuest = QuestIndex;
 
-        StartQuestSound.Play();
-
         Debug.Log("Quest completed: " + gameObject.name);
     }
     public void InterruptQuest()
