@@ -17,8 +17,7 @@ public class Phone : MonoBehaviour
 
     private Camera fpsCamera;
 
-    [SerializeField] private GameObject cameraUI;
-    [SerializeField] private GameObject selfieCameraUI;
+    [SerializeField] private GameObject camerasUI;
 
     [HideInInspector] public UnityEvent OnActivated;
     [HideInInspector] public UnityEvent OnDeactivated;
@@ -84,8 +83,10 @@ public class Phone : MonoBehaviour
         animator.SetTrigger(AnimationState.Active.ToString());
         currentAnimationState = AnimationState.Active;
         fpsCamera.enabled = true;
-        cameraUI.SetActive(false);
-        selfieCameraUI.SetActive(false);
+        camerasUI.SetActive(false);
+        PlayerAnimations.SetSelfieAnimation(false);
+        fpsMovement.SetMovement(true);
+        fpsLook.xScale = 1f;
     }
 
     public void OpenCamera()
@@ -103,8 +104,7 @@ public class Phone : MonoBehaviour
         fpsLook.xScale = 1f;
         //returnToCameraButton?.gameObject.SetActive(false);
         fpsMovement.SetMovement(true);
-        cameraUI.SetActive(true);
-        selfieCameraUI.SetActive(false);
+        camerasUI.SetActive(true);
     }
 
     public void OpenSelfieCamera()
@@ -122,8 +122,7 @@ public class Phone : MonoBehaviour
         fpsLook.xScale = 0f;
         //returnToCameraButton?.gameObject.SetActive(true);
         fpsMovement.SetMovement(false);
-        cameraUI.SetActive(false);
-        selfieCameraUI.SetActive(true);
+        camerasUI.SetActive(true);
     }
 
     public void OpenSocial()
@@ -174,7 +173,6 @@ public class Phone : MonoBehaviour
         fpsLook.xScale = 1f;
         //returnToCameraButton?.gameObject.SetActive(false);
         fpsMovement.SetMovement(true);
-        cameraUI.SetActive(false);
-        selfieCameraUI.SetActive(false);
+        camerasUI.SetActive(false);
     }
 }
