@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 5866666021759892408}
   - component: {fileID: 5866666021759892409}
   - component: {fileID: 5866666021759892411}
+  - component: {fileID: 3232358668874868963}
   m_Layer: 0
   m_Name: TirMan(Skkin)
   m_TagString: Untagged
@@ -116,8 +117,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8109e48413ccff4db9ff533caf8e4cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  QuestIndex: -5
+  PlusSubscribers: 50
   QuestStartPosition: {fileID: 1359466159}
-  IsQuestCompleted: 0
   EventOnStart:
     m_PersistentCalls:
       m_Calls:
@@ -208,7 +210,6 @@ MonoBehaviour:
   OnDeselect:
     m_PersistentCalls:
       m_Calls: []
-  ButtonToPress: {fileID: 0}
 --- !u!114 &5866666021759892409
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -236,11 +237,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73c3a08281ff0b64a83bd2bb74ddddc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  QuestCheckListTask: {fileID: 0}
   AdditionInformation: 
   QuestText:
   - "\u0414\u0443 \u044E \u0432\u0430\u043D\u043D\u0430 \u043F\u043B\u0435\u0439?"
   - "\u041B\u0435\u0442\u0441 \u043F\u043B\u0435\u0439"
+  TextAfterCompletionQuest: []
+  TextIfQuestStarted: []
+  TextIfAdjacentQuestCompleted: []
   OnStartDialog:
     m_PersistentCalls:
       m_Calls:
@@ -271,6 +274,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &3232358668874868963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 142940115939651148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c725e867f6555541b29e27edba167d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  winCondition: {fileID: 0}
+  AllowQuest: 0
+  Description: "\u041A\u043B\u0430\u0441\u0441\u043D\u043E \u043F\u043E\u0441\u0442\u0440\u0435\u043B\u044F\u043B\u0438"
 --- !u!1 &162052665581079831
 GameObject:
   m_ObjectHideFlags: 0

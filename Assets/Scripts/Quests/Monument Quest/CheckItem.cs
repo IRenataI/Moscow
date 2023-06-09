@@ -15,7 +15,7 @@ public class CheckItem : MonoBehaviour
     {
         for (int i = 0; i < Items.Length; i++)
         {
-            if (__inventory.ContainsItem(Items[i]) >= Amounts[i])
+            if (__inventory.RemoveItem(Items[i], Amounts[i]))
             {
                 __winCondition.IncreaseHittedTargets();
             }

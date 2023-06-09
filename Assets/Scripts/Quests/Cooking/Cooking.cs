@@ -21,6 +21,9 @@ public class Cooking : MonoBehaviour
 
     private void Update()
     {
+        if (!isEnable)
+            return;
+
         Ray ray = cam.ScreenPointToRay(Input.mousePosition);
 
         if (Physics.Raycast(ray, out RaycastHit hitInfo, cookingLayerMask))
@@ -57,22 +60,20 @@ public class Cooking : MonoBehaviour
         {
             if (mouseFollowCookingIngredient)
                 currentCookingTool.PlaceCookingIngredient(mouseFollowCookingIngredient);
-            else if (currentCookingTool.InCook())
+            else if (currentCookingTool.InCook)
                 currentCookingTool.IncreaseProgress();
             else
                 currentCookingTool.TakeCookedIngredient();
         }
         else if (currentPlate)
         {
-            currentPlate.AddIngredient(mouseFollowCookingIngredient);
+            if (mouseFollowCookingIngredient)
+                currentPlate.AddIngredient(mouseFollowCookingIngredient);
         }
     }
 
     public static void TakeCookingIngredient(CookingIngredient cookingIngredient)
     {
-        if (!isEnable)
-            return;
-
         if (instance.mouseFollowCookingIngredient)
             Destroy(instance.mouseFollowCookingIngredient.gameObject);
 

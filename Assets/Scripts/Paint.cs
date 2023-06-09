@@ -35,7 +35,7 @@ public class Paint : MonoBehaviour
     [SerializeField] private Slider _brushSizeSlider;
     [SerializeField] private TextMeshProUGUI log;
 
-    private void Start()
+    private void Awake()
     {
         if (clearCanvasButton)
             clearCanvasButton.onClick.AddListener(() => Fill(_baseColor));
@@ -96,12 +96,10 @@ public class Paint : MonoBehaviour
         if (_isDraw)
         {
 
-            print("AAAAAAAAAAAAAAA");
             Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
 
             if (_collider.Raycast(ray, out RaycastHit hitInfo, 1000f))
             {
-                print("BBBBBBBBBBBBBBBB");
                 int rayX = (int)(hitInfo.textureCoord.x * _textureSize);
                 int rayY = (int)(hitInfo.textureCoord.y * _textureSize);
 

@@ -526,6 +526,7 @@ GameObject:
   - component: {fileID: 171789060}
   - component: {fileID: 171789062}
   - component: {fileID: 171789063}
+  - component: {fileID: 6521172193720271668}
   m_Layer: 0
   m_Name: Musicant
   m_TagString: Untagged
@@ -596,8 +597,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8109e48413ccff4db9ff533caf8e4cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  QuestIndex: -5
+  PlusSubscribers: 50
   QuestStartPosition: {fileID: 1891693182}
-  IsQuestCompleted: 0
   EventOnStart:
     m_PersistentCalls:
       m_Calls:
@@ -724,7 +726,6 @@ MonoBehaviour:
   OnDeselect:
     m_PersistentCalls:
       m_Calls: []
-  ButtonToPress: {fileID: 0}
 --- !u!114 &171789060
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -751,7 +752,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73c3a08281ff0b64a83bd2bb74ddddc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  QuestCheckListTask: {fileID: 0}
   AdditionInformation: "\u041F\u043E\u0431\u0435\u0434\u044C \u043D\u0430 \u0440\u043E\u043A
     \u0444\u0435\u0441\u0442\u0438\u0432\u0430\u043B\u0435"
   QuestText:
@@ -761,6 +761,9 @@ MonoBehaviour:
     \u0447\u0442\u043E \u0434\u043E\u0441\u0442\u043E\u0439\u043D\u0430, \u0443\u043C\u0435\u0435\u0448\u044C
     \u0438\u0433\u0440\u0430\u0442\u044C?"
   - "\u0414\u0430"
+  TextAfterCompletionQuest: []
+  TextIfQuestStarted: []
+  TextIfAdjacentQuestCompleted: []
   OnStartDialog:
     m_PersistentCalls:
       m_Calls:
@@ -822,6 +825,21 @@ MonoBehaviour:
   - {fileID: 8716130795754867461, guid: 68eab7e5c5bb1404a9db002b51bd546f, type: 3}
   __delayBetweenSpawns: 1.5
   GuitarCanvas: {fileID: 0}
+--- !u!114 &6521172193720271668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2761185015950317948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c725e867f6555541b29e27edba167d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  winCondition: {fileID: 171789060}
+  AllowQuest: 0
+  Description: "\u041A\u043B\u0430\u0441\u0441\u043D\u043E \u043F\u043E\u0438\u0433\u0440\u0430\u043B\u0438"
 --- !u!1 &2922827975282779755
 GameObject:
   m_ObjectHideFlags: 0

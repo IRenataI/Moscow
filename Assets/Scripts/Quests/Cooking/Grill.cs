@@ -6,7 +6,7 @@ public class Grill : CookingTool
 
     private void Update()
     {
-        if (!InCook())
+        if (!InCook)
             return;
 
         if (cookingProgress < 1f)

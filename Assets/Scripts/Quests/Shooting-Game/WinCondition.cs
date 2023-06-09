@@ -5,10 +5,19 @@ public class WinCondition : MonoBehaviour
     [SerializeField] private int ObjectsToHit;
     [SerializeField]private TargetsAbstract[] Targets;
     public int GetHittedTargetsNumber { get { return __hittedTargets; } }
+    private QuestPhotoObject questPhotoObject;
+
     private int __hittedTargets = 0;
     private Quest __quest;
     private void Awake()
     {
+        questPhotoObject = GetComponent<QuestPhotoObject>();
+
+        if (questPhotoObject && !questPhotoObject.AllowQuest)
+        {
+            //Debug.LogWarning(gameObject.name + ": increase objects to hit");
+            ObjectsToHit++;
+        }  
         __quest = GetComponent<Quest>();
         for (int i = 0; i < Targets.Length; i++)
         {
@@ -18,6 +27,12 @@ public class WinCondition : MonoBehaviour
     public void IncreaseHittedTargets()
     {
         __hittedTargets++;
+
+        if (ObjectsToHit - __hittedTargets == 1)
+        {
+            questPhotoObject?.Allow();
+        }
+
         if (__hittedTargets >= ObjectsToHit)
         {
             __quest.EndQuest();

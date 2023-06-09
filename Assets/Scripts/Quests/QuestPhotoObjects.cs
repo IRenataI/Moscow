@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class QuestPhotoObjects : MonoBehaviour
 {
-    //[SerializeField] private List<QuestPhotoObject> questPhotoObjects = new();
     [SerializeField] private PhotoCamera photoCamera;
 
     private static QuestPhotoObjects instance;
@@ -17,23 +16,23 @@ public class QuestPhotoObjects : MonoBehaviour
     {
         if (Input.GetKeyDown(GlobalVariables.TakePhotoKey))
         {
-            QuestPhotoObject capturedQuestObject = photoCamera.IsTargetObjectsCaptured(/*questPhotoObjects*/);
+            QuestPhotoObject capturedQuestObject = photoCamera.IsTargetObjectsCaptured();
             if (capturedQuestObject == null)
                 return;
 
-            Debug.Log(capturedQuestObject);
+            Debug.Log("capturedQuestObject: " + capturedQuestObject);
             if (capturedQuestObject.AllowQuest)
             {
-                Debug.Log("Start-End Photo Quest");
-                capturedQuestObject.GetComponent<Quest>().StartQuest(0);
-                capturedQuestObject.IncreaceProgress();
-                //questPhotoObjects.Remove(capturedQuestObject);
+                //Debug.Log("Start-End Photo Quest");
+                photoCamera.AddPhoto(capturedQuestObject);
+
+                Quest quest = capturedQuestObject.GetComponent<Quest>();
+                
+                if (quest.QuestStatus == Quest.QuestStatuses.None)
+                    quest.StartQuest(0);
+                if (quest.QuestStatus == Quest.QuestStatuses.Started)
+                    capturedQuestObject.IncreaceProgress();
             }
         }
     }
-
-    //public static void AddQuestPhotoObject(QuestPhotoObject questPhotoObject)
-    //{
-    //    instance.questPhotoObjects.Add(questPhotoObject);
-    //}
 }
