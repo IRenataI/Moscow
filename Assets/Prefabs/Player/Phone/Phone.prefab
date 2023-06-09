@@ -153,7 +153,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7077941277010453343
 RectTransform:
   m_ObjectHideFlags: 0
@@ -964,7 +964,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Bank
+  m_text: "\u0411\u0430\u043D\u043A"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e41810bc0a0db334183e9eecdddfc18f, type: 2}
   m_sharedMaterial: {fileID: 684141671308472541, guid: e41810bc0a0db334183e9eecdddfc18f, type: 2}
@@ -1458,7 +1458,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Camera
+  m_text: "\u041A\u0430\u043C\u0435\u0440\u0430"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e41810bc0a0db334183e9eecdddfc18f, type: 2}
   m_sharedMaterial: {fileID: 684141671308472541, guid: e41810bc0a0db334183e9eecdddfc18f, type: 2}
@@ -1657,7 +1657,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2153535466331792155
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1870,7 +1870,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fea1e8d550d9c9e4293250efb46d5c51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  returnToCameraButton: {fileID: 0}
+  cameraUI: {fileID: 0}
+  selfieCameraUI: {fileID: 0}
   OnActivated:
     m_PersistentCalls:
       m_Calls: []
@@ -2156,7 +2157,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Notes
+  m_text: "\u0417\u0430\u043C\u0435\u0442\u043A\u0438"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e41810bc0a0db334183e9eecdddfc18f, type: 2}
   m_sharedMaterial: {fileID: 684141671308472541, guid: e41810bc0a0db334183e9eecdddfc18f, type: 2}
@@ -2556,7 +2557,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Social
+  m_text: "\u0421\u043E\u0446. \u0441\u0435\u0442\u044C"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e41810bc0a0db334183e9eecdddfc18f, type: 2}
   m_sharedMaterial: {fileID: 684141671308472541, guid: e41810bc0a0db334183e9eecdddfc18f, type: 2}
@@ -4850,7 +4851,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8673110998780304968
 RectTransform:
   m_ObjectHideFlags: 0

@@ -5,10 +5,12 @@ public class WinCondition : MonoBehaviour
     [SerializeField] private int ObjectsToHit;
     [SerializeField]private TargetsAbstract[] Targets;
     public int GetHittedTargetsNumber { get { return __hittedTargets; } }
+    public int GetObjectsToHit => ObjectsToHit;
+
     private QuestPhotoObject questPhotoObject;
 
     private int __hittedTargets = 0;
-    private Quest __quest;
+    public Quest __quest;
     private void Awake()
     {
         questPhotoObject = GetComponent<QuestPhotoObject>();

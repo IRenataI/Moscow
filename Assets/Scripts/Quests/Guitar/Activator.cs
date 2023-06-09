@@ -13,6 +13,8 @@ public class Activator : MonoBehaviour
     private Color __initialColor;
     private RawImage __rawImage;
     private AudioSource __audioSource;
+    public Dialog endGameDialog;
+
     private void Awake()
     {
         __rawImage = GetComponent<RawImage>();
@@ -56,6 +58,12 @@ public class Activator : MonoBehaviour
     }
     private void Function(GameObject gameObject)
     {
+        if (__winCondition.GetObjectsToHit - __winCondition.GetHittedTargetsNumber == 1)
+        {
+            __winCondition.__quest.EventOnEnd?.Invoke();
+            endGameDialog.EnableDialogCanvas();
+        }
+
         gameObject.GetComponent<GuitarTarget>().HideObject();
         __winCondition.IncreaseHittedTargets();
 
