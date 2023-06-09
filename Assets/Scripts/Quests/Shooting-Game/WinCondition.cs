@@ -36,7 +36,7 @@ public class WinCondition : MonoBehaviour
         if (__hittedTargets >= ObjectsToHit)
         {
             __quest.EndQuest();
-            Debug.Log("All targets down");  
+            //Debug.Log("All targets down");  
         }
         Debug.Log(gameObject.name +  " __hittedTargets " + __hittedTargets + " ObjectToHit " + ObjectsToHit);
     }

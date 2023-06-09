@@ -103,7 +103,7 @@ public class DialogCanvas : MonoBehaviour
             __textsList.ElementAt(i).gameObject.SetActive(false);
         }
 
-        Debug.Log("dialogs.Length " + dialogs.Length + "\n __buttonsList.Count" + __buttonsList.Count + "\n __textsList.Count" + __textsList.Count);
+        //Debug.Log("dialogs.Length " + dialogs.Length + "\n __buttonsList.Count" + __buttonsList.Count + "\n __textsList.Count" + __textsList.Count);
     }
     public void CreateDialogWithoutChoices(string[] dialogs, Dialog dialog)
     {
