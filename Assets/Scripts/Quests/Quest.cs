@@ -25,7 +25,7 @@ public class Quest : MonoBehaviour
     void Awake()
     {
         QuestStatus = QuestStatuses.None;
-        GetComponent<BoxCollider>().isTrigger = true;
+        //GetComponent<BoxCollider>().isTrigger = true;
         __questSystem = FindAnyObjectByType<QuestSystem>();
         __player = FindAnyObjectByType<FirstPersonMovement>();
         __cameraRotation = FindAnyObjectByType<FirstPersonLook>();

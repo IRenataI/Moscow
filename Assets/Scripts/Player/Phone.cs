@@ -1,19 +1,23 @@
-using System;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class Phone : MonoBehaviour
 {
-    [Serializable]
     public enum AnimationState
     {
         Inactive,
         Active,
         Camera,
+        SelfieCamera,
         Social,
         Notes,
         Bank
     }
+
+    private Camera fpsCamera;
+
+    [SerializeField] private Button returnToCameraButton;
 
     [HideInInspector] public UnityEvent OnActivated;
     [HideInInspector] public UnityEvent OnDeactivated;
@@ -23,11 +27,18 @@ public class Phone : MonoBehaviour
 
     private Animator animator;
 
-    private static Phone instance;
+    private FirstPersonLook fpsLook;
+    private FirstPersonMovement fpsMovement;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
+
+        fpsCamera = transform.parent.GetComponent<Camera>();
+        fpsLook = fpsCamera?.GetComponent<FirstPersonLook>();
+        fpsMovement = fpsCamera?.transform.parent.GetComponent<FirstPersonMovement>();
+        
+        returnToCameraButton.onClick.AddListener(OpenCamera);
     }
 
     private void Update()
@@ -40,16 +51,15 @@ public class Phone : MonoBehaviour
                 Deactivate();
         }
 
-
-        // DEBUG
-        if (Input.GetKeyDown(KeyCode.Tab))
-        {
-            if (Cursor.lockState == CursorLockMode.Locked)
-                Cursor.lockState = CursorLockMode.None;
-            else
-                Cursor.lockState = CursorLockMode.Locked;
-        }
-        // DEBUG
+        //// DEBUG
+        //if (Input.GetKeyDown(KeyCode.Tab))
+        //{
+        //    if (Cursor.lockState == CursorLockMode.Locked)
+        //        Cursor.lockState = CursorLockMode.None;
+        //    else
+        //        Cursor.lockState = CursorLockMode.Locked;
+        //}
+        //// DEBUG
     }
 
     public void Default()
@@ -58,9 +68,10 @@ public class Phone : MonoBehaviour
             return;
 
         Debug.Log("Default");
-
+        Cursor.lockState = CursorLockMode.None;
         animator.SetTrigger(AnimationState.Active.ToString());
         currentAnimationState = AnimationState.Active;
+        fpsCamera.enabled = true;
     }
 
     public void OpenCamera()
@@ -72,6 +83,30 @@ public class Phone : MonoBehaviour
 
         animator.SetTrigger(AnimationState.Camera.ToString());
         currentAnimationState = AnimationState.Camera;
+        fpsCamera.enabled = true;
+        PlayerAnimations.SetSelfieAnimation(false);
+        //fpsLook.SetCameraRotation(true);
+        fpsLook.xScale = 1f;
+        returnToCameraButton?.gameObject.SetActive(false);
+        fpsMovement.SetMovement(true);
+    }
+
+    public void OpenSelfieCamera()
+    {
+        if (currentAnimationState == AnimationState.SelfieCamera)
+            return;
+
+        Debug.Log("Open Selfie Camera");
+
+        animator.SetTrigger(AnimationState.SelfieCamera.ToString());
+        currentAnimationState = AnimationState.SelfieCamera;
+        fpsCamera.enabled = false;
+        PlayerAnimations.SetSelfieAnimation(true);
+        //fpsLook.SetCameraRotation(false);
+        fpsLook.xScale = 0f;
+        returnToCameraButton?.gameObject.SetActive(true);
+        fpsMovement.SetMovement(false);
+        
     }
 
     public void OpenSocial()
@@ -113,8 +148,14 @@ public class Phone : MonoBehaviour
             return;
         
         Debug.Log("Deactivate");
-
+        Cursor.lockState = CursorLockMode.Locked;
         animator.SetTrigger(AnimationState.Inactive.ToString());
         currentAnimationState = AnimationState.Inactive;
+        fpsCamera.enabled = true;
+        PlayerAnimations.SetSelfieAnimation(false);
+        //fpsLook.SetCameraRotation(true);
+        fpsLook.xScale = 1f;
+        returnToCameraButton?.gameObject.SetActive(false);
+        fpsMovement.SetMovement(true);
     }
 }

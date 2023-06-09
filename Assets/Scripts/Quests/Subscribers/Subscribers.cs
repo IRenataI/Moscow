@@ -15,7 +15,7 @@ public class Subscribers : MonoBehaviour
     }
     private void Update()
     {
-        subscriberstext.text = CurrentSubscribers.ToString() + " Подписчиков";
+        subscriberstext.text = CurrentSubscribers.ToString();
     }
     public static int GetSubscribersAmount { get { return CurrentSubscribers; } }
     public static void EarnSubscribers(int SubscribersToEarn)

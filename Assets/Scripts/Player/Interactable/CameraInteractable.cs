@@ -24,6 +24,9 @@ public class CameraInteractable : MonoBehaviour
 
     private void SearchInteractable()
     {
+        if (!cam.enabled)
+            return;
+
         Ray ray = cam.ScreenPointToRay(screenCenter);
         
         if (Physics.Raycast(ray, out RaycastHit hitInfo, interactionMaxDistance))

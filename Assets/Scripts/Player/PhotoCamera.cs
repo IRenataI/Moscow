@@ -2,32 +2,38 @@ using System;
 using System.IO;
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.UIElements;
 
 [RequireComponent(typeof(Camera))]
 public class PhotoCamera : MonoBehaviour
 {
-    [SerializeField] private GameObject targetObject;
-    
+    public static List<Sprite> Photos { get; private set; } = new();
+    public static List<QuestPhotoObject> QuestPhotoObjects { get; private set;} = new();
+
+    private int photoWidth = 1024;
+    private int photoHeight = 512;
+
     private string saveAsImageExternalPath = "/Images/";
     
     private Camera cam;
-    private RenderTexture renderTexture;
+    [SerializeField] private Camera selfieCamera;
+
+    private RenderTexture photoRenderTexture;
+    private RenderTexture selfieRenderTexture;
 
     private AudioSource audioSource;
 
-    private void Start()
+    private void Awake()
     {
         cam = GetComponent<Camera>();
+        //selfieCamera = gameObject.GetComponentInChildren<Camera>();
         audioSource = GetComponent<AudioSource>();
-        renderTexture = cam.targetTexture;
-    }
 
-    private void Update()
-    {
-        //if (Input.GetKeyDown(GlobalVariables.TakePhotoKey))
-        //{
-        //    IsTargetObjectCaptured(targetObject);
-        //}
+        photoRenderTexture = cam.targetTexture;
+        photoRenderTexture.width = photoWidth;
+        photoRenderTexture.height = photoHeight;
+
+        selfieRenderTexture = new RenderTexture(photoWidth, photoHeight, photoRenderTexture.depth);
     }
 
     public bool IsTargetObjectCaptured(GameObject targetObject)
@@ -64,10 +70,9 @@ public class PhotoCamera : MonoBehaviour
         return false;
     }
 
-    public QuestPhotoObject IsTargetObjectsCaptured(/*List<QuestPhotoObject> targetObjects*/)
+    public QuestPhotoObject IsTargetObjectsCaptured()
     {
-        //if (targetObjects == null || targetObjects.Count <= 0 || cam.enabled == false)
-        //    return null;
+        //Debug.Log(audioSource);
         audioSource.Play();
 
         float stepCount = 30f;
@@ -88,13 +93,6 @@ public class PhotoCamera : MonoBehaviour
                     QuestPhotoObject questPhotoObject = hitInfo.transform.GetComponent<QuestPhotoObject>();
                     if (questPhotoObject)
                         return questPhotoObject;
-                    //foreach (QuestPhotoObject questObject in targetObjects)
-                    //{
-                    //    if (hitInfo.transform.gameObject == questObject.gameObject)
-                    //    {
-                    //        return questObject;
-                    //    }
-                    //}
                 }
             }
         }
@@ -102,9 +100,43 @@ public class PhotoCamera : MonoBehaviour
         return null;
     }
 
+    public void AddPhoto(QuestPhotoObject questPhotoObject)
+    {
+        if (!QuestPhotoObjects.Contains(questPhotoObject))
+        {
+            QuestPhotoObjects.Add(questPhotoObject);
+            Photos.Add(CaptureScreenAsSprite());
+        }
+    }
+
+    public Sprite CaptureScreenAsSprite()
+    {
+        RenderTexture renderTexture;
+
+        if (selfieCamera.gameObject.activeInHierarchy)
+        {
+            renderTexture = selfieRenderTexture;
+            selfieCamera.targetTexture = selfieRenderTexture;
+            selfieCamera.Render();
+            selfieCamera.targetTexture = null;
+        }
+        else
+        {
+            renderTexture = photoRenderTexture;
+            cam.targetTexture = photoRenderTexture;
+        }
+
+        Rect rect = new Rect(0, 0, photoWidth, photoHeight);
+        Texture2D texture = ToTexture2D(renderTexture);
+
+        Sprite sprite = Sprite.Create(texture, rect, Vector2.zero);
+
+        return sprite;
+    }
+
     public void SaveAsImage()
     {
-        Texture2D texture = ToTexture2D(renderTexture);
+        Texture2D texture = ToTexture2D(photoRenderTexture);
         byte[] textureInBytes = texture.EncodeToPNG();
         string dirPath = Application.dataPath + saveAsImageExternalPath;
         

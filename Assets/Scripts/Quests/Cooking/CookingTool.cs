@@ -19,32 +19,51 @@ public class CookingTool : MonoBehaviour
     [SerializeField] private Canvas progressBarCanvas;
     [SerializeField] protected Image progressBarImage;
     
-    private CookingIngredient cookingIngredient;
+    protected CookingIngredient cookingIngredient;
     private State state = State.Default;
+    public bool InCook => state == State.Cooking;
 
     protected float cookingProgress = 0f;
 
     private void Start()
     {
-        progressBarCanvas.gameObject.SetActive(false);
+        progressBarCanvas?.gameObject.SetActive(false);
     }
 
     public void PlaceCookingIngredient(CookingIngredient cookingIngredient)
     {
-        if (!Cooking.ContainsCookingIngredient(input, cookingIngredient) || state != State.Default)
+        if (!Cooking.ContainsCookingIngredient(input, cookingIngredient))
             return;
 
         Cooking.TakeDownCookingIngredient();
-        progressBarCanvas.gameObject.SetActive(true);
-        progressBarImage.fillAmount = 0f;
+
+        if (state != State.Default)
+        {
+            Cooking.TakeCookingIngredient(this.cookingIngredient);
+            InterruptCook();
+        }
+
+        ResetProgressBar();
         cookingIngredient.transform.position = cookingTransform.position;
         this.cookingIngredient = cookingIngredient;
         Cook();
     }
 
+    private void ResetProgressBar()
+    {
+        progressBarCanvas.gameObject.SetActive(true);
+        progressBarImage.fillAmount = 0f;
+    }
+
     private void Cook()
     {
         state = State.Cooking;
+    }
+
+    protected void InterruptCook()
+    {
+        state = State.Default;
+        cookingProgress = 0f;
     }
 
     protected void EndCook()
@@ -82,10 +101,5 @@ public class CookingTool : MonoBehaviour
             progressBarCanvas.gameObject.SetActive(false);
             state = State.Default;
         }
-    }
-
-    public bool InCook()
-    {
-        return state == State.Cooking;
     }
 }
