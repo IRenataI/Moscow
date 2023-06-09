@@ -38,6 +38,7 @@ public class QuestSystem : MonoBehaviour
                 if (!quest.IsCheckListUpdated)
                 {
                     __checkList.UpdateTasks(i);
+                    quest.IsCheckListUpdated = true;
                 }
                 __finishGame.CheckFinishCondition();
                 Debug.Log("checklist updated: " + CurrentQuests[i].gameObject.name);
