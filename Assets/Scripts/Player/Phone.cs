@@ -17,7 +17,8 @@ public class Phone : MonoBehaviour
 
     private Camera fpsCamera;
 
-    [SerializeField] private Button returnToCameraButton;
+    [SerializeField] private GameObject cameraUI;
+    [SerializeField] private GameObject selfieCameraUI;
 
     [HideInInspector] public UnityEvent OnActivated;
     [HideInInspector] public UnityEvent OnDeactivated;
@@ -38,7 +39,7 @@ public class Phone : MonoBehaviour
         fpsLook = fpsCamera?.GetComponent<FirstPersonLook>();
         fpsMovement = fpsCamera?.transform.parent.GetComponent<FirstPersonMovement>();
         
-        returnToCameraButton.onClick.AddListener(OpenCamera);
+        //returnToCameraButton.onClick.AddListener(OpenCamera);
     }
 
     private void Update()
@@ -50,6 +51,17 @@ public class Phone : MonoBehaviour
             else
                 Deactivate();
         }
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            if (currentAnimationState == AnimationState.SelfieCamera)
+                OpenCamera();
+            else if (currentAnimationState == AnimationState.Camera)
+                OpenSelfieCamera();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Q) && (currentAnimationState == AnimationState.Camera || currentAnimationState == AnimationState.SelfieCamera))
+            Default();
 
         //// DEBUG
         //if (Input.GetKeyDown(KeyCode.Tab))
@@ -72,6 +84,8 @@ public class Phone : MonoBehaviour
         animator.SetTrigger(AnimationState.Active.ToString());
         currentAnimationState = AnimationState.Active;
         fpsCamera.enabled = true;
+        cameraUI.SetActive(false);
+        selfieCameraUI.SetActive(false);
     }
 
     public void OpenCamera()
@@ -87,8 +101,10 @@ public class Phone : MonoBehaviour
         PlayerAnimations.SetSelfieAnimation(false);
         //fpsLook.SetCameraRotation(true);
         fpsLook.xScale = 1f;
-        returnToCameraButton?.gameObject.SetActive(false);
+        //returnToCameraButton?.gameObject.SetActive(false);
         fpsMovement.SetMovement(true);
+        cameraUI.SetActive(true);
+        selfieCameraUI.SetActive(false);
     }
 
     public void OpenSelfieCamera()
@@ -104,9 +120,10 @@ public class Phone : MonoBehaviour
         PlayerAnimations.SetSelfieAnimation(true);
         //fpsLook.SetCameraRotation(false);
         fpsLook.xScale = 0f;
-        returnToCameraButton?.gameObject.SetActive(true);
+        //returnToCameraButton?.gameObject.SetActive(true);
         fpsMovement.SetMovement(false);
-        
+        cameraUI.SetActive(false);
+        selfieCameraUI.SetActive(true);
     }
 
     public void OpenSocial()
@@ -155,7 +172,9 @@ public class Phone : MonoBehaviour
         PlayerAnimations.SetSelfieAnimation(false);
         //fpsLook.SetCameraRotation(true);
         fpsLook.xScale = 1f;
-        returnToCameraButton?.gameObject.SetActive(false);
+        //returnToCameraButton?.gameObject.SetActive(false);
         fpsMovement.SetMovement(true);
+        cameraUI.SetActive(false);
+        selfieCameraUI.SetActive(false);
     }
 }
