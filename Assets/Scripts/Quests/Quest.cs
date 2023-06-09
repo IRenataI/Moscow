@@ -11,11 +11,12 @@ public class Quest : MonoBehaviour
     public UnityEvent EventOnStart;
     public UnityEvent EventOnInterrupt;
     public UnityEvent EventOnEnd;
+    public bool IsCheckListUpdated = false;
     private QuestSystem __questSystem;
     private FirstPersonMovement __player;
     private FirstPersonLook __cameraRotation;
     private WinCondition __winConditon;
-    private QuestStatuses __questStatus;
+    private QuestStatuses __questStatus;    
     public QuestStatuses QuestStatus { set { __questStatus = value; } get { return __questStatus; } }
     public enum QuestStatuses
     {
