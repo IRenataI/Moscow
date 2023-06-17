@@ -12,6 +12,8 @@ public class UICheckList : MonoBehaviour
     {
         __questSystem = FindObjectOfType<QuestSystem>();
         UIMainTasks.text = string.Empty;
+        UISecondaryTasks.text = string.Empty;
+
         for (int i = 0; i < Tasks.Length; i++)
         {
             if (i < QuestSystem.GetMainQuestsLength)
@@ -41,10 +43,18 @@ public class UICheckList : MonoBehaviour
     private void UpdateUITasks()
     {
         UIMainTasks.text = string.Empty;
+        UISecondaryTasks.text = string.Empty;
 
         for (int i = 0; i < Tasks.Length; i++)
         {
-            UIMainTasks.text += Tasks[i].text + "\n";
+            if (i < QuestSystem.GetMainQuestsLength)
+            {
+                UIMainTasks.text += Tasks[i].text + "\n";
+            }
+            else
+            {
+                UISecondaryTasks.text += Tasks[i].text + "\n";
+            }
         }
     }
 }
