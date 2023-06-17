@@ -6,7 +6,7 @@ public class Social : MonoBehaviour
     [SerializeField] private Post postPrefab;
     [SerializeField] private RectTransform postsContainer;
 
-    private List<Post> posts = new();
+    public List<Post> posts = new();
 
     private void OnEnable()
     {
@@ -16,10 +16,10 @@ public class Social : MonoBehaviour
 
     private void UpdateUI()
     {
-        for (int i = 0; i < PhotoCamera.Photos.Count; i++)
+        for (int i = PhotoCamera.Photos.Count - 1; i >= 0; i--)
         {
-            posts[i].UpdateDescription(PhotoCamera.QuestPhotoObjects[i].Description);
-            posts[i].UpdateImage(PhotoCamera.Photos[i]);
+            posts[PhotoCamera.Photos.Count - 1 - i].UpdateDescription(PhotoCamera.QuestPhotoObjects[i].Description);
+            posts[PhotoCamera.Photos.Count - 1 - i].UpdateImage(PhotoCamera.Photos[i]);
         }
     }
 

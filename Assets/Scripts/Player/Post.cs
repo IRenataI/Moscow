@@ -15,7 +15,5 @@ public class Post : MonoBehaviour
     public void UpdateImage(Sprite sprite)
     {
         photo.sprite = sprite;
-
-        Debug.LogWarning("fffffffffffffffffffff");
     }
 }
