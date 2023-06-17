@@ -3,21 +3,26 @@ using UnityEngine;
 
 public class UICheckList : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI UITasks;
+    [SerializeField] private TextMeshProUGUI UIMainTasks;
+    [SerializeField] private TextMeshProUGUI UISecondaryTasks;
+
     [SerializeField] private TextMeshProUGUI[] Tasks;
     private QuestSystem __questSystem;
     private void Awake()
     {
         __questSystem = FindObjectOfType<QuestSystem>();
-        UITasks.text = string.Empty;
+        UIMainTasks.text = string.Empty;
         for (int i = 0; i < Tasks.Length; i++)
         {
-            if (i > 4)
+            if (i < QuestSystem.GetMainQuestsLength)
             {
-                Tasks[i].text = "Задача " + (i + 1);
+                UIMainTasks.text += Tasks[i].text + "\n";
             }
-
-            UITasks.text += Tasks[i].text + "\n";
+            else
+            {
+                Tasks[i].text = "Задача " + (i + 1 - QuestSystem.GetMainQuestsLength);
+                UISecondaryTasks.text += Tasks[i].text + "\n";
+            }
         }
     }
     public void UpdateTasks(int index)
@@ -35,11 +40,11 @@ public class UICheckList : MonoBehaviour
 
     private void UpdateUITasks()
     {
-        UITasks.text = string.Empty;
+        UIMainTasks.text = string.Empty;
 
         for (int i = 0; i < Tasks.Length; i++)
         {
-            UITasks.text += Tasks[i].text + "\n";
+            UIMainTasks.text += Tasks[i].text + "\n";
         }
     }
 }
