@@ -19,6 +19,8 @@ public class QuestSystem : MonoBehaviour
         } 
     }
     public bool[] GetMainQuests { get { return __mainQuests; } }
+    public static int GetMainQuestsLength => MAINQUESTLENGTH;
+
     private void Awake()
     {
         __checkList = FindObjectOfType<UICheckList>();
