@@ -23,7 +23,6 @@ public class QuestPhotoObjects : MonoBehaviour
             Debug.Log("capturedQuestObject: " + capturedQuestObject);
             if (capturedQuestObject.AllowQuest)
             {
-                //Debug.Log("Start-End Photo Quest");
                 photoCamera.AddPhoto(capturedQuestObject);
 
                 Quest quest = capturedQuestObject.GetComponent<Quest>();
