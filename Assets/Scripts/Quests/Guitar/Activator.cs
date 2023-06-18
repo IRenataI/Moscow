@@ -56,7 +56,7 @@ public class Activator : MonoBehaviour
         __isColliderGuitarTarget = false;
         __collidedGameObject = null;
     }
-    private void Function(GameObject gameObject)
+    private void Function(GameObject collidedGameObject)
     {
         if (__winCondition.GetObjectsToHit - __winCondition.GetHittedTargetsNumber == 1)
         {
@@ -64,7 +64,8 @@ public class Activator : MonoBehaviour
             endGameDialog.EnableDialogCanvas();
         }
 
-        gameObject.GetComponent<GuitarTarget>().HideObject();
+        collidedGameObject.GetComponent<GuitarTarget>().HideObject( 
+            Mathf.Clamp( (__collidedGameObject.transform.position - transform.position).magnitude,0,1f));
         __winCondition.IncreaseHittedTargets();
 
         __isColliderGuitarTarget = false;

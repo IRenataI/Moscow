@@ -3,15 +3,13 @@ using UnityEngine;
 public class Deactivator : MonoBehaviour
 {
     public Quest GuitarQuest;
-    public int LoseTarget = 5;
+    public int LoseTarget = 10;
     public WinCondition WinCondition;
     private GuitarUICounter GuitarCounter;
-    //private QuestSystem __questSystem;
     private void Awake()
     {
         GuitarCounter = FindObjectOfType<GuitarUICounter>();
         GuitarCounter.ChangeText(" " + WinCondition.GetHittedTargetsNumber);
-        //__questSystem = FindObjectOfType<QuestSystem>();
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
