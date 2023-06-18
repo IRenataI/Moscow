@@ -8,13 +8,10 @@ public class Activator : MonoBehaviour
     public KeyCode KeyToPress;
     public WinCondition __winCondition;
     public TextMeshProUGUI Counter;
-    private bool __isColliderGuitarTarget = false;
     private GameObject __collidedGameObject;
     private Color __initialColor;
     private RawImage __rawImage;
     private AudioSource __audioSource;
-    public Dialog endGameDialog;
-
     private void Awake()
     {
         __rawImage = GetComponent<RawImage>();
@@ -28,7 +25,7 @@ public class Activator : MonoBehaviour
         if (Input.GetKeyDown(KeyToPress))
         {
             __rawImage.color = __initialColor + new Color(0, 55f / 255f, 0);
-            if (__isColliderGuitarTarget && __collidedGameObject)
+            if (__collidedGameObject)
             {
                 Function(__collidedGameObject);
             }
@@ -38,13 +35,14 @@ public class Activator : MonoBehaviour
         {
             __rawImage.color = __initialColor;
         }
+
+        Debug.DrawLine(temp1, temp2, Color.red);
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
         GuitarTarget __collided = collision.gameObject.GetComponent<GuitarTarget>();
         if (__collided && !__collided.IsDestroyed)
         {
-            __isColliderGuitarTarget = true;
             __collidedGameObject = collision.gameObject;
 
             Counter.text = " " + __winCondition.GetHittedTargetsNumber;
@@ -53,22 +51,37 @@ public class Activator : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        __isColliderGuitarTarget = false;
         __collidedGameObject = null;
     }
+
+    private Vector3 temp1 = Vector3.zero, temp2 = Vector3.zero;
     private void Function(GameObject collidedGameObject)
     {
-        if (__winCondition.GetObjectsToHit - __winCondition.GetHittedTargetsNumber == 1)
-        {
-            __winCondition.__quest.EventOnEnd?.Invoke();
-            endGameDialog.EnableDialogCanvas();
-        }
+        collidedGameObject.GetComponent<GuitarTarget>().HideObject(1);
 
-        collidedGameObject.GetComponent<GuitarTarget>().HideObject( 
-            Mathf.Clamp( (__collidedGameObject.transform.position - transform.position).magnitude,0,1f));
+        if (temp1 == Vector3.zero)
+            temp1 = collidedGameObject.transform.position;
+        if (temp2 == Vector3.zero)
+            temp2 = transform.position;
+
         __winCondition.IncreaseHittedTargets();
 
-        __isColliderGuitarTarget = false;
+        //__isColliderGuitarTarget = false;
         __collidedGameObject = null;
     }
 }
+
+//collidedGameObject.GetComponent<GuitarTarget>().HideObject( Mathf.Clamp( 1 - ((collidedGameObject.transform.position - transform.position) / 10).magnitude,0,1f));
+// Debug.Log((collidedGameObject.transform.localPosition - transform.localPosition).magnitude);
+
+/*
+if (__winCondition.GetObjectsToHit - __winCondition.GetHittedTargetsNumber == 1)
+{
+    __winCondition.__quest.EventOnEnd?.Invoke();
+    //endGameDialog.EnableDialogCanvas();
+}
+*/
+
+//private bool __isColliderGuitarTarget = false;
+
+//public Dialog endGameDialog;

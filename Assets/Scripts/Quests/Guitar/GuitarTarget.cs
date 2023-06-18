@@ -3,7 +3,8 @@ using UnityEngine.UI;
 
 public class GuitarTarget : TargetsAbstract
 {
-    public static float Velocity = 2f; //default 1.5f
+    [SerializeField] private Vector3 SpawnPosition;
+    public static float Velocity = 3f; //default 1.5f
     public bool IsDeactivated = false;
     public float _delayBetweenIncreaseVelocity = 5f;
     private float __delay;
@@ -13,6 +14,8 @@ public class GuitarTarget : TargetsAbstract
     public float GetAccuracy { get { return __accuracy; } }
     private void Awake()
     {
+        transform.position = SpawnPosition;
+
         __boxCollider2D = GetComponent<BoxCollider2D>();
         _image = GetComponent<RawImage>();
     }
