@@ -10,7 +10,7 @@ public class WinCondition : MonoBehaviour
     private QuestPhotoObject questPhotoObject;
 
     private int __hittedTargets = 0;
-    public Quest __quest;
+    private Quest __quest;
     private void Awake()
     {
         questPhotoObject = GetComponent<QuestPhotoObject>();
@@ -37,7 +37,7 @@ public class WinCondition : MonoBehaviour
 
         if (__hittedTargets >= ObjectsToHit)
         {
-            __quest.EndQuest();
+            __quest?.EndQuest();
             //Debug.Log("All targets down");  
         }
         Debug.Log(gameObject.name +  " __hittedTargets " + __hittedTargets + " ObjectToHit " + ObjectsToHit);

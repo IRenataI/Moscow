@@ -1,13 +1,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class TargetsManager : MonoBehaviour
 {
-    [SerializeField] private AudioSource Music;
+    private AudioSource Music;
     private Texture2D MusicTexture;
     [SerializeField] private RawImage MusicImage;
     [SerializeField] private RectTransform MusicImageTransform;
@@ -32,7 +31,8 @@ public class TargetsManager : MonoBehaviour
         {
             TargetPosition[i] = Targets[i].transform.localPosition;           
         }
-        __winCondition = GetComponent<WinCondition>();        
+        __winCondition = GetComponent<WinCondition>();
+        Music = GetComponent<AudioSource>();
     }
     public void StartTargetsSpawn()
     {
@@ -54,7 +54,7 @@ public class TargetsManager : MonoBehaviour
         __spawnedObjects.Clear();
     }
 
-    private int k = 1; // default 5
+    private int __destroyedObjects = 0;
     private void FixedUpdate()
     {
         if (!__isSpawning)
@@ -62,18 +62,24 @@ public class TargetsManager : MonoBehaviour
             __songPosition = 0;
             return;
         }
-        __songPosition = Music.time * Music.clip.channels * scale / k ; //(int)(Music.clip.length * Music.clip.channels * scale / k) * Time.fixedDeltaTime;//(Music.clip.length / k / MusicImageTransform.sizeDelta.x) * Time.fixedDeltaTime;
+        __songPosition = Music.time * Music.clip.channels * scale; /// k ; //(int)(Music.clip.length * Music.clip.channels * scale / k) * Time.fixedDeltaTime;//(Music.clip.length / k / MusicImageTransform.sizeDelta.x) * Time.fixedDeltaTime;
         //Debug.Log(Music.time);
 
-
+        __destroyedObjects = 0;
         foreach (var obj in __spawnedObjects)
         {
-            __tempAccuracy += obj.GetComponent<GuitarTarget>().GetAccuracy;
+            GuitarTarget tempObj = obj.GetComponent<GuitarTarget>();
+            if (tempObj.IsDestroyed || tempObj.IsDeactivated)
+            {
+                __tempAccuracy += 1;
+                __destroyedObjects++;
+            }
         }
-        __accuracy = (int)( 100 * __tempAccuracy / __spawnedObjects.Count);
+
+        __accuracy = (int)( 100 * __tempAccuracy / __destroyedObjects);
         __tempAccuracy = 0;
-        if (__spawnedObjects.Count > 0)
-            Accuracy.text = "Точность: " + __accuracy + "%";
+        
+        Accuracy.text = "Точность: " + __accuracy + "%";
 
         UpdateTexture();
 
@@ -95,7 +101,7 @@ public class TargetsManager : MonoBehaviour
         }
         else
         {
-            Debug.Log(MusicTexture.GetPixel((int)__songPosition, 150));
+            //Debug.Log(MusicTexture.GetPixel((int)__songPosition, 150));
         }
         __timer = Mathf.Clamp(__timer + Time.fixedDeltaTime, 0, __delayBetweenSpawns + 1);
     }
@@ -111,7 +117,7 @@ public class TargetsManager : MonoBehaviour
         int frequency = Music.clip.frequency; //битрейт сэмпла
         scale = 10; //пикселей на 1с сэмпла // default 10
 
-        int width = (int)(Music.clip.length * Music.clip.channels * scale / k);
+        int width = (int)(Music.clip.length * Music.clip.channels * scale); // k);
 
         MusicTexture = new Texture2D(width, 200);
 
@@ -175,3 +181,5 @@ public class TargetsManager : MonoBehaviour
         MusicTexture.Apply();
     }
 }
+
+//private int k = 1; // default 5
