@@ -6,11 +6,13 @@ using UnityEngine.UI;
 
 public class TargetsManager : MonoBehaviour
 {
-    private AudioSource Music;
-    private Texture2D MusicTexture;
+
     [SerializeField] private RawImage MusicImage;
     [SerializeField] private RectTransform MusicImageTransform;
     [SerializeField] private TextMeshProUGUI Accuracy;
+    private AudioSource Music;
+    private Texture2D MusicTexture;
+
     public TargetsAbstract[] Targets = new TargetsAbstract[4];
     public float __delayBetweenSpawns = 1f;
     public Transform GuitarCanvas;
@@ -42,6 +44,7 @@ public class TargetsManager : MonoBehaviour
     }
     public void StopTargetsSpawn()
     {
+        Music.Stop();
         __spawnedObjects.Last().GetComponent<GuitarTarget>().ResetVelocity();
 
         __isSpawning = false;
@@ -69,16 +72,24 @@ public class TargetsManager : MonoBehaviour
         foreach (var obj in __spawnedObjects)
         {
             GuitarTarget tempObj = obj.GetComponent<GuitarTarget>();
-            if (tempObj.IsDestroyed || tempObj.IsDeactivated)
+            if (tempObj.IsDestroyed)
             {
                 __tempAccuracy += 1;
+            }
+            if (tempObj.IsDestroyed || tempObj.IsDeactivated)
+            {
                 __destroyedObjects++;
             }
         }
 
         __accuracy = (int)( 100 * __tempAccuracy / __destroyedObjects);
+        //Debug.Log(__tempAccuracy + "  " + __destroyedObjects);
         __tempAccuracy = 0;
-        
+
+        if (__destroyedObjects == 0)
+        {
+            __accuracy = 0;
+        }
         Accuracy.text = "Точность: " + __accuracy + "%";
 
         UpdateTexture();

@@ -34,12 +34,12 @@ public class QuestSystem : MonoBehaviour
             {
                 if(quest.QuestIndex > -1) 
                 { 
-                    __checkList.UpdateTasks(quest.QuestIndex);
+                    __checkList.CompleteTask(quest.QuestIndex);
                     quest.IsCheckListUpdated = true;
                 }              
                 if (!quest.IsCheckListUpdated)
                 {
-                    __checkList.UpdateTasks(i);
+                    __checkList.CompleteTask(i);
                     quest.IsCheckListUpdated = true;
                 }
                 __finishGame.CheckFinishCondition();
@@ -71,10 +71,6 @@ public class QuestSystem : MonoBehaviour
     public Quest GetQuestByIndex(int index)
     {
         return CurrentQuests[index];
-    }
-    public Quest GetCurrentQuest(Quest quest)
-    {
-        return CurrentQuests.SingleOrDefault(i => i == quest);
     }
 }
 /*
@@ -119,3 +115,10 @@ private void FixedUpdate()
         __finishGame.CheckFinishCondition();
     }
     */
+
+/*
+public Quest GetCurrentQuest(Quest quest)
+{
+    return CurrentQuests.SingleOrDefault(i => i == quest);
+}
+*/
