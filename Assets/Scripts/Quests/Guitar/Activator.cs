@@ -40,6 +40,8 @@ public class Activator : MonoBehaviour
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
+        Debug.Log("Exit: " + __collidedGameObject);
+
         GuitarTarget __collided = collision.gameObject.GetComponent<GuitarTarget>();
         if (__collided && !__collided.IsDestroyed)
         {
@@ -49,8 +51,9 @@ public class Activator : MonoBehaviour
             //Debug.Log("Destroyed");
         }
     }
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerExit2D(Collider2D collision)
     {
+        Debug.Log("Exit: " + __collidedGameObject);
         __collidedGameObject = null;
     }
 
