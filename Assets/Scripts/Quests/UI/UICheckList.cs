@@ -32,12 +32,33 @@ public class UICheckList : MonoBehaviour
         //Debug.Log("Quest index: " + index );   
         if (index > -1)/* && __questSystem.GetQuestByIndex(index).QuestStatus != Quest.QuestStatuses.Completed*/
         {
-            Debug.Log("completed");
-            Tasks[index].text += "(выполнено)";
-            UpdateUITasks();
+            Debug.Log("completed: " + index);
+            if (index > 5)
+            {
+                UISecondaryTasks.text += "(выполнено)\n";
+            }
+            else
+            {
+                Tasks[index].text += "(выполнено)";
+                UIMainTasks.text = "";
+                for (int i = 0; i < Tasks.Length; i++)
+                {
+                    if (index == i)
+                    {
+                        UIMainTasks.text += Tasks[i].text + "\n";
+
+                    }
+                    else
+                    {
+                        UIMainTasks.text += Tasks[i].text + "\n";
+                    }
+                }
+            }
+            //Tasks[index].text += "(выполнено)";
+            //UpdateUITasks();
         }
         else
-            Debug.Log("index < 0");
+            Debug.Log("quest index < 0");
     }
 
     private void UpdateUITasks()
