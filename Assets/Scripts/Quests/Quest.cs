@@ -5,6 +5,7 @@ using UnityEngine.Events;
 [RequireComponent(typeof(QuestInteractable))]
 public class Quest : MonoBehaviour
 {
+    [SerializeField] private string QuestInformation;
     public int QuestIndex = -5;
     public int PlusSubscribers = 50;
     public Transform QuestStartPosition;
@@ -16,7 +17,8 @@ public class Quest : MonoBehaviour
     private FirstPersonMovement __player;
     private FirstPersonLook __cameraRotation;
     private WinCondition __winConditon;
-    private QuestStatuses __questStatus;    
+    private QuestStatuses __questStatus;
+    private UICheckList __checkList;
     public QuestStatuses QuestStatus { set { __questStatus = value; } get { return __questStatus; } }
     public enum QuestStatuses
     {
@@ -28,6 +30,7 @@ public class Quest : MonoBehaviour
         __questSystem = FindAnyObjectByType<QuestSystem>();
         __player = FindAnyObjectByType<FirstPersonMovement>();
         __cameraRotation = FindAnyObjectByType<FirstPersonLook>();
+        __checkList = FindAnyObjectByType<UICheckList>();
         __winConditon = GetComponent<WinCondition>();
     }
     public void StartQuest(int price)
@@ -39,6 +42,8 @@ public class Quest : MonoBehaviour
         __player.SetMovement(false);
 
         __questStatus = QuestStatuses.Started;
+
+        __checkList.AddQuestInformation(this, QuestInformation);
 
         Debug.Log("Quest started: " + gameObject.name);
     }

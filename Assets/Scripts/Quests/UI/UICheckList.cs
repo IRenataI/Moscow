@@ -22,12 +22,12 @@ public class UICheckList : MonoBehaviour
             }
             else
             {
-                Tasks[i].text = "Задача " + (i + 1 - QuestSystem.GetMainQuestsLength);
-                UISecondaryTasks.text += Tasks[i].text + "\n";
+                //Tasks[i].text = "Задача " + (i + 1 - QuestSystem.GetMainQuestsLength);
+                //UISecondaryTasks.text += Tasks[i].text + "\n";
             }
         }
     }
-    public void UpdateTasks(int index)
+    public void CompleteTask(int index)
     {
         //Debug.Log("Quest index: " + index );   
         if (index > -1)/* && __questSystem.GetQuestByIndex(index).QuestStatus != Quest.QuestStatuses.Completed*/
@@ -55,6 +55,15 @@ public class UICheckList : MonoBehaviour
             {
                 UISecondaryTasks.text += Tasks[i].text + "\n";
             }
+        }
+    }
+    public void AddQuestInformation(Quest quest, string QuestInfo)
+    {
+        int ind = __questSystem.GetIndexByQuest(quest);
+        if (ind > 5)
+        {
+            //UISecondaryTasks.text += Tasks[ind].text + "\n";
+            UISecondaryTasks.text += QuestInfo + "\n";
         }
     }
 }
