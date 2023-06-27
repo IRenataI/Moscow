@@ -14,7 +14,7 @@ public class Dialog : MonoBehaviour
     private bool __isAddedInformation = false;
     private DialogCanvas __dialogCanvasScript;
     private Canvas __dialogCanvas;
-    private FirstPersonMovement __playrMovement;
+    private FirstPersonMovement __playerMovement;
     private UICheckList __checkItem;
     private QuestSystem __questSystem;
     private Quest __quest;
@@ -24,7 +24,7 @@ public class Dialog : MonoBehaviour
     {
         __dialogCanvasScript = FindObjectOfType<DialogCanvas>();
         __dialogCanvas = __dialogCanvasScript.GetComponent<Canvas>();
-        __playrMovement = FindObjectOfType<FirstPersonMovement>();
+        __playerMovement = FindObjectOfType<FirstPersonMovement>();
         __cameraRot = FindObjectOfType<FirstPersonLook>();
         __checkItem = FindObjectOfType<UICheckList>();
         __questSystem = FindObjectOfType<QuestSystem>();
@@ -42,7 +42,7 @@ public class Dialog : MonoBehaviour
             __checkItems.Check();
 
         __dialogCanvas.enabled = true;
-        __playrMovement.SetMovement(false);
+        __playerMovement.SetMovement(false);
         __cameraRot.SetCameraRotation(false);
         GameSystem.ChangeCursorMode(CursorLockMode.Confined);
 
@@ -74,35 +74,23 @@ public class Dialog : MonoBehaviour
     {
         __dialogCanvas.enabled = false;
         GameSystem.ChangeCursorMode(CursorLockMode.Locked);
-        __playrMovement.SetMovement(true);
+        __playerMovement.SetMovement(true);
         __cameraRot.SetCameraRotation(true);
 
         Debug.Log("DialogCanvas disable");
     }
-    public void AddAdditionInfo()
-    {
-        if (!__isAddedInformation)
-        {
-            int ind = __questSystem.GetIndexByQuest(GetComponent<Quest>());
-            if (ind > -1)
-                __checkItem.transform.GetChild(ind).GetComponent<TextMeshProUGUI>().text += " (" + AdditionInformation + ")";
-            else
-                Debug.Log("ind < 0");
-            __isAddedInformation = true;
-        }
-    }
 }
-//QuestCheckListTask.text += " (" + AdditionInformation + ")";
-//__checkItem.transform.GetChild(ind).GetComponent<TextMeshProUGUI>().text += " (" + AdditionInformation + ")";
-
-//if (Items.Length <= 0)
-// return;
 /*
-for (int i = 0; i < Items.Length; i++)
+public void AddAdditionInfo()
 {
-    if (__inventory.ContainsItem(Items[i]) >= Amount[i])
+    if (!__isAddedInformation)
     {
-
+        int ind = __questSystem.GetIndexByQuest(GetComponent<Quest>());
+        if (ind > -1)
+            __checkItem.transform.GetChild(ind).GetComponent<TextMeshProUGUI>().text += " (" + AdditionInformation + ")";
+        else
+            Debug.Log("ind < 0");
+        __isAddedInformation = true;
     }
 }
 */

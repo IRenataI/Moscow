@@ -67,8 +67,10 @@ public class QuestSystem : MonoBehaviour
         }
         return -1;
     }
-    public Quest GetQuestByIndex(int index)
-    {
-        return CurrentQuests[index];
-    }
 }
+/*
+public Quest GetQuestByIndex(int index)
+{
+    return CurrentQuests[index];
+}
+*/
