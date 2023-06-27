@@ -30,8 +30,10 @@ public class Money : MonoBehaviour
             return false;
         }
     }
+    /*
     public static void EarnMoney(int moneyToEarn)
     {
         CurrentMoney += moneyToEarn;
     }
+    */
 }
