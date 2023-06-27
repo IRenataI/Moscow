@@ -3,14 +3,13 @@ using UnityEngine;
 public class WinCondition : MonoBehaviour
 {
     [SerializeField] private int ObjectsToHit;
-    [SerializeField]private TargetsAbstract[] Targets;
-    public int GetHittedTargetsNumber { get { return __hittedTargets; } }
-    public int GetObjectsToHit => ObjectsToHit;
-
+    [SerializeField] private TargetsAbstract[] Targets;
     private QuestPhotoObject questPhotoObject;
 
     private int __hittedTargets = 0;
     private Quest __quest;
+    public int GetHittedTargetsNumber => __hittedTargets;
+    public int GetObjectsToHit => ObjectsToHit;
     private void Awake()
     {
         questPhotoObject = GetComponent<QuestPhotoObject>();
@@ -56,5 +55,3 @@ public class WinCondition : MonoBehaviour
         //Debug.Log("resetHittedTargets");
     }
 }
-//public UnityEvent AfterHittedAllTargets;
-//AfterHittedAllTargets?.Invoke();

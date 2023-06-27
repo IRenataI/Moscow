@@ -5,7 +5,6 @@ public class UICheckList : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI UIMainTasks;
     [SerializeField] private TextMeshProUGUI UISecondaryTasks;
-
     [SerializeField] private TextMeshProUGUI[] Tasks;
     private QuestSystem __questSystem;
     private void Awake()
@@ -60,24 +59,6 @@ public class UICheckList : MonoBehaviour
         else
             Debug.Log("quest index < 0");
     }
-
-    private void UpdateUITasks()
-    {
-        UIMainTasks.text = string.Empty;
-        UISecondaryTasks.text = string.Empty;
-
-        for (int i = 0; i < Tasks.Length; i++)
-        {
-            if (i < QuestSystem.GetMainQuestsLength)
-            {
-                UIMainTasks.text += Tasks[i].text + "\n";
-            }
-            else
-            {
-                UISecondaryTasks.text += Tasks[i].text + "\n";
-            }
-        }
-    }
     public void AddQuestInformation(Quest quest, string QuestInfo)
     {
         int ind = __questSystem.GetIndexByQuest(quest);
@@ -88,3 +69,22 @@ public class UICheckList : MonoBehaviour
         }
     }
 }
+/*
+private void UpdateUITasks()
+{
+UIMainTasks.text = string.Empty;
+UISecondaryTasks.text = string.Empty;
+
+for (int i = 0; i < Tasks.Length; i++)
+{
+    if (i < QuestSystem.GetMainQuestsLength)
+    {
+        UIMainTasks.text += Tasks[i].text + "\n";
+    }
+    else
+    {
+        UISecondaryTasks.text += Tasks[i].text + "\n";
+    }
+}
+}
+*/
