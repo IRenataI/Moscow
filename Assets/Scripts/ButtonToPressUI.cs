@@ -1,18 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ButtonToPressUI : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private static Canvas __canvas;
+    void Awake()
     {
-        
+        __canvas = GetComponent<Canvas>();
+        __canvas.enabled = false;
     }
-
-    // Update is called once per frame
-    void Update()
+    public static void EnableCanvas()
     {
-        
+        __canvas.enabled = true;
+    }
+    public static void DisableCanvas()
+    {
+        __canvas.enabled = false;
     }
 }
