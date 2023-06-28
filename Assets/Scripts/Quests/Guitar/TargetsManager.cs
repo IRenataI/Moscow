@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class TargetsManager : MonoBehaviour
 {
-
     [SerializeField] private RawImage MusicImage;
     [SerializeField] private RectTransform MusicImageTransform;
     [SerializeField] private TextMeshProUGUI Accuracy;
@@ -26,7 +25,9 @@ public class TargetsManager : MonoBehaviour
     private int scale = 10;
 
     private float __tempAccuracy = 0f; 
-    private float __accuracy = 0f; 
+    private float __accuracy = 0f;
+
+    private int __destroyedObjects = 0;
     private void Awake()
     {
         for (int i = 0; i < TargetPosition.Length; i++)
@@ -56,8 +57,6 @@ public class TargetsManager : MonoBehaviour
         }
         __spawnedObjects.Clear();
     }
-
-    private int __destroyedObjects = 0;
     private void FixedUpdate()
     {
         if (!__isSpawning)
@@ -192,5 +191,4 @@ public class TargetsManager : MonoBehaviour
         MusicTexture.Apply();
     }
 }
-
 //private int k = 1; // default 5
