@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class TrashCan : CookingTool
 {
     private void Update()
