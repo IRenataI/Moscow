@@ -17,7 +17,7 @@ public class DroneController : MonoBehaviour
     private Rigidbody __rigidBody;
     private Vector3 __x, __y, __z;
     private bool __isDroneEnable = false;
-    void Awake()
+    private void Awake()
     {
         DroneInitialPosition = transform.position;
 
@@ -27,7 +27,7 @@ public class DroneController : MonoBehaviour
         __rigidBody.useGravity = false;
         __rigidBody.constraints = RigidbodyConstraints.FreezeRotation;
     }
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         if (!IsDroneEnable)
             return;

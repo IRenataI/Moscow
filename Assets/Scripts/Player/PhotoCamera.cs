@@ -2,7 +2,6 @@ using System;
 using System.IO;
 using UnityEngine;
 using System.Collections.Generic;
-using UnityEngine.UIElements;
 
 [RequireComponent(typeof(Camera))]
 public class PhotoCamera : MonoBehaviour
