@@ -21,7 +21,6 @@ public class Weapon : MonoBehaviour
     private Ray __ray;
     private BoxCollider __boxCollider;
     private int __initialAmmo;
-    //private QuestSystem __questSystem;
     private void Awake()
     {
         _audio = GetComponent<WeaponAudio>();
@@ -30,9 +29,8 @@ public class Weapon : MonoBehaviour
 
         Parent = Camera.main;
         __initialAmmo = Ammo;
-        //__questSystem = FindObjectOfType<QuestSystem>();
     }
-    void Update()
+    private void Update()
     {
         if (!IsWeaponEnable)           
             return;

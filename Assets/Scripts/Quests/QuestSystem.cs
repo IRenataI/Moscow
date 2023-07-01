@@ -1,4 +1,3 @@
-using System.Linq;
 using UnityEngine;
 
 public class QuestSystem : MonoBehaviour
@@ -68,57 +67,10 @@ public class QuestSystem : MonoBehaviour
         }
         return -1;
     }
-    public Quest GetQuestByIndex(int index)
-    {
-        return CurrentQuests[index];
-    }
 }
 /*
-private void FixedUpdate()
+public Quest GetQuestByIndex(int index)
 {
-    if (__quest != null && GameInputManager.IsSpacePressed())
-    {
-        __quest.Invoke();
-        //Debug.Log("Quest is running");
-    }
-    if (GameInputManager.IsTabPressed())
-    {
-        CurrentQuests[index].EndQuest();
-        //Debug.Log("Quest is done");
-    }
-}
-*/
-
-/*
-    public void StartQuest(Quest quest)
-    {
-        for (int i = 0; i < CurrentQuests.Length; i++)
-        {
-            if (CurrentQuests[i] == quest && quest.QuestStatus != Quest.QuestStatuses.Completed)// !quest.IsQuestCompleted)
-            {
-                index = i;
-                break;
-            }
-            else
-            {
-                index = -1;
-            }
-        }
-        __isQuestEnable = true;
-        Debug.Log("Quest index: " + index);
-    }
-    public void EndQuest()
-    {
-        Debug.Log("Completed quest's index: " + index);
-        __checkList.UpdateTasks(index);
-        __isQuestEnable = false;
-        __finishGame.CheckFinishCondition();
-    }
-    */
-
-/*
-public Quest GetCurrentQuest(Quest quest)
-{
-    return CurrentQuests.SingleOrDefault(i => i == quest);
+    return CurrentQuests[index];
 }
 */

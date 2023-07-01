@@ -177,31 +177,3 @@ public class DialogCanvas : MonoBehaviour
         __textsList.Clear();
     }
 }
-//int oldI, newI;
-/*
-__tempButton = __buttonsList.ElementAt(0);
-__tempButton.onClick.AddListener(() => __textsList.ElementAt(1).gameObject.SetActive(false));
-__tempButton.onClick.AddListener(() => __textsList.ElementAt(0).gameObject.SetActive(true));
-
-__tempButton.onClick.AddListener(() => __buttonsList.ElementAt(1).gameObject.SetActive(true));
-__tempButton.onClick.AddListener(() => __buttonsList.ElementAt(0).gameObject.SetActive(false));
-
-__tempButton = __buttonsList.ElementAt(1);
-__tempButton.onClick.AddListener(() => __textsList.ElementAt(2).gameObject.SetActive(false));
-__tempButton.onClick.AddListener(() => __textsList.ElementAt(1).gameObject.SetActive(true));
-
-__tempButton.onClick.AddListener(() => __buttonsList.ElementAt(2).gameObject.SetActive(true));
-__tempButton.onClick.AddListener(() => __buttonsList.ElementAt(1).gameObject.SetActive(false));
-*/
-
-/*
-            if (i == __buttonsList.Count - 2)
-            {
-                __tempButton.onClick.AddListener(() => __dialog.DisableDialogCanvas());
-                __tempButton.onClick.AddListener(() => DeleteDialog());
-            }
-            else
-            {
-                __tempButton.onClick.AddListener(() => __buttonsList.ElementAt(oldI).gameObject.SetActive(false));
-            }
-            */
