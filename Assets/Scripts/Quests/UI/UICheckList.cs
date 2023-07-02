@@ -19,11 +19,6 @@ public class UICheckList : MonoBehaviour
             {
                 UIMainTasks.text += Tasks[i].text + "\n";
             }
-            else
-            {
-                //Tasks[i].text = "Задача " + (i + 1 - QuestSystem.GetMainQuestsLength);
-                //UISecondaryTasks.text += Tasks[i].text + "\n";
-            }
         }
     }
     public void CompleteTask(int index)
@@ -69,22 +64,3 @@ public class UICheckList : MonoBehaviour
         }
     }
 }
-/*
-private void UpdateUITasks()
-{
-UIMainTasks.text = string.Empty;
-UISecondaryTasks.text = string.Empty;
-
-for (int i = 0; i < Tasks.Length; i++)
-{
-    if (i < QuestSystem.GetMainQuestsLength)
-    {
-        UIMainTasks.text += Tasks[i].text + "\n";
-    }
-    else
-    {
-        UISecondaryTasks.text += Tasks[i].text + "\n";
-    }
-}
-}
-*/

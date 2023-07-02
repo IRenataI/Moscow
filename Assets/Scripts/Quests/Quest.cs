@@ -24,6 +24,7 @@ public class Quest : MonoBehaviour
     {
         Started, Completed, None,  broken
     }
+    private bool __isInPosition = false;
     void Awake()
     {
         QuestStatus = QuestStatuses.None;
@@ -76,7 +77,6 @@ public class Quest : MonoBehaviour
 
         Debug.Log("Quest interrupted");
     }
-    private bool __isInPosition = false;
     private void FixedUpdate()
     {
         if (__questStatus != QuestStatuses.Started || !QuestStartPosition)
