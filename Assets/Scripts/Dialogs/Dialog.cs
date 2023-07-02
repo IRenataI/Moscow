@@ -1,10 +1,8 @@
-using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class Dialog : MonoBehaviour
 {
-    public string AdditionInformation;
     public string[] QuestText;
     public string[] TextAfterCompletionQuest;
     public string[] TextIfQuestStarted;
