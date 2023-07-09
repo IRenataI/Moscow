@@ -20,25 +20,52 @@ public class DialogCanvas : MonoBehaviour
         __buttons = transform.GetChild(0).gameObject;
         __texts = transform.GetChild(1).gameObject;
     }
-    public void CreateDialog(string[] dialogs, Dialog dialog)
+    public void CreateDialog(TextMeshProUGUI dialogs, Dialog dialog)
     {
+        int length = 1;
+        for (int i = 0; i < dialogs.text.Length; i++)
+        {
+            if (dialogs.text[i] == '\n')
+            {
+                length++;
+            }
+        }
+        string[] stringDialogs = new string[length];
+        TextMeshProUGUI __tempText = dialogs;
+        string __tempStr = "";
+        int z = 0;
+        for (int j = 0; j < __tempText.text.Length; j++)
+        {
+            __tempStr += __tempText.text[j];
+            if (__tempText.text[j] == '\n')
+            {
+                stringDialogs[z++] = __tempStr;
+                //Debug.Log("string :" + stringDialogs[z - 1]);
+                __tempStr = "";
+            }
+        }
+        stringDialogs[z++] = __tempStr;
+
         __dialog = dialog;
         GameObject __temp;
         Button __tempButton;
         // Create texts.
-        for (int i = 0; i < dialogs.Length; i++)
+        for (int i = 0; i < length; i++)
+        //for (int i = 0; i < dialogs.Length; i++)
         {
             __temp = Instantiate(PrefabText);
             __temp.gameObject.name = "text " + i;
             __temp.transform.SetParent(__texts.transform);
             __temp.transform.localPosition = new Vector2(0, -200);
             __temp.transform.localScale = new Vector3(1, 1, 1);
-            __temp.GetComponent<TextMeshProUGUI>().text = dialogs[i];
+            __temp.GetComponent<TextMeshProUGUI>().text = stringDialogs[i];
+            //__temp.GetComponent<TextMeshProUGUI>().text = dialogs[i];
             __temp.GetComponent<RectTransform>().sizeDelta = new Vector2(500, 100);
             __textsList.AddLast(__temp.GetComponent<TextMeshProUGUI>());            
         }
         // Create buttons.
-        for (int i = 0; i < dialogs.Length; i++)
+        for (int i = 0; i < length; i++)
+        //for (int i = 0; i < dialogs.Length; i++)
         {
             __temp = Instantiate(PrefabButton);
             __temp.gameObject.name = "Button " + i;
@@ -105,25 +132,52 @@ public class DialogCanvas : MonoBehaviour
 
         //Debug.Log("dialogs.Length " + dialogs.Length + "\n __buttonsList.Count" + __buttonsList.Count + "\n __textsList.Count" + __textsList.Count);
     }
-    public void CreateDialogWithoutChoices(string[] dialogs, Dialog dialog)
+    public void CreateDialogWithoutChoices(TextMeshProUGUI dialogs, Dialog dialog)
     {
+        int length = 1;
+        for (int i = 0; i < dialogs.text.Length; i++)
+        {
+            if (dialogs.text[i] == '\n')
+            {
+                length++;
+            }
+        }
+        string[] stringDialogs = new string[length];
+        TextMeshProUGUI __tempText = dialogs;
+        string __tempStr = "";
+        int z = 0;
+        for (int j = 0; j < __tempText.text.Length; j++)
+        {
+            __tempStr += __tempText.text[j];
+            if (__tempText.text[j] == '\n')
+            {
+                stringDialogs[z++] = __tempStr;
+                //Debug.Log("string :" + stringDialogs[z - 1]);
+                __tempStr = "";
+            }
+        }
+        stringDialogs[z++] = __tempStr;
+
         __dialog = dialog;
         GameObject __temp;
         Button __tempButton;
         // Create texts.
-        for (int i = 0; i < dialogs.Length; i++)
+        for (int i = 0; i < length; i++)
+        //for (int i = 0; i < dialogs.Length; i++)
         {
             __temp = Instantiate(PrefabText);
             __temp.gameObject.name = "text " + i;
             __temp.transform.SetParent(__texts.transform);
             __temp.transform.localPosition = new Vector2(0, -200);
             __temp.transform.localScale = new Vector3(1, 1, 1);
-            __temp.GetComponent<TextMeshProUGUI>().text = dialogs[i];
+            __temp.GetComponent<TextMeshProUGUI>().text = stringDialogs[i];
+            //__temp.GetComponent<TextMeshProUGUI>().text = dialogs[i];
             __temp.GetComponent<RectTransform>().sizeDelta = new Vector2(500, 100);
             __textsList.AddLast(__temp.GetComponent<TextMeshProUGUI>());
         }
         // Create buttons.
-        for (int i = 0; i < dialogs.Length; i++)
+        for (int i = 0; i < length; i++)
+        //for (int i = 0; i < dialogs.Length; i++)
         {
             __temp = Instantiate(PrefabButton);
             __temp.gameObject.name = "Button " + i;

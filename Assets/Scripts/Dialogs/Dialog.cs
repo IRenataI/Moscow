@@ -1,19 +1,21 @@
 using UnityEngine;
 using UnityEngine.Events;
+using TMPro;
 
 public class Dialog : MonoBehaviour
 {
-    public string[] QuestText;
-    public string[] TextAfterCompletionQuest;
-    public string[] TextIfQuestStarted;
-    public string[] TextIfAdjacentQuestCompleted;
+    [SerializeField] private TextMeshProUGUI QuestText;
+    [SerializeField] private TextMeshProUGUI QuestTextIfStarted;
+    [SerializeField] private TextMeshProUGUI QuestTextAfterCompletion;
+
     public UnityEvent OnStartDialog;
     public UnityEvent OnEndDialog;
+
     private DialogCanvas __dialogCanvasScript;
     private Canvas __dialogCanvas;
     private FirstPersonMovement __playerMovement;
-    private Quest __quest;
     private FirstPersonLook __cameraRot;
+    private Quest __quest;
     private CheckItem __checkItems;
     private void Awake()
     {
@@ -23,52 +25,49 @@ public class Dialog : MonoBehaviour
         __cameraRot = FindObjectOfType<FirstPersonLook>();
         __checkItems = GetComponent<CheckItem>();
         __quest = GetComponent<Quest>();
+
+        if (__quest)
+        {
+            if (__checkItems && __quest.QuestStatus != QuestStatuses.Completed)
+            {
+                OnStartDialog.AddListener(() => __checkItems.Check());
+            }
+            OnEndDialog.AddListener(() => __quest.StartQuest());
+            OnEndDialog.AddListener(() => __playerMovement.SetMovement(true));
+        }
     }
     public void EnableDialogCanvas()
     {
-        if (!__quest)
-        {
-            Debug.Log("Quest doesnt found");
-        }
-
-        if (__checkItems && __quest.QuestStatus != Quest.QuestStatuses.Completed)
+        if (__checkItems && __quest.QuestStatus != QuestStatuses.Completed)
             __checkItems.Check();
 
         __dialogCanvas.enabled = true;
         __playerMovement.SetMovement(false);
         __cameraRot.SetCameraRotation(false);
-        GameSystem.ChangeCursorMode(CursorLockMode.Confined);
+        CursorManager.EnableCursor();
 
-        if (__quest && __quest.QuestStatus == Quest.QuestStatuses.Started)
+        switch (__quest?.QuestStatus)
         {
-            __dialogCanvasScript.CreateDialogWithoutChoices(TextIfQuestStarted, this);
-            Debug.Log("dialog if quest started");
-            return;
+            case QuestStatuses.Started:
+                __dialogCanvasScript.CreateDialogWithoutChoices(QuestTextIfStarted, this);
+                break;
+            case QuestStatuses.Completed:
+                __dialogCanvasScript.CreateDialogWithoutChoices(QuestTextAfterCompletion, this);
+                break;
+            default:
+                __dialogCanvasScript.CreateDialog(QuestText, this);
+                break;
         }
-        if (__quest && __quest.QuestStatus == Quest.QuestStatuses.broken)
-        {
-            __dialogCanvasScript.CreateDialogWithoutChoices(TextIfAdjacentQuestCompleted, this);
-            Debug.Log("dialog if quest broken");
-            return;
-        }
-        if (__quest && __quest.QuestStatus == Quest.QuestStatuses.Completed)
-        {
-            __dialogCanvasScript.CreateDialogWithoutChoices(TextAfterCompletionQuest, this);
-            Debug.Log("dialog if quest Completed");
-            return;
-        }
-        __dialogCanvasScript.CreateDialog(QuestText, this);
-
         OnStartDialog?.Invoke();
-        Debug.Log("DialogCanvas enaled. __quest.QuestStatus: " + __quest.QuestStatus);   
+        Debug.Log("DialogCanvas enaled. __quest.QuestStatus: " + __quest?.QuestStatus);   
     }
 
     public void DisableDialogCanvas()
     {
         __dialogCanvas.enabled = false;
-        GameSystem.ChangeCursorMode(CursorLockMode.Locked);
         __playerMovement.SetMovement(true);
         __cameraRot.SetCameraRotation(true);
+        CursorManager.EnableCursor();
 
         Debug.Log("DialogCanvas disable");
     }
