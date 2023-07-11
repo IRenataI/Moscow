@@ -3,14 +3,13 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(DroneController))]
-public class DroneAudio : MonoBehaviour
+public class DroneAudio : AudioPlayer
 {
-    private AudioSource __audioSource;
     private Rigidbody __rigidBody;
     private DroneController __controller;
-    void Awake()
+    protected override void Awake()
     {
-        __audioSource = GetComponent<AudioSource>();
+        base.Awake();
         __audioSource.playOnAwake = false;
         __audioSource.loop = true;
 

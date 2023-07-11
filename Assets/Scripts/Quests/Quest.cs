@@ -20,14 +20,12 @@ public class Quest : MonoBehaviour
     private FirstPersonLook __cameraRotation;
     private WinCondition __winConditon;
     private QuestStatuses __questStatus;
-    private UICheckList __checkList;
     private bool __isInPosition = false;
     void Awake()
     {
         QuestStatus = QuestStatuses.None;
         __player = FindAnyObjectByType<FirstPersonMovement>();
         __cameraRotation = FindAnyObjectByType<FirstPersonLook>();
-        __checkList = FindAnyObjectByType<UICheckList>();
         __winConditon = GetComponent<WinCondition>();
     }
     public void StartQuest()
@@ -40,7 +38,7 @@ public class Quest : MonoBehaviour
 
         __questStatus = QuestStatuses.Started;
 
-        __checkList.AddQuestInformation(this, QuestInformation);
+        UICheckList.GetInstance.AddQuestInformation(this, QuestInformation);
 
         Debug.Log("Quest started: " + gameObject.name);
     }
@@ -53,7 +51,7 @@ public class Quest : MonoBehaviour
         __cameraRotation.SetCameraRotation(true);
         Subscribers.EarnSubscribers(PlusSubscribers);
 
-        __checkList.CompleteTask(this);
+        UICheckList.GetInstance.CompleteTask(this);
         __questStatus = QuestStatuses.Completed;
 
         QuestCompletionSound.Play();

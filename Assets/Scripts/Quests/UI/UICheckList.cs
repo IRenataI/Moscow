@@ -6,8 +6,12 @@ public class UICheckList : MonoBehaviour
     [SerializeField] private TextMeshProUGUI UIMainTasks;
     [SerializeField] private TextMeshProUGUI UISecondaryTasks;
     [SerializeField] private TextMeshProUGUI[] Tasks;
+    private static UICheckList __instance;
+    public static UICheckList GetInstance { get { return __instance; } }
     private void Awake()
     {
+        if (!__instance) { __instance = this; } else { Destroy(gameObject); }
+
         UIMainTasks.text = string.Empty;
         UISecondaryTasks.text = string.Empty;
 

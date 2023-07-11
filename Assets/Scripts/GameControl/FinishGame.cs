@@ -9,14 +9,7 @@ public class FinishGame : MonoBehaviour
     public static FinishGame GetInstance => __instance;
     private void Awake()
     {
-        if (!__instance)
-        {
-            __instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        if (!__instance) {  __instance = this;} else {  Destroy(gameObject); }
         __movement = FindObjectOfType<FirstPersonMovement>();
         __camera = FindObjectOfType<FirstPersonLook>();
     }

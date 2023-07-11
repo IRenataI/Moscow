@@ -11,14 +11,7 @@ public class QuestStorage : MonoBehaviour
     public static QuestStorage GetInstance => __instance;
     private void Awake()
     {
-        if (!__instance)
-        {
-            __instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        if (!__instance) {__instance = this;} else {Destroy(gameObject); }
     }
     public int GetIndexByQuest(Quest quest)
     {
