@@ -7,7 +7,7 @@ public class WMoney : MonoBehaviour
 
     public void Waste(int value)
     {
-        if (Money.WasteMoney(value))
+        if (Money.GetInstance.WasteMoney(value))
         {
             OnWaste?.Invoke();
             Destroy(this);

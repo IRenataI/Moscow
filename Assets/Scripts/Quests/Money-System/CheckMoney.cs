@@ -9,7 +9,7 @@ public class CheckMoney : MonoBehaviour
 
     public void Buy(int moneyAmount)
     {
-        if (Money.WasteMoney(moneyAmount))
+        if (Money.GetInstance.WasteMoney(moneyAmount))
         {
             winCondition.IncreaseHittedTargets();
             OnBuy?.Invoke();

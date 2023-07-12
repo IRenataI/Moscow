@@ -23,6 +23,18 @@ public class EnterToPlacesv2 : MonoBehaviour
         __IsEntering = true;
         BlackScreenUI.EnableBlackScreen();
     }
+    public void EnterToRestouran()
+    {
+        __desiredPosition = PlacesPositions[1];
+        __IsEntering = true;
+        BlackScreenUI.EnableBlackScreen();
+    }
+    public void LeaveRestouran()
+    {
+        __desiredPosition = ReturnPositions[1];
+        __IsEntering = true;
+        BlackScreenUI.EnableBlackScreen();
+    }
     private void FixedUpdate()
     {
         if (!__IsEntering)

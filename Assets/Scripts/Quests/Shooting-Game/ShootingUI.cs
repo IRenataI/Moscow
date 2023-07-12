@@ -12,6 +12,6 @@ public class ShootingUI : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        __ammoText.text = "Ammo: " + __weapon.Ammo;
+        __ammoText.text = "Ammo: " + __weapon.GetAmmo;
     }
 }

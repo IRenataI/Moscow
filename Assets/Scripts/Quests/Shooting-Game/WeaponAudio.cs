@@ -1,16 +1,15 @@
 using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
-public class WeaponAudio : MonoBehaviour
+public class WeaponAudio : AudioPlayer
 {
-    private AudioSource ShotSound;
-    private void Awake()
+    protected override void Awake()
     {
-        ShotSound = GetComponent<AudioSource>();
-        ShotSound.playOnAwake = false;
+        base.Awake();
+        __audioSource.playOnAwake = false;
     }
     public void PlayShotSound()
     {
-        ShotSound.Play();
+        __audioSource.Play();
     }
 }

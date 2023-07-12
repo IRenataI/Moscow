@@ -8,6 +8,7 @@ public class TargetHitSoundPlayer : MonoBehaviour
     {
         AudioPlayer = GetComponent<AudioSource>();
         AudioPlayer.playOnAwake = false;
+        Debug.Log(gameObject.name);
     }
     public static void Play()
     {

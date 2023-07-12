@@ -26,9 +26,9 @@ public class QuestPhotoObjects : MonoBehaviour
 
                 Quest quest = capturedQuestObject.GetComponent<Quest>();
                 
-                if (quest.QuestStatus == Quest.QuestStatuses.None)
-                    quest.StartQuest(0);
-                if (quest.QuestStatus == Quest.QuestStatuses.Started)
+                if (quest.QuestStatus == QuestStatuses.None)
+                    quest.StartQuest();
+                if (quest.QuestStatus == QuestStatuses.Started)
                     capturedQuestObject.IncreaceProgress();
             }
         }

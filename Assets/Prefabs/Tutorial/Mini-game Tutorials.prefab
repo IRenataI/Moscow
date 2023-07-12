@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 3585814650152668151}
   - component: {fileID: 3585814650152668150}
   - component: {fileID: 3585814650152668149}
-  - component: {fileID: 3585814650152668148}
   m_Layer: 5
   m_Name: MapBeginTutor
   m_TagString: Untagged
@@ -107,18 +106,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &3585814650152668148
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3585814650152668155}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd0a5de91c3a40f4da855c646a6a4484, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &3585814650180957944
 GameObject:
   m_ObjectHideFlags: 0
@@ -251,7 +238,31 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: FirstPersonLook, Assembly-CSharp
+        m_MethodName: SetCameraRotation
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
           m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 2474167773501474229, guid: 864aeb1f8ecd22a47a27d73427454238, type: 3}
+        m_TargetAssemblyTypeName: GameSystem, Assembly-CSharp
+        m_MethodName: DisableCursor
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &3585814650196152052
 GameObject:
@@ -497,7 +508,6 @@ GameObject:
   - component: {fileID: 3585814650337885825}
   - component: {fileID: 3585814650337885824}
   - component: {fileID: 3585814650337885831}
-  - component: {fileID: 3585814650337885830}
   m_Layer: 5
   m_Name: Drawing
   m_TagString: Untagged
@@ -589,18 +599,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &3585814650337885830
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3585814650337885828}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd0a5de91c3a40f4da855c646a6a4484, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &3585814650493013320
 GameObject:
   m_ObjectHideFlags: 0
@@ -843,7 +841,6 @@ GameObject:
   - component: {fileID: 3585814650667351103}
   - component: {fileID: 3585814650667351102}
   - component: {fileID: 3585814650667351101}
-  - component: {fileID: 3585814650667351100}
   m_Layer: 5
   m_Name: DroneRacingTutor
   m_TagString: Untagged
@@ -935,18 +932,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &3585814650667351100
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3585814650667351074}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd0a5de91c3a40f4da855c646a6a4484, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &3585814650691337322
 GameObject:
   m_ObjectHideFlags: 0
@@ -2073,8 +2058,8 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: FirstPersonLook, Assembly-CSharp
-        m_MethodName: SetCameraRotation
+        m_TargetAssemblyTypeName: FirstPersonMovement, Assembly-CSharp
+        m_MethodName: SetMovement
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2085,8 +2070,8 @@ MonoBehaviour:
           m_BoolArgument: 1
         m_CallState: 2
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: FirstPersonMovement, Assembly-CSharp
-        m_MethodName: SetMovement
+        m_TargetAssemblyTypeName: FirstPersonLook, Assembly-CSharp
+        m_MethodName: SetCameraRotation
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2303,9 +2288,9 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3585814651353824066}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3585814650912885804}
@@ -2313,7 +2298,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 975.3413, y: 628}
+  m_AnchoredPosition: {x: 15.3413, y: 88}
   m_SizeDelta: {x: 1071.3762, y: 583.8732}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3585814651353824093
@@ -2347,7 +2332,7 @@ MonoBehaviour:
   m_text: "\u0423\u043F\u0440\u0430\u0432\u043B\u0435\u043D\u0438\u0435\n\nTab -
     \u0442\u0435\u043B\u0435\u0444\u043E\u043D \nShift - \u0431\u0435\u0433\nE- \u0432\u0437\u0430\u0438\u043C\u043E\u0434\u0435\u0439\u0441\u0442\u0432\u043E\u0432\u0430\u0442\u044C\ni-
     \u0441\u0434\u0435\u043B\u0430\u0442\u044C \u0441\u043D\u0438\u043C\u043E\u043A\nEsc
-    - \u041F\u0430\u0443\u0437\u0430"
+    - \u0423\u0431\u0440\u0430\u0442\u044C \u0442\u0435\u043B\u0435\u0444\u043E\u043D"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e41810bc0a0db334183e9eecdddfc18f, type: 2}
   m_sharedMaterial: {fileID: 684141671308472541, guid: e41810bc0a0db334183e9eecdddfc18f, type: 2}
@@ -3196,7 +3181,6 @@ GameObject:
   - component: {fileID: 3585814651599523768}
   - component: {fileID: 3585814651599523775}
   - component: {fileID: 3585814651599523774}
-  - component: {fileID: 3585814651599523773}
   m_Layer: 5
   m_Name: Shooter
   m_TagString: Untagged
@@ -3288,18 +3272,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &3585814651599523773
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3585814651599523747}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd0a5de91c3a40f4da855c646a6a4484, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &3585814651649353545
 GameObject:
   m_ObjectHideFlags: 0
@@ -3434,6 +3406,54 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: CameraRotation, Assembly-CSharp
+        m_MethodName: StartRotate
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: DroneController, Assembly-CSharp
+        m_MethodName: set_IsDroneEnable
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 2474167773501474229, guid: 864aeb1f8ecd22a47a27d73427454238, type: 3}
+        m_TargetAssemblyTypeName: GameSystem, Assembly-CSharp
+        m_MethodName: DisableCursor
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 3585814650667351074}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3585814651825809033
 GameObject:
   m_ObjectHideFlags: 0
@@ -3558,6 +3578,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3f6a5a0b7c74fe408d8976d94ef30a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TutorialsObjects:
+  - {fileID: 3585814650667351074}
+  - {fileID: 3585814651599523747}
+  - {fileID: 3585814650337885828}
 --- !u!1 &3585814651882360347
 GameObject:
   m_ObjectHideFlags: 0

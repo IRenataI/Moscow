@@ -1,5 +1,9 @@
 public class QuestInteractable : Interactable
 {
+    private void Awake()
+    {
+        OnInteract.AddListener(() => GetComponent<Dialog>()?.EnableDialogCanvas());
+    }
     public override void Select() 
     {
         base.Select();

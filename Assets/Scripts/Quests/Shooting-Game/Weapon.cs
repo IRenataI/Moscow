@@ -3,15 +3,17 @@ using UnityEngine;
 [RequireComponent(typeof(WeaponAudio))]
 public class Weapon : MonoBehaviour
 {
-    public Quest TirQuest;
+    private Quest TirQuest;
+    public Quest SetTirQuest { set { TirQuest = value; } }
     [Range(0,25)]
-    public int Ammo = 10;
-    public bool IsWeaponEnable = false;
-    public GameObject Bullet;
-    public Vector3 LocalPosition;
-    public int BulletPosition;
+    [SerializeField] private int Ammo = 20;
+    [SerializeField] private bool IsWeaponEnable = false;
+    [SerializeField] private GameObject Bullet;
+    [SerializeField] private Vector3 LocalPosition;
+    [SerializeField] private int BulletPosition;
     [Range(1f, 15f)]
-    public int BulletSpeed = 5;
+    [SerializeField] private int BulletSpeed = 5;
+    public int GetAmmo { get { return Ammo; } }
 
     private Camera Parent;
     private GameObject __tempBullet;
