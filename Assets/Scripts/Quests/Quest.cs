@@ -7,7 +7,6 @@ public class Quest : MonoBehaviour
 {
     [SerializeField] private string QuestInformation;
     [SerializeField] private int PlusSubscribers = 50;
-    [SerializeField] private int QuestPrice = 0;
     [SerializeField] private Transform QuestStartPosition;
 
     public UnityEvent EventOnStart;
@@ -30,9 +29,6 @@ public class Quest : MonoBehaviour
     }
     public void StartQuest()
     {
-        if (!Money.GetInstance.WasteMoney(QuestPrice))
-            return;
-
         EventOnStart?.Invoke();
         __player.SetMovement(false);
 

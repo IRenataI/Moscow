@@ -10,6 +10,7 @@ public class ShootingManager : MonoBehaviour
 
     private static ShootingManager __instance;
     public static ShootingManager GetInstance => __instance;
+    private Quest __quest;
     private void Awake()
     {
         if (!__instance)
@@ -24,6 +25,12 @@ public class ShootingManager : MonoBehaviour
         __move = FindObjectOfType<FirstPersonMovement>();
 
         __weapon.SetTirQuest = GetComponent<Quest>();
+
+        __quest = GetComponent<Quest>();
+
+
+        __quest.EventOnEnd.AddListener(() => DisableShootingGame());
+        __quest.EventOnInterrupt.AddListener(() => DisableShootingGame());
     }
     public void EnableShootingGame()
     {
